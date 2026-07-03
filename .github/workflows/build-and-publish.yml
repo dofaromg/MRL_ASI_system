@@ -131,6 +131,9 @@ jobs:
     strategy:
       matrix:
         service:
+          - name: nextjs-frontend
+            context: .
+            dockerfile: ./apps/nextjs-frontend/Dockerfile
           - name: module-a
             context: ./apps/module-a
             dockerfile: ./apps/module-a/Dockerfile
