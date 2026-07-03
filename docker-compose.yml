@@ -12,9 +12,54 @@ services:
       - NEXT_PUBLIC_GROWTHBOOK_API_HOST=${NEXT_PUBLIC_GROWTHBOOK_API_HOST:-https://cdn.growthbook.io}
       - NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY=${NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY:-}
       - NODE_ENV=production
+    depends_on:
+      - module-a
+      - orchestrator
     restart: unless-stopped
     networks:
       - flowagent-network
+
+  # Module-A Service
+  module-a:
+    build:
+      context: ./apps/module-a
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGODB_URI=mongodb://admin:${MONGODB_PASSWORD:-changeme123}@mongodb:27017
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+    networks:
+      - flowagent-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # Orchestrator Service
+  orchestrator:
+    build:
+      context: ./apps/orchestrator
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - MODULE_A_ENDPOINT=http://module-a:8080
+    depends_on:
+      - module-a
+    restart: unless-stopped
+    networks:
+      - flowagent-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8081/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   # MongoDB Database
   mongodb:
@@ -29,23 +74,12 @@ services:
     restart: unless-stopped
     networks:
       - flowagent-network
-
-  # Python Backend (Optional - if you have backend services)
-  # backend:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8000:8000"
-  #   volumes:
-  #     - ./config.yaml:/data/config.yaml
-  #   environment:
-  #     - AMP_CONFIG=/data/config.yaml
-  #   depends_on:
-  #     - mongodb
-  #   restart: unless-stopped
-  #   networks:
-  #     - flowagent-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
 
 volumes:
   mongodb-data:
