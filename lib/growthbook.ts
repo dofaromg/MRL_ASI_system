@@ -11,18 +11,18 @@ const LOCAL_FEATURES: Record<string, { defaultValue: unknown }> = {
 
 // Initialize GrowthBook instance
 let growthbook: GrowthBook | null = null
-let dummyGrowthBook: GrowthBook | null = null
+let serverSideGrowthBook: GrowthBook | null = null
 
 export function getGrowthBook(): GrowthBook {
   if (typeof window === 'undefined') {
     // Server-side: return a cached local GrowthBook instance
-    if (!dummyGrowthBook) {
-      dummyGrowthBook = new GrowthBook({
+    if (!serverSideGrowthBook) {
+      serverSideGrowthBook = new GrowthBook({
         attributes: {},
         features: LOCAL_FEATURES,
       })
     }
-    return dummyGrowthBook
+    return serverSideGrowthBook
   }
 
   if (!growthbook) {
