@@ -1,27 +1,36 @@
 import { GrowthBook } from '@growthbook/growthbook'
 import { identify } from './identify'
 
+// Local feature flag definitions — no external API calls
+// 本地功能旗標定義 — 不發出任何外部 API 請求
+const LOCAL_FEATURES: Record<string, { defaultValue: unknown }> = {
+  summer_sale: { defaultValue: false },
+  free_delivery: { defaultValue: false },
+  proceed_to_checkout: { defaultValue: 'blue' },
+}
+
 // Initialize GrowthBook instance
 let growthbook: GrowthBook | null = null
 let dummyGrowthBook: GrowthBook | null = null
 
 export function getGrowthBook(): GrowthBook {
   if (typeof window === 'undefined') {
-    // Server-side: return a cached dummy GrowthBook instance
+    // Server-side: return a cached local GrowthBook instance
     if (!dummyGrowthBook) {
       dummyGrowthBook = new GrowthBook({
         attributes: {},
-        features: {},
+        features: LOCAL_FEATURES,
       })
     }
     return dummyGrowthBook
   }
 
   if (!growthbook) {
+    // Closed-loop mode: load flags from local definitions only, no external CDN
+    // 閉環模式：僅從本地定義載入旗標，不連接外部 CDN
     growthbook = new GrowthBook({
-      apiHost: process.env.NEXT_PUBLIC_GROWTHBOOK_API_HOST || 'https://cdn.growthbook.io',
-      clientKey: process.env.NEXT_PUBLIC_GROWTHBOOK_CLIENT_KEY || '',
       enableDevMode: process.env.NODE_ENV === 'development',
+      features: LOCAL_FEATURES,
       trackingCallback: (experiment, result) => {
         console.log('Experiment Viewed', {
           experimentId: experiment.key,
@@ -33,11 +42,6 @@ export function getGrowthBook(): GrowthBook {
     // Set user attributes
     const attributes = identify()
     growthbook.setAttributes(attributes)
-
-    // Load features from GrowthBook API
-    growthbook.init({ streaming: true }).catch((error) => {
-      console.error('Failed to initialize GrowthBook:', error)
-    })
   }
 
   return growthbook
