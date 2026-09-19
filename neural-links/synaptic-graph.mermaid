@@ -4,10 +4,14 @@ graph TD
 
   %% 節點定義
   main["● main<br/>L7"]:::trunk
-  copilot_create_branch_neural_map["● copilot/create-branch-neural-map<br/>L6"]:::cognitive
+  Mrliou_mrl_authorization_repair_r07["● Mrliou/mrl-authorization-repair-r07<br/>L3 #1"]:::experimental
+  copilot_construct_deployment["● copilot/construct-deployment<br/>L6"]:::cognitive
+  copilot_task_217537952_1287894039_6fbdb916_c8ca_4968_a8ac_bb746afff72a["● copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a<br/>L6"]:::cognitive
 
   %% 連結定義
-  main -.->|active| copilot_create_branch_neural_map
+  main -.->|active| Mrliou_mrl_authorization_repair_r07
+  main -.->|active| copilot_construct_deployment
+  main -.->|active| copilot_task_217537952_1287894039_6fbdb916_c8ca_4968_a8ac_bb746afff72a
 
   %% 樣式定義
   classDef trunk fill:#ff6b6b,stroke:#333,stroke-width:4px,color:#fff
