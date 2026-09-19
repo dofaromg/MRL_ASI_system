@@ -34,3 +34,11 @@ Before application, verify the exact repository/base and all original blobs.
 Apply on a new isolated review branch only; validate CI there before considering
 any separately authorized protected merge. Rollback by reverting the candidate
 commit; do not rewrite history. Historical artifact download/use remains OPEN.
+
+R07 CI correction: the existing runner-version job name referenced the env
+context where GitHub does not allow it. Replace only that display name with
+a static label. The version threshold, comparison steps and path/event routing
+are unchanged. The candidate payload is now 16 files. Existing Neural Branch
+Sync may append two graph files; those extra changes are tracked separately
+in the R07 ledger and require review. Billing and application CI remain
+separate from the 47 targeted authorization tests.

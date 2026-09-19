@@ -3,12 +3,13 @@
   "repository": "dofaromg/-Mr.liouagi",
   "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
   "status": "REVIEW_CANDIDATE_NOT_MERGED",
-  "expected_file_count": 15,
+  "expected_file_count": 16,
   "expected_files": [
     ".copilot/Mrliou_structure_authorization.py",
     ".copilot/generator/emoji_indexer.py",
     ".copilot/scanner/structure_scanner.py",
     ".copilot/triggers/smart_updater.py",
+    ".github/workflows/runner-version-check.yml",
     ".github/workflows/structure-indexer.yml",
     "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
     "config/Mrliou_Structure_Authorization_Delivery_v1.json",
@@ -68,7 +69,8 @@
       "run_structure_index.py",
       "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md",
       "config/Mrliou_Structure_Authorization_Delivery_v1.json"
-    ]
+    ],
+    ".github/workflows/runner-version-check.yml": []
   },
   "payload": [
     {
@@ -92,6 +94,11 @@
       "sha256": "fbb183067d4549d27710e5232bb602a9457a27a83b0557ca1e0d99eb5e808d45"
     },
     {
+      "path": ".github/workflows/runner-version-check.yml",
+      "size_bytes": 2087,
+      "sha256": "6688c4529847b801389138bb3c0cb9918c4db2f94c9796a31798b5fc726ea34f"
+    },
+    {
       "path": ".github/workflows/structure-indexer.yml",
       "size_bytes": 7135,
       "sha256": "f49beb89ae2faaef7f12e4c0231ccb123eacf1f293fef746adce03f0c6c5eaad"
@@ -103,8 +110,8 @@
     },
     {
       "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md",
-      "size_bytes": 2126,
-      "sha256": "8546bcbe71627cccaddf519ff95c6c5da0bc5881d818bd56c38fc4a90b023044"
+      "size_bytes": 2633,
+      "sha256": "1d65936dc3474065e163cb45fec5735942821569534ebb7a0d1d20a9ac4fd695"
     },
     {
       "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/generator/emoji_indexer.py",
@@ -143,5 +150,5 @@
     }
   ],
   "review_branch": "Mrliou/mrl-authorization-repair-r07",
-  "revision": "R07"
+  "revision": "R07_CI_CORRECTION"
 }
