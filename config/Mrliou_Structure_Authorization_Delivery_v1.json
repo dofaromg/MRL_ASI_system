@@ -1,0 +1,147 @@
+{
+  "origin_signature": "MrLiouWord",
+  "repository": "dofaromg/-Mr.liouagi",
+  "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
+  "status": "REVIEW_CANDIDATE_NOT_MERGED",
+  "expected_file_count": 15,
+  "expected_files": [
+    ".copilot/Mrliou_structure_authorization.py",
+    ".copilot/generator/emoji_indexer.py",
+    ".copilot/scanner/structure_scanner.py",
+    ".copilot/triggers/smart_updater.py",
+    ".github/workflows/structure-indexer.yml",
+    "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
+    "config/Mrliou_Structure_Authorization_Delivery_v1.json",
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md",
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/generator/emoji_indexer.py",
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/scanner/structure_scanner.py",
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/triggers/smart_updater.py",
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.github/workflows/structure-indexer.yml",
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/run_structure_index.py",
+    "run_structure_index.py",
+    "tests/test_Mrliou_structure_authorization.py"
+  ],
+  "dependencies": {
+    ".copilot/Mrliou_structure_authorization.py": [
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json"
+    ],
+    ".copilot/generator/emoji_indexer.py": [
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json"
+    ],
+    ".copilot/scanner/structure_scanner.py": [
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json"
+    ],
+    ".copilot/triggers/smart_updater.py": [
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json"
+    ],
+    ".github/workflows/structure-indexer.yml": [
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
+      "tests/test_Mrliou_structure_authorization.py",
+      ".copilot/scanner/structure_scanner.py",
+      ".copilot/generator/emoji_indexer.py",
+      ".copilot/triggers/smart_updater.py",
+      "run_structure_index.py"
+    ],
+    "config/MRL_AUTHORIZATION_REGISTRY_v1.json": [],
+    "config/Mrliou_Structure_Authorization_Delivery_v1.json": [],
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md": [],
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/generator/emoji_indexer.py": [],
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/scanner/structure_scanner.py": [],
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/triggers/smart_updater.py": [],
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.github/workflows/structure-indexer.yml": [],
+    "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/run_structure_index.py": [],
+    "run_structure_index.py": [
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json"
+    ],
+    "tests/test_Mrliou_structure_authorization.py": [
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
+      ".github/workflows/structure-indexer.yml",
+      ".copilot/scanner/structure_scanner.py",
+      ".copilot/generator/emoji_indexer.py",
+      ".copilot/triggers/smart_updater.py",
+      "run_structure_index.py",
+      "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md",
+      "config/Mrliou_Structure_Authorization_Delivery_v1.json"
+    ]
+  },
+  "payload": [
+    {
+      "path": ".copilot/Mrliou_structure_authorization.py",
+      "size_bytes": 8783,
+      "sha256": "e173ad61acf34d52a2c136a3cd051ebe9b777ae0fcc86a165a10e4362f4e9fff"
+    },
+    {
+      "path": ".copilot/generator/emoji_indexer.py",
+      "size_bytes": 13232,
+      "sha256": "1f21aaa09ec2a023656b7d7c5d12dc31595129ec87ce8014e8f19a98a2643eae"
+    },
+    {
+      "path": ".copilot/scanner/structure_scanner.py",
+      "size_bytes": 13817,
+      "sha256": "02782ba71c70a4ee3cc19cf42ef2604ff0e75992d4dd4bb88fac4bd0050ec44b"
+    },
+    {
+      "path": ".copilot/triggers/smart_updater.py",
+      "size_bytes": 11788,
+      "sha256": "fbb183067d4549d27710e5232bb602a9457a27a83b0557ca1e0d99eb5e808d45"
+    },
+    {
+      "path": ".github/workflows/structure-indexer.yml",
+      "size_bytes": 7135,
+      "sha256": "f49beb89ae2faaef7f12e4c0231ccb123eacf1f293fef746adce03f0c6c5eaad"
+    },
+    {
+      "path": "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
+      "size_bytes": 1113,
+      "sha256": "7b2395fc9d95a0c0615fb93d070873461b1ce27bd32b7ea98b1ba9f61003762e"
+    },
+    {
+      "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md",
+      "size_bytes": 2126,
+      "sha256": "8546bcbe71627cccaddf519ff95c6c5da0bc5881d818bd56c38fc4a90b023044"
+    },
+    {
+      "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/generator/emoji_indexer.py",
+      "size_bytes": 11755,
+      "sha256": "c1365fa9a77b6788bd9f1295e94fa57b2c0965a54151af3ea53026cdcae03a6b"
+    },
+    {
+      "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/scanner/structure_scanner.py",
+      "size_bytes": 12348,
+      "sha256": "ddcb95017d4028c3fa5c562d75834af0fb0fa17fca6fffc37c860f4c0ff41ab2"
+    },
+    {
+      "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/triggers/smart_updater.py",
+      "size_bytes": 10533,
+      "sha256": "90882fbb3a71af7c993d3b8c0d8fa6a582c756164ddac3c602700979f15af730"
+    },
+    {
+      "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.github/workflows/structure-indexer.yml",
+      "size_bytes": 6253,
+      "sha256": "97306c99b2420367d9415a4844f8ac6a0b432d9f0e51eb6b3176fa74b551453e"
+    },
+    {
+      "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/run_structure_index.py",
+      "size_bytes": 3752,
+      "sha256": "81c92efbcf996864ab20d27f36245f0b2f4f199fcf25792c4201ff307125925d"
+    },
+    {
+      "path": "run_structure_index.py",
+      "size_bytes": 3957,
+      "sha256": "1d61fbd570124d87ed3df81b5467d5d85fee30245d3f312beacc2c866f7e5106"
+    },
+    {
+      "path": "tests/test_Mrliou_structure_authorization.py",
+      "size_bytes": 29254,
+      "sha256": "3886926f2786cbfe6b584f16a5db0e43b5fdd31fb42062466f6a489bb018243b"
+    }
+  ],
+  "review_branch": "Mrliou/mrl-authorization-repair-r07",
+  "revision": "R07"
+}
