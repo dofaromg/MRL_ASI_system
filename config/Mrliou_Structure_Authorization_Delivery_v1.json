@@ -3,7 +3,7 @@
   "repository": "dofaromg/-Mr.liouagi",
   "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
   "status": "REVIEW_CANDIDATE_NOT_MERGED",
-  "expected_file_count": 17,
+  "expected_file_count": 20,
   "expected_files": [
     ".copilot/Mrliou_structure_authorization.py",
     ".copilot/generator/emoji_indexer.py",
@@ -20,7 +20,10 @@
     "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.copilot/triggers/smart_updater.py",
     "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.github/workflows/structure-indexer.yml",
     "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/run_structure_index.py",
+    "requirements.txt",
     "run_structure_index.py",
+    "scripts/update-neural-map.js",
+    "tests/Mrliou_neural_history.test.cjs",
     "tests/test_Mrliou_structure_authorization.py"
   ],
   "dependencies": {
@@ -74,8 +77,14 @@
     ".github/workflows/runner-version-check.yml": [],
     ".github/workflows/blank.yml": [
       "package.json",
-      "package-lock.json"
-    ]
+      "package-lock.json",
+      "tests/Mrliou_neural_history.test.cjs",
+      "requirements.txt"
+    ],
+    "tests/Mrliou_neural_history.test.cjs": [
+      "scripts/update-neural-map.js"
+    ],
+    "scripts/update-neural-map.js": []
   },
   "payload": [
     {
@@ -150,19 +159,34 @@
     },
     {
       "path": ".github/workflows/blank.yml",
-      "size_bytes": 2524,
-      "sha256": "a0ed7293f27c5853e4ea6b6a8e4b890c7cdad438135d2e1dcd5e5de47124b37f"
+      "size_bytes": 2636,
+      "sha256": "d6ea74d155e130f0b226fcbf6111470638f737aecf7fd496615285997395009b"
     },
     {
       "path": "docs/Mrliou_MRL_Legacy_Indexer_Repair_R05.md",
-      "size_bytes": 3004,
-      "sha256": "0985233ebb7b197becc521342e8f399b144afea515f7609231eebf3f4b3f7e3e"
+      "size_bytes": 3540,
+      "sha256": "7f07ed4ace9124953ba41189a954dc3ab7e9a001e512c788fb0d708e6b9c3efd"
+    },
+    {
+      "path": "scripts/update-neural-map.js",
+      "size_bytes": 6289,
+      "sha256": "b1220ef8ee5c21540345c3a4839243b5c788f91bbcf56054df157b189d4067bb"
+    },
+    {
+      "path": "tests/Mrliou_neural_history.test.cjs",
+      "size_bytes": 2920,
+      "sha256": "b102b9868e2d1f5d76539a8873ee104cd8a484804622526cdc1185e8e9833ca1"
+    },
+    {
+      "path": "requirements.txt",
+      "size_bytes": 92,
+      "sha256": "77363d263482d45f0c94c348dada0020caac4ac6fd0ac5a200c12d30c7bc9097"
     }
   ],
   "review_branch": "Mrliou/mrl-authorization-repair-r07",
-  "revision": "R08_NODE_DEPENDENCY_SETUP",
+  "revision": "R08_HISTORY_AND_DEPENDENCIES",
   "external_repository_dependencies": [
-    "package.json",
-    "package-lock.json"
+    "package-lock.json",
+    "package.json"
   ]
 }

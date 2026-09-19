@@ -48,3 +48,11 @@ next build, but the workflow installed Python dependencies only. Add Node 24
 and npm ci before validation. Existing checks, failure behavior, privacy
 redaction and event routes are unchanged. This is a 17-file review candidate;
 remote CI outcomes are recorded separately, not assumed to pass.
+
+R08 follow-up: preserve historical neural nodes and edges from the existing
+working graph and tracked origin/main baseline. Absent current branches receive
+historical_only=true; original IDs, fields and timestamps remain. Reject foreign
+origins, malformed history and orphan historical edges. Four synthetic tests
+include recovery from a tracked Git baseline. No main ref or service route is
+changed. Repositories lacking Flask now use the existing sibling declaration
+flask>=3.0.0 required by hello_api.py; no validation is disabled.

@@ -119,11 +119,62 @@ function getBranchLayer(branch) {
   return typeLayerMap[getBranchType(branch)] || 'L3';
 }
 
+// Preserve prior observations without treating absent branches as deleted history.
+function mergeNeuralHistory(current, snapshots) {
+  const result = JSON.parse(JSON.stringify(current));
+  const nodes = new Map(result.neural_network.nodes.map(n => [n.id, n]));
+  const edgeKey = e => JSON.stringify([e.from, e.to, e.type]);
+  const edges = new Set(result.neural_network.synapses.map(edgeKey));
+  for (const snapshot of snapshots) {
+    if (snapshot.origin_signature !== result.origin_signature ||
+        !Array.isArray(snapshot.neural_network?.nodes) ||
+        !Array.isArray(snapshot.neural_network?.synapses)) {
+      throw new Error('Invalid or foreign neural history; refusing replacement');
+    }
+    for (const node of snapshot.neural_network.nodes) {
+      if (!nodes.has(node.id)) {
+        const preserved = {...node, historical_only: true};
+        nodes.set(node.id, preserved);
+        result.neural_network.nodes.push(preserved);
+      }
+    }
+    for (const edge of snapshot.neural_network.synapses) {
+      if (!edges.has(edgeKey(edge))) {
+        if (!nodes.has(edge.from) || !nodes.has(edge.to)) {
+          throw new Error('Historical edge has a missing endpoint');
+        }
+        edges.add(edgeKey(edge));
+        result.neural_network.synapses.push({...edge, historical_only: true});
+      }
+    }
+  }
+  return result;
+}
+
+function loadNeuralHistory() {
+  const snapshots = [];
+  const path = 'neural-links/branch-map.json';
+  if (fs.existsSync(path)) snapshots.push(JSON.parse(fs.readFileSync(path, 'utf-8')));
+  let hasMain = false;
+  try {
+    execSync('git rev-parse --verify refs/remotes/origin/main', {stdio: 'pipe'});
+    hasMain = true;
+  } catch {
+    console.warn('No origin/main reference; preserving available local history only.');
+  }
+  if (hasMain) {
+    // Failure to read a known baseline must not silently discard its history.
+    snapshots.push(JSON.parse(execSync('git show refs/remotes/origin/main:neural-links/branch-map.json',
+      {encoding: 'utf-8', stdio: ['ignore', 'pipe', 'pipe']})));
+  }
+  return snapshots;
+}
+
 // 主程序
 function main() {
   console.log('🧠 Starting neural network update...');
   
-  const network = buildNeuralNetwork();
+  const network = mergeNeuralHistory(buildNeuralNetwork(), loadNeuralHistory());
   
   // 確保目錄存在
   if (!fs.existsSync('neural-links')) {
@@ -153,4 +204,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { buildNeuralNetwork, getBranchType, getBranchLayer };
+module.exports = { buildNeuralNetwork, getBranchType, getBranchLayer, mergeNeuralHistory, loadNeuralHistory };
