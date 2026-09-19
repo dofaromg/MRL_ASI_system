@@ -42,3 +42,9 @@ are unchanged. The candidate payload is now 16 files. Existing Neural Branch
 Sync may append two graph files; those extra changes are tracked separately
 in the R07 ledger and require review. Billing and application CI remain
 separate from the 47 targeted authorization tests.
+
+R08 CI dependency correction: FlowAgent task validation invokes npm lint and
+next build, but the workflow installed Python dependencies only. Add Node 24
+and npm ci before validation. Existing checks, failure behavior, privacy
+redaction and event routes are unchanged. This is a 17-file review candidate;
+remote CI outcomes are recorded separately, not assumed to pass.
