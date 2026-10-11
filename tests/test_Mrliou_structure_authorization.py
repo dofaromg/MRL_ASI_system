@@ -491,6 +491,48 @@ x.generate_json()
             self.assert_denied(self.run_cli(SCANNER, '--depth', depth))
         self.assertFalse((self.root / 'injected').exists())
 
+    def test_expected_denial_is_metadata_only_and_scanner_still_denies(self):
+        output = self.root / 'workflow-output'
+        env = dict(self.env, GITHUB_OUTPUT=str(output))
+        result = self.run_cli(GUARD, 'preflight', '--report-expected-denial', env=env)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(json.loads(result.stdout)['decision'], 'DENY')
+        self.assertIn('execution_status=EXPECTED_DENY', output.read_text())
+        self.assertIn('allowed=false', output.read_text())
+        self.assert_denied(self.run_cli(SCANNER, env=env))
+        self.assertTrue(all(not (self.root / p).exists() for p in OUTPUTS))
+
+    def test_reporting_does_not_hide_invalid_registry_or_nonmatching_grant(self):
+        self.registry['authorization_model']['default_decision'] = 'ALLOW'
+        self.write_registry()
+        self.assert_denied(self.run_cli(GUARD, 'preflight', '--report-expected-denial'))
+        self.registry['authorization_model']['default_decision'] = 'DENY'
+        grant = self.grant()
+        grant['scope']['repository'] = 'foreign/repository'
+        self.write_registry()
+        result = self.run_cli(GUARD, 'preflight', '--report-expected-denial')
+        self.assert_denied(result)
+        self.assertEqual(json.loads(result.stdout)['execution_status'], 'AUTHORIZATION_FAILURE')
+
+    def test_reporting_cannot_soften_upload_denial(self):
+        self.assert_denied(self.run_cli(GUARD, 'upload', '--report-expected-denial'))
+        self.assert_denied(self.run_cli(GUARD, 'upload'))
+
+    def test_authorized_reporting_outputs_allow_for_exact_fixture_scope(self):
+        self.grant()
+        output = self.root / 'workflow-output'
+        result = self.run_cli(GUARD, 'preflight', '--report-expected-denial',
+                              env=dict(self.env, GITHUB_OUTPUT=str(output)))
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('allowed=true', output.read_text())
+        self.assertIn('execution_status=AUTHORIZED', output.read_text())
+
+    def test_reporting_keeps_missing_registry_as_failure(self):
+        (self.root / REGISTRY).unlink()
+        result = self.run_cli(GUARD, 'preflight', '--report-expected-denial')
+        self.assert_denied(result)
+        self.assertEqual(json.loads(result.stdout)['execution_status'], 'AUTHORIZATION_FAILURE')
+
 
 class DeliveryContractTests(unittest.TestCase):
     def test_delivery_payload_and_dependency_integrity(self):
@@ -553,6 +595,17 @@ class WorkflowContractTests(unittest.TestCase):
         self.assertIn("steps.upload.outcome == 'success'", source)
         self.assertNotIn("--depth ${{", source)
 
+    def test_expected_deny_workflow_skips_work_and_pr_checks_exact_head(self):
+        source = (SOURCE / '.github/workflows/structure-indexer.yml').read_text()
+        self.assertIn("ref: ${{ github.event.pull_request.head.sha || github.sha }}", source)
+        self.assertIn('  pull_request:', source)
+        for name in ['📦 Install Dependencies', '🔍 Run Structure Scanner',
+                     '🎨 Generate Emoji Index', '📊 Check for Changes']:
+            block = source.split('      - name: ' + name + '\n')[1].split('      - name:')[0]
+            self.assertIn("if: success() && steps.authorization.outputs.allowed == 'true'", block)
+        self.assertIn('--report-expected-denial', source)
+        self.assertNotIn('continue-on-error: true', source)
+
 
 class BackportBoundaryTests(unittest.TestCase):
     setUp = AuthorizationTests.setUp
@@ -579,7 +632,8 @@ class BackportBoundaryTests(unittest.TestCase):
     def test_original_trigger_routing_is_unchanged(self):
         old = (SOURCE / 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/.github/workflows/structure-indexer.yml').read_text()
         new = (SOURCE / '.github/workflows/structure-indexer.yml').read_text()
-        self.assertEqual(old.split('\njobs:\n')[0], new.split('\njobs:\n')[0])
+        self.assertEqual(old.split('\njobs:\n')[0],
+                         new.split('\n  # Review executes synthetic authorization tests only')[0])
 
 if __name__ == '__main__':
     unittest.main()

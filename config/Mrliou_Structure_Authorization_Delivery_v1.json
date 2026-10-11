@@ -1,9 +1,9 @@
 {
   "origin_signature": "MrLiouWord",
   "repository": "dofaromg/-Mr.liouagi",
-  "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
+  "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
   "status": "REVIEW_CANDIDATE_NOT_MERGED",
-  "expected_file_count": 20,
+  "expected_file_count": 21,
   "expected_files": [
     ".copilot/Mrliou_structure_authorization.py",
     ".copilot/generator/emoji_indexer.py",
@@ -24,7 +24,8 @@
     "run_structure_index.py",
     "scripts/update-neural-map.js",
     "tests/Mrliou_neural_history.test.cjs",
-    "tests/test_Mrliou_structure_authorization.py"
+    "tests/test_Mrliou_structure_authorization.py",
+    "docs/Mrliou_Structure_Denial_Reporting_20261011.md"
   ],
   "dependencies": {
     ".copilot/Mrliou_structure_authorization.py": [
@@ -84,13 +85,18 @@
     "tests/Mrliou_neural_history.test.cjs": [
       "scripts/update-neural-map.js"
     ],
-    "scripts/update-neural-map.js": []
+    "scripts/update-neural-map.js": [],
+    "docs/Mrliou_Structure_Denial_Reporting_20261011.md": [
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
+      ".copilot/Mrliou_structure_authorization.py",
+      ".github/workflows/structure-indexer.yml"
+    ]
   },
   "payload": [
     {
       "path": ".copilot/Mrliou_structure_authorization.py",
-      "size_bytes": 8783,
-      "sha256": "e173ad61acf34d52a2c136a3cd051ebe9b777ae0fcc86a165a10e4362f4e9fff"
+      "size_bytes": 9970,
+      "sha256": "791af9b21c70427cb61dbe7e63152a53538946d13a798991f204a510ef3763dc"
     },
     {
       "path": ".copilot/generator/emoji_indexer.py",
@@ -114,8 +120,8 @@
     },
     {
       "path": ".github/workflows/structure-indexer.yml",
-      "size_bytes": 7135,
-      "sha256": "f49beb89ae2faaef7f12e4c0231ccb123eacf1f293fef746adce03f0c6c5eaad"
+      "size_bytes": 8714,
+      "sha256": "00bc2cf2a13ee4488846193944e08e6b5690cb4329a4b1550c4c3b72f11f470f"
     },
     {
       "path": "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
@@ -154,8 +160,8 @@
     },
     {
       "path": "tests/test_Mrliou_structure_authorization.py",
-      "size_bytes": 29254,
-      "sha256": "3886926f2786cbfe6b584f16a5db0e43b5fdd31fb42062466f6a489bb018243b"
+      "size_bytes": 32498,
+      "sha256": "df5c2307679fdf1d2b499c4ba4075a3ea477b9671d9b608acbf47a8bb354327c"
     },
     {
       "path": ".github/workflows/blank.yml",
@@ -181,12 +187,32 @@
       "path": "requirements.txt",
       "size_bytes": 92,
       "sha256": "77363d263482d45f0c94c348dada0020caac4ac6fd0ac5a200c12d30c7bc9097"
+    },
+    {
+      "path": "docs/Mrliou_Structure_Denial_Reporting_20261011.md",
+      "size_bytes": 2546,
+      "sha256": "b1c388fc0e9232bc09104e828d87886bf75894659f4812881cab595061c99f60"
     }
   ],
-  "review_branch": "Mrliou/mrl-authorization-repair-r07",
-  "revision": "R08_HISTORY_AND_DEPENDENCIES",
+  "review_branch": "Mrliou/structure-denial-reporting-20261011",
+  "revision": "R09_EXPECTED_DENIAL_REPORTING_20261011",
   "external_repository_dependencies": [
     "package-lock.json",
     "package.json"
-  ]
+  ],
+  "previous_base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
+  "changed_files": [
+    ".copilot/Mrliou_structure_authorization.py",
+    ".github/workflows/structure-indexer.yml",
+    "tests/test_Mrliou_structure_authorization.py",
+    "docs/Mrliou_Structure_Denial_Reporting_20261011.md",
+    "config/Mrliou_Structure_Authorization_Delivery_v1.json"
+  ],
+  "audit": {
+    "missing": [],
+    "extra": [],
+    "mismatch": [],
+    "coverage_percent": 100,
+    "scope": "expected five-file review candidate; remote CI pending"
+  }
 }
