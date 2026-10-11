@@ -1,0 +1,39 @@
+# origin_signature: MrLiouWord
+"""
+MRL 黑洞模型 / MRL Black Hole Model
+
+A Notion structure that swallows everything and returns everything.
+一個吞下所有東西、也歸還所有東西的 Notion 結構。
+"""
+
+from .builder import BlackHoleBuilder, NotionAPIClient
+from .conservation import ConservationReport, Violation, audit_conservation, round_trip_hours
+from .model import (
+    MODEL_TITLE,
+    MODEL_VERSION,
+    BlackHoleModel,
+    LayerSpec,
+    PropertySpec,
+    default_model,
+    make_return_id,
+)
+from .snapshot import fetch_snapshot, flatten_page, query_database
+
+__all__ = [
+    "BlackHoleBuilder",
+    "BlackHoleModel",
+    "ConservationReport",
+    "LayerSpec",
+    "MODEL_TITLE",
+    "MODEL_VERSION",
+    "NotionAPIClient",
+    "PropertySpec",
+    "Violation",
+    "audit_conservation",
+    "default_model",
+    "fetch_snapshot",
+    "flatten_page",
+    "make_return_id",
+    "query_database",
+    "round_trip_hours",
+]
