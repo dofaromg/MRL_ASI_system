@@ -8,6 +8,7 @@ A Notion structure that swallows everything and returns everything.
 
 from .builder import BlackHoleBuilder, NotionAPIClient
 from .conservation import ConservationReport, Violation, audit_conservation, round_trip_hours
+from .celestial_vectors import CelestialVectorGraph
 from .genesis import (
     GenesisAudit,
     GenesisParticle,
@@ -41,6 +42,7 @@ __all__ = [
     "BlackHoleBuilder",
     "BlackHoleModel",
     "BlackHoleTranslationPipeline",
+    "CelestialVectorGraph",
     "ConservationReport",
     "GenesisAudit",
     "GenesisParticle",
