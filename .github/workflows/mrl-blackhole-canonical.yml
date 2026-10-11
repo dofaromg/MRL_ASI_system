@@ -25,6 +25,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -48,6 +49,7 @@ jobs:
             sleep 5
           done
           test "$pending" = 0
+          gh auth setup-git
           git fetch --no-tags origin "$HEAD_BRANCH"
           settled_head=$(git rev-parse FETCH_HEAD)
           git merge-base --is-ancestor "$EXPECTED_HEAD" "$settled_head"
