@@ -284,5 +284,37 @@ def main(argv: list[str] | None = None) -> None:
     args.func(args)
 
 
+
+# Canonical integration appended on 2026-10-11; original implementations retained above.
+# origin_signature: MrLiouWord
+from mrl_blackhole.canonical import (
+    CanonicalBlackHoleBuilder, CanonicalAPIClient, audit_snapshot,
+    snapshot as canonical_snapshot,
+)
+
+# Existing command names now use canonical Existing Node Lookup.
+BlackHoleBuilder = CanonicalBlackHoleBuilder
+NotionAPIClient = CanonicalAPIClient
+
+
+def cmd_blackhole_snapshot(args: argparse.Namespace) -> None:
+    if not args.out:
+        raise SystemExit("--out is required; keep live snapshot contents on the local host")
+    config = load_config(args.config)
+    builder = get_blackhole_builder(config, with_client=True)
+    data = canonical_snapshot(builder.client, builder.load_manifest())
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
+    print("Five-layer snapshot saved locally; contents not printed")
+
+
+def cmd_blackhole_audit(args: argparse.Namespace) -> None:
+    data = json.loads(args.snapshot.read_text(encoding="utf-8"))
+    result = audit_snapshot(data, overdue_hours=args.overdue_hours)
+    print(json.dumps(result, indent=2, ensure_ascii=False))
+    if not result["conserved"]:
+        sys.exit(1)
+
+
 if __name__ == "__main__":
     main()
