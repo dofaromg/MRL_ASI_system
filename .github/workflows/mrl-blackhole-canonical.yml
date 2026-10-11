@@ -1,0 +1,36 @@
+# origin_signature: MrLiouWord
+name: MRL Blackhole Canonical Gate
+on:
+  pull_request:
+    paths:
+      - 'mrl_blackhole/**'
+      - 'tests/test_mrl_blackhole*.py'
+      - 'cli.py'
+      - '.github/workflows/mrl-blackhole-canonical.yml'
+  push:
+    branches: ['cursor/notion-mrl-blackhole-model-9f1b']
+    paths:
+      - 'mrl_blackhole/**'
+      - 'tests/test_mrl_blackhole*.py'
+      - 'cli.py'
+      - '.github/workflows/mrl-blackhole-canonical.yml'
+permissions:
+  contents: read
+jobs:
+  canonical-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install pytest==8.4.2
+      - name: Verify exact head and run synthetic-only regression
+        env:
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
+          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
