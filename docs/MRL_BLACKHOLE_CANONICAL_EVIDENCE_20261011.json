@@ -164,8 +164,8 @@
       "sha256": "9e58178c7cedc2f2b08b4a66dd092fc761a6ad04984499c92ec1b24baa5480df"
     },
     ".github/workflows/mrl-blackhole-canonical.yml": {
-      "size": 2658,
-      "sha256": "b7fd10372d460cd7ad267e8239ba905e5edefb73bc4702a2e74e662a5a129519"
+      "size": 2711,
+      "sha256": "33c631e7cd121dd116c77783359bcfa93c9828a030cb968a4f95aee909e5da98"
     },
     "cli.py": {
       "size": 11658,
@@ -202,5 +202,14 @@
     "tests_passed": 50,
     "scope": "Code PASS; subsequent neural bot head requires settled exact-head gate"
   },
-  "delivery_status": "IN_PROGRESS_FINAL_HEAD_CI_PENDING"
+  "delivery_status": "IN_PROGRESS_FINAL_HEAD_CI_PENDING",
+  "ci_correction_history": [
+    {
+      "run": 38137559709,
+      "status": "failure",
+      "test_status": "50 passed",
+      "cause": "Private repository git fetch lacked ephemeral GitHub Actions authentication",
+      "correction": "gh auth setup-git using masked runner token; full history for ancestry check"
+    }
+  ]
 }
