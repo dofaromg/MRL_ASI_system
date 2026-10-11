@@ -6,3 +6,6 @@ notion:
   database_id: ""
 github:
   enabled: false
+blackhole:
+  parent_page_id: ""
+  manifest_path: data/blackhole_manifest.json
