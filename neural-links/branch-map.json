@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-11T06:18:37.973Z",
+  "updated_at": "2026-10-11T11:53:52.776Z",
   "neural_network": {
     "nodes": [
       {
@@ -17,7 +17,9 @@
         "layer": "L3",
         "parent": "main",
         "status": "active",
-        "energy": 0.7
+        "energy": 0.7,
+        "merged_pr": 3,
+        "created_at": "2026-10-11T06:18:41Z"
       },
       {
         "id": "Mrliou/mrl-authorization-repair-r07",
@@ -72,7 +74,8 @@
         "to": "cursor/notion-mrl-blackhole-model-9f1b",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-11T06:18:37.974Z"
+        "pr_number": 3,
+        "timestamp": "2026-10-11T06:18:41Z"
       },
       {
         "from": "main",
@@ -95,14 +98,14 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-11T06:18:37.974Z"
+        "timestamp": "2026-10-11T11:53:52.777Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-11T06:18:37.974Z"
+        "timestamp": "2026-10-11T11:53:52.777Z"
       },
       {
         "from": "main",
