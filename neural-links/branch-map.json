@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-10T12:33:28.203Z",
+  "updated_at": "2026-10-11T06:18:13.980Z",
   "neural_network": {
     "nodes": [
       {
@@ -10,6 +10,16 @@
         "frequency_hz": 164.88,
         "status": "active",
         "energy": 1
+      },
+      {
+        "id": "Mrliou/structure-denial-reporting-20261011",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 2,
+        "created_at": "2026-10-11T06:17:58Z"
       },
       {
         "id": "Mrliou/mrl-authorization-repair-r07",
@@ -51,6 +61,14 @@
     "synapses": [
       {
         "from": "main",
+        "to": "Mrliou/structure-denial-reporting-20261011",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 2,
+        "timestamp": "2026-10-11T06:17:58Z"
+      },
+      {
+        "from": "main",
         "to": "Mrliou/mrl-authorization-repair-r07",
         "type": "merge",
         "weight": 0.95,
@@ -62,14 +80,14 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-10T12:33:28.204Z"
+        "timestamp": "2026-10-11T06:18:13.981Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-10T12:33:28.204Z"
+        "timestamp": "2026-10-11T06:18:13.981Z"
       },
       {
         "from": "main",
