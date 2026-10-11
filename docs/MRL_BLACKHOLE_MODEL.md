@@ -39,9 +39,42 @@ flowchart LR
 L5 同時關聯 L1 與 L4，形成閉環：每一筆回歸帳本都必須同時指向「入境物件」與「輸出成果」。
 只要有一筆指不到輸出，稽核就會判定它被黑洞吞掉了。
 
-## 3. 建構步驟 / Build it
+## 3. 粒子轉譯核心 / Particle translation core
 
-### 3.1 準備 Notion
+Notion 五層是可追蹤的資料模型；`mrl_blackhole.translation` 將同一條閉環落成可執行的轉譯生命週期。它負責來源保留、層間順序、回歸編號與雜湊稽核，不預設粒子語言文法或目標語言語義。
+
+| 黑洞層 | 轉譯職責 | 核心資料 |
+|---|---|---|
+| L1 Event Horizon | 捕獲來源，不改寫原始文字／位元組；按來源名稱、內容與時間建立 Return ID | 原始來源與來源 SHA-256 |
+| L2 Accretion Disk | 正規化、切詞或整理粒子；由注入的 normalizer 實作 | 正規化資料及其指紋 |
+| L3 Singularity | 依語法解析為 AST／IR；由注入的 parser 實作 | 可 JSON 穩定序列化的語法樹／中介表示 |
+| L4 Hawking Radiation | 依目標產生文字或二進位成果；由注入的 generator 實作 | 產出內容及其 SHA-256 |
+| L5 Return Ledger | 核對五層順序、每段輸入／輸出指紋與相同 Return ID | `TranslationAudit` |
+
+每一層都記錄輸入與輸出 SHA-256，並且共用同一個 Return ID。這可驗證轉譯工作是否完整閉合；內容轉譯本身可以改變表示，但原始來源仍保留在結果中。parser 的 AST／IR 必須由 JSON 支援的值構成，或使用可轉為 JSON 的 dataclass；不支援的值會明確報錯，而不是以不穩定的 `repr` 假裝可追溯。
+
+```python
+from mrl_blackhole import BlackHoleTranslationPipeline, audit_translation
+
+pipeline = BlackHoleTranslationPipeline(
+    normalizer=lambda source: source.strip().split(),
+    parser=lambda particles: {"nodes": [{"particle": item} for item in particles]},
+    generator=lambda tree, target: f"{target}:{len(tree['nodes'])}",
+)
+result = pipeline.translate(
+    "⋄fx.unit.point → result",
+    source_name="example.pcode",
+    captured_at="2026-10-11T18:00:00Z",
+    target="python",
+)
+assert audit_translation(result).conserved
+```
+
+這個核心提供階段與守恆契約，不宣稱上述示例已定義正式文法、完整 parser 或可執行程式碼生成器。未來可分別替換 normalizer、parser、generator，而不改動 Notion canonical schema 或五層守恆規則。
+
+## 4. 建構步驟 / Build it
+
+### 4.1 準備 Notion
 
 1. 到 <https://www.notion.so/my-integrations> 建立一個 internal integration，取得 token。
 2. 在 Notion 開一個頁面當作黑洞的容器，從頁面右上角 `...` → `Connections` 把 integration 加進去。
@@ -51,7 +84,7 @@ L5 同時關聯 L1 與 L4，形成閉環：每一筆回歸帳本都必須同時�
 export NOTION_TOKEN="secret_xxx"
 ```
 
-### 3.2 設定 config.yaml
+### 4.2 設定 config.yaml
 
 ```yaml
 blackhole:
@@ -59,7 +92,7 @@ blackhole:
   manifest_path: data/blackhole_manifest.json
 ```
 
-### 3.3 先看計畫，再真的建
+### 4.3 先看計畫，再真的建
 
 ```bash
 # 不碰網路，只印出即將送出的每一個 API 請求
@@ -72,7 +105,7 @@ python cli.py blackhole-build
 建構分兩階段：先建立不含關聯屬性的 5 個資料庫，拿到所有 database id 之後再補上關聯。
 執行結果會寫進 `data/blackhole_manifest.json`，下次執行會沿用既有 id，只補缺少的部分。
 
-## 4. 守恆稽核 / Conservation audit
+## 5. 守恆稽核 / Conservation audit
 
 ```bash
 # 從 Notion 把現況抓回來
@@ -96,7 +129,7 @@ python cli.py blackhole-audit data/blackhole_snapshot.json --overdue-hours 72
 
 還在回歸上限內、尚未輸出的物件算 `pending`，不算違規——黑洞可以慢，但不能吃掉東西。
 
-## 5. 回歸編號 / Return IDs
+## 6. 回歸編號 / Return IDs
 
 回歸編號由來源、標題、入境時間推導，同一個物件永遠拿到同一個編號：
 
@@ -107,7 +140,7 @@ make_return_id("對話 Chat", "豆花配方", "2026-01-01T00:00:00+00:00")
 # 'RID-9431b3c6cf00'
 ```
 
-## 6. 指令總覽 / Commands
+## 7. 指令總覽 / Commands
 
 | 指令 | 說明 | 需要 NOTION_TOKEN |
 |------|------|-------------------|
@@ -116,11 +149,12 @@ make_return_id("對話 Chat", "豆花配方", "2026-01-01T00:00:00+00:00")
 | `blackhole-snapshot` | 匯出現況供稽核 | 是 |
 | `blackhole-audit` | 驗證守恆，違規時 exit 1 | 否 |
 
-## 7. 測試 / Tests
+## 8. 測試 / Tests
 
 ```bash
 python -m pytest tests/test_mrl_blackhole.py -v
+python -m pytest tests/test_mrl_blackhole_translation.py -v
 ```
 
 測試以假的 Notion client 覆蓋建構流程（建立順序、關聯補丁、重複執行不重建）、
-快照攤平與分頁，以及守恆稽核的每一種違規情境。
+快照攤平與分頁、守恆稽核的每一種違規情境，以及轉譯階段、來源指紋與回歸編號連續性。

@@ -18,22 +18,36 @@ from .model import (
     make_return_id,
 )
 from .snapshot import fetch_snapshot, flatten_page, query_database
+from .translation import (
+    BlackHoleTranslationPipeline,
+    StageTrace,
+    TranslationAudit,
+    TranslationResult,
+    audit_translation,
+    make_translation_return_id,
+)
 
 __all__ = [
     "BlackHoleBuilder",
     "BlackHoleModel",
+    "BlackHoleTranslationPipeline",
     "ConservationReport",
     "LayerSpec",
     "MODEL_TITLE",
     "MODEL_VERSION",
     "NotionAPIClient",
     "PropertySpec",
+    "StageTrace",
+    "TranslationAudit",
+    "TranslationResult",
     "Violation",
     "audit_conservation",
+    "audit_translation",
     "default_model",
     "fetch_snapshot",
     "flatten_page",
     "make_return_id",
+    "make_translation_return_id",
     "query_database",
     "round_trip_hours",
 ]
