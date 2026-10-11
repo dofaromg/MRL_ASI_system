@@ -12,10 +12,12 @@ from amp.ledger import Ledger
 from amp.storage import Storage
 from adapters.notion_adapter import NotionAdapter
 from adapters.github_adapter import GitHubAdapter
+from mrl_blackhole import BlackHoleBuilder, NotionAPIClient, audit_conservation, fetch_snapshot
 
 
 DEFAULT_CONFIG_PATH = Path("config.yaml")
 DEFAULT_SANDBOX_DIR = Path("data_sandbox")
+DEFAULT_MANIFEST_PATH = Path("data/blackhole_manifest.json")
 
 
 def load_config(config_path: Path) -> Dict[str, Any]:
@@ -115,6 +117,78 @@ def cmd_github_export(args: argparse.Namespace) -> None:
     print(f"Exported {len(entries)} entries to {path}")
 
 
+def get_blackhole_builder(config: Dict[str, Any], with_client: bool) -> BlackHoleBuilder:
+    blackhole_cfg = config.get("blackhole", {}) or {}
+    manifest_path = Path(blackhole_cfg.get("manifest_path", DEFAULT_MANIFEST_PATH))
+    client = NotionAPIClient() if with_client else None
+    return BlackHoleBuilder(client=client, manifest_path=manifest_path)
+
+
+def resolve_parent_page(config: Dict[str, Any], override: str | None) -> str:
+    blackhole_cfg = config.get("blackhole", {}) or {}
+    parent = override or blackhole_cfg.get("parent_page_id") or config.get("notion", {}).get("root_page_id")
+    if not parent:
+        raise SystemExit(
+            "A parent page id is required: pass --parent-page or set blackhole.parent_page_id in the config"
+        )
+    return parent
+
+
+def cmd_blackhole_plan(args: argparse.Namespace) -> None:
+    config = load_config(args.config)
+    builder = get_blackhole_builder(config, with_client=False)
+    plan = builder.plan(resolve_parent_page(config, args.parent_page))
+    rendered = json.dumps(plan, indent=2, ensure_ascii=False)
+    if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(rendered, encoding="utf-8")
+        print(f"Black hole plan written to {args.out}")
+    else:
+        print(rendered)
+
+
+def cmd_blackhole_build(args: argparse.Namespace) -> None:
+    config = load_config(args.config)
+    builder = get_blackhole_builder(config, with_client=True)
+    manifest = builder.build(resolve_parent_page(config, args.parent_page))
+    created = manifest.get("created") or []
+    print(json.dumps(manifest, indent=2, ensure_ascii=False))
+    print(f"Black hole ready: created {len(created)} new object(s)")
+
+
+def cmd_blackhole_snapshot(args: argparse.Namespace) -> None:
+    config = load_config(args.config)
+    builder = get_blackhole_builder(config, with_client=True)
+    manifest = builder.load_manifest()
+    if not manifest:
+        raise SystemExit("No manifest found: run blackhole-build first")
+
+    snapshot = fetch_snapshot(builder.client, manifest)
+    rendered = json.dumps(snapshot, indent=2, ensure_ascii=False)
+    if args.out:
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(rendered, encoding="utf-8")
+        print(
+            f"Snapshot written to {args.out}: "
+            f"{len(snapshot['captured'])} captured, {len(snapshot['radiated'])} radiated"
+        )
+    else:
+        print(rendered)
+
+
+def cmd_blackhole_audit(args: argparse.Namespace) -> None:
+    snapshot = json.loads(args.snapshot.read_text(encoding="utf-8"))
+    report = audit_conservation(
+        snapshot.get("captured", []),
+        snapshot.get("radiated", []),
+        overdue_hours=args.overdue_hours,
+    )
+    print(json.dumps(report.to_dict(), indent=2, ensure_ascii=False))
+    print(report.summary())
+    if not report.conserved:
+        sys.exit(1)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="AMP Index-only ledger CLI")
     parser.add_argument(
@@ -162,6 +236,41 @@ def build_parser() -> argparse.ArgumentParser:
         help="Sandbox data directory (defaults to config.sandbox_data_dir or data_sandbox)",
     )
     p_sandbox.set_defaults(func=cmd_sandbox_compare)
+
+    p_bh_plan = subparsers.add_parser(
+        "blackhole-plan",
+        help="Preview the MRL black hole structure without calling Notion",
+    )
+    p_bh_plan.add_argument("--parent-page", help="Notion page id that will host the black hole")
+    p_bh_plan.add_argument("--out", type=Path, help="Write the plan to a file instead of stdout")
+    p_bh_plan.set_defaults(func=cmd_blackhole_plan)
+
+    p_bh_build = subparsers.add_parser(
+        "blackhole-build",
+        help="Create the MRL black hole structure in Notion (idempotent)",
+    )
+    p_bh_build.add_argument("--parent-page", help="Notion page id that will host the black hole")
+    p_bh_build.set_defaults(func=cmd_blackhole_build)
+
+    p_bh_snapshot = subparsers.add_parser(
+        "blackhole-snapshot",
+        help="Export the live black hole contents for auditing",
+    )
+    p_bh_snapshot.add_argument("--out", type=Path, help="Write the snapshot to a file instead of stdout")
+    p_bh_snapshot.set_defaults(func=cmd_blackhole_snapshot)
+
+    p_bh_audit = subparsers.add_parser(
+        "blackhole-audit",
+        help="Verify that every captured object came back out",
+    )
+    p_bh_audit.add_argument("snapshot", type=Path, help="JSON snapshot with captured/radiated entries")
+    p_bh_audit.add_argument(
+        "--overdue-hours",
+        type=int,
+        default=72,
+        help="Hours an object may stay inside before it counts as swallowed (default: 72)",
+    )
+    p_bh_audit.set_defaults(func=cmd_blackhole_audit)
 
     return parser
 
