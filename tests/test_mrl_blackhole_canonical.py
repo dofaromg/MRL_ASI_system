@@ -14,7 +14,11 @@ from mrl_blackhole.canonical import (
 
 
 def bindings():
-    return json.loads(BINDINGS_PATH.read_text(encoding="utf-8"))
+    result = json.loads(BINDINGS_PATH.read_text(encoding="utf-8"))
+    # Synthetic missing-layer fixture is separate from the verified live binding.
+    result["layers"]["hawking_radiation"]["database_id"] = None
+    result["layers"]["hawking_radiation"]["data_source_id"] = None
+    return result
 
 
 class Client:
@@ -79,7 +83,7 @@ class Client:
 
 def builder(tmp_path, client=None):
     return CanonicalBlackHoleBuilder(client=client or Client(),
-                                     manifest_path=tmp_path / "manifest.json")
+                                     manifest_path=tmp_path / "manifest.json", bindings=bindings())
 
 
 def test_reuse_four_existing_ids_and_preserve_titles(tmp_path):
@@ -125,7 +129,7 @@ def test_partial_failure_checkpoint_prevents_duplicate_database(tmp_path):
 def test_manifest_conflicts_reject_before_mutation(tmp_path, case):
     b = builder(tmp_path)
     m = {"canonical_navigation_id": CANONICAL, "root_page_id": MOTHER,
-         "origin_signature": ORIGIN, "model_scope": SCOPE}
+         "origin_signature": ORIGIN, "model_scope": SCOPE, "canonical_authority": "Mr.liou"}
     if case == "parent":
         m["root_page_id"] = "wrong"
     elif case == "origin":
@@ -274,8 +278,19 @@ def test_snapshot_scopes_queries_and_uses_data_sources(tmp_path):
     b = builder(tmp_path, client)
     m = b.build()
     client.calls.clear()
-    result = snapshot(client, m)
+    result = snapshot(client, m, bindings=bindings())
     assert result["complete"] and len(result["layers"]) == 5
     calls = [c for c in client.calls if c[0] == "POST"]
     assert len(calls) == 5
     assert all("/data_sources/" in c[1] and c[2]["filter"]["rich_text"]["equals"] == SCOPE for c in calls)
+
+def test_source_lineage_changes_are_detected():
+    data = closed_snapshot()
+    data["layers"]["singularity"][0]["source_times"] = "altered original timestamp"
+    assert not audit_snapshot(data)["conserved"]
+
+
+def test_no_owner_acknowledgement_does_not_establish_runtime_acceptance():
+    data = closed_snapshot()
+    data["layers"]["hawking_radiation"][0]["接收確認 Acknowledged"] = False
+    assert audit_snapshot(data)["runtime_acceptance"] == "HOLD"

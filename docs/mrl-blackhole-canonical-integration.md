@@ -84,3 +84,14 @@ python -m mrl_blackhole.canonical audit --manifest D:\MRL_Mother\Blackhole\canon
 3. 實際內容往返：五層資料鏈、Return ID、source lineage、交付時間、
    實際交付與接收證據；合成案例不冒充使用者確認。
 4. main 合併：獨立裁定；draft 不自動轉 ready，不合併。
+
+## 2026-10-11 正式 schema 讀回
+經已授權 Notion connector 正式建立／增補並重新 fetch：
+沿用 4 個資料庫，新建 L4 一個（database d3c4153040744e4182a1ffdb8c24c0f0；
+data source a51f678c-6265-4293-bcae-8e8a40efff3b）。
+既有 49 個欄位完整保留；5 層所需 97 個欄位及 9 條 relation 全部讀回匹配。
+第二次 schema preflight：missing 0、mismatch 0、待新增 0。
+Python builder 的 live API 執行／並行與 timeout 重播仍未實測；
+以上是 connector 正式 schema 寫入與讀回，不冒充 Python builder 執行回執。
+黑洞 scope rows 全部為 0；沒有新增合成資料列，沒有宣告內容交付或 owner ACK。
+main 尚未合併；正式資料往返 runtime_acceptance 維持 HOLD。
