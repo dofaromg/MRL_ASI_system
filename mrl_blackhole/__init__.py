@@ -8,6 +8,16 @@ A Notion structure that swallows everything and returns everything.
 
 from .builder import BlackHoleBuilder, NotionAPIClient
 from .conservation import ConservationReport, Violation, audit_conservation, round_trip_hours
+from .genesis import (
+    GenesisAudit,
+    GenesisParticle,
+    GenesisStructure,
+    LogicRelation,
+    MirrorConstraint,
+    ParallelWorld,
+    ParticleSpec,
+    audit_genesis_structure,
+)
 from .model import (
     MODEL_TITLE,
     MODEL_VERSION,
@@ -32,16 +42,24 @@ __all__ = [
     "BlackHoleModel",
     "BlackHoleTranslationPipeline",
     "ConservationReport",
+    "GenesisAudit",
+    "GenesisParticle",
+    "GenesisStructure",
     "LayerSpec",
+    "LogicRelation",
+    "MirrorConstraint",
     "MODEL_TITLE",
     "MODEL_VERSION",
     "NotionAPIClient",
     "PropertySpec",
+    "ParallelWorld",
+    "ParticleSpec",
     "StageTrace",
     "TranslationAudit",
     "TranslationResult",
     "Violation",
     "audit_conservation",
+    "audit_genesis_structure",
     "audit_translation",
     "default_model",
     "fetch_snapshot",

@@ -72,6 +72,28 @@ assert audit_translation(result).conserved
 
 這個核心提供階段與守恆契約，不宣稱上述示例已定義正式文法、完整 parser 或可執行程式碼生成器。未來可分別替換 normalizer、parser、generator，而不改動 Notion canonical schema 或五層守恆規則。
 
+### 創世粒子圖 / Genesis particle graph
+
+`mrl_blackhole.genesis` 把 atomizer 的輸出整理成可稽核的粒子邏輯圖：粒子有來源位元組範圍、內容雜湊、可擴充維度標籤、單元類型及符號極性；關係以邊連接粒子；鏡像約束與平行世界以明確的 ID 對應表表示。
+
+```python
+from mrl_blackhole import GenesisStructure, MirrorConstraint, ParticleSpec
+
+genesis = GenesisStructure.from_atomization(
+    b"-+",
+    source_name="duality.pcode",
+    captured_at="2026-10-11T18:00:00Z",
+    atomizer="pcode-atomizer-v1",
+    particles=[
+        ParticleSpec("minus", 0, 1, ("symbolic", "polarity"), "sign", "negative"),
+        ParticleSpec("plus", 1, 2, ("symbolic", "polarity"), "sign", "positive"),
+    ],
+    mirrors=[MirrorConstraint("balance", "minus", "plus")],
+)
+```
+
+base world 的原子範圍必須用 UTF-8／原始位元組的半開區間連續覆蓋來源，不允許遺漏或重疊；鏡像與平行世界的對照也必須指向存在的粒子。維度標籤與單元邊界由具名、版本化的格式 atomizer 定義，因此「最小」是該 atomizer 的可重現分解單位，不自稱跨格式或物理學的絕對最小。`negative`／`positive`、`-1 + 1 = 0` 與 `∞` 是可檢查的一致性註記／符號邊界；模型不將它們宣稱為已證明的自然定律。尚未提供特定格式 atomizer 時，模型會保留完整來源並拒絕把未解析內容冒充已粒子化。
+
 ## 4. 建構步驟 / Build it
 
 ### 4.1 準備 Notion
@@ -154,7 +176,8 @@ make_return_id("對話 Chat", "豆花配方", "2026-01-01T00:00:00+00:00")
 ```bash
 python -m pytest tests/test_mrl_blackhole.py -v
 python -m pytest tests/test_mrl_blackhole_translation.py -v
+python -m pytest tests/test_mrl_blackhole_genesis.py -v
 ```
 
 測試以假的 Notion client 覆蓋建構流程（建立順序、關聯補丁、重複執行不重建）、
-快照攤平與分頁、守恆稽核的每一種違規情境，以及轉譯階段、來源指紋與回歸編號連續性。
+快照攤平與分頁、守恆稽核的每一種違規情境，以及轉譯階段、粒子來源覆蓋、鏡像極性、世界對應與回歸編號連續性。
