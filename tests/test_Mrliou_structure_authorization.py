@@ -519,10 +519,10 @@ x.generate_json()
         self.assert_denied(self.run_cli(GUARD, 'upload'))
 
     def test_authorized_reporting_outputs_allow_for_exact_fixture_scope(self):
-        self.grant()
+        self.grant(github=True)
         output = self.root / 'workflow-output'
         result = self.run_cli(GUARD, 'preflight', '--report-expected-denial',
-                              env=dict(self.env, GITHUB_OUTPUT=str(output)))
+                              env=self.github_env(GITHUB_OUTPUT=str(output)))
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertIn('allowed=true', output.read_text())
         self.assertIn('execution_status=AUTHORIZED', output.read_text())
