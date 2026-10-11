@@ -94,6 +94,29 @@ genesis = GenesisStructure.from_atomization(
 
 base world 的原子範圍必須用 UTF-8／原始位元組的半開區間連續覆蓋來源，不允許遺漏或重疊；鏡像與平行世界的對照也必須指向存在的粒子。維度標籤與單元邊界由具名、版本化的格式 atomizer 定義，因此「最小」是該 atomizer 的可重現分解單位，不自稱跨格式或物理學的絕對最小。`negative`／`positive`、`-1 + 1 = 0` 與 `∞` 是可檢查的一致性註記／符號邊界；模型不將它們宣稱為已證明的自然定律。尚未提供特定格式 atomizer 時，模型會保留完整來源並拒絕把未解析內容冒充已粒子化。
 
+### 星體軌跡向量圖 / Celestial trajectory vector graph
+
+`CelestialVectorGraph` 使用 Python 內建 SQLite 保存星體、帶時間戳的觀測、向量化運動模式及有型別的圖邊。每筆位置都要求距離單位、參考座標系與來源 Return ID；可選擇保存實測速度，形成三維位置或六維位置—速度狀態向量。給定至少兩筆位置觀測後，可依時間差推導區間平均速度；三筆以上則可推導相鄰速度段間的平均加速度。這是觀測值的運算結果，不補造資料或預設軌道力學模型。
+
+```python
+from mrl_blackhole import CelestialVectorGraph
+
+with CelestialVectorGraph("data/celestial_vectors.sqlite") as graph:
+    graph.add_body("mars", name="Mars")
+    graph.add_observation(
+        "mars",
+        observed_at="2026-10-11T18:00:00Z",
+        position=(1.0, 2.0, 3.0),
+        position_unit="km",
+        reference_frame="ICRF",
+        source_return_id="RID-observation-1",
+    )
+    # Add later observations in the same frame and unit before deriving motion.
+    motion_pattern_node_ids = graph.derive_trajectory_patterns("mars")
+```
+
+相似度查詢要求向量維度順序、單位及參考座標系完全相同，避免把不同座標／量綱直接比較；目前支援 cosine 與 Euclidean 排序。SQLite 檔案可重開續用，`graph(node_id)` 讀出節點的向量、來源及相連關係。用戶可用 `add_pattern` 登錄週期、共振或其他自定義模式向量；目前不宣稱已自動辨認天體週期或分類軌道。
+
 ## 4. 建構步驟 / Build it
 
 ### 4.1 準備 Notion
@@ -177,6 +200,7 @@ make_return_id("對話 Chat", "豆花配方", "2026-01-01T00:00:00+00:00")
 python -m pytest tests/test_mrl_blackhole.py -v
 python -m pytest tests/test_mrl_blackhole_translation.py -v
 python -m pytest tests/test_mrl_blackhole_genesis.py -v
+python -m pytest tests/test_celestial_vectors.py -v
 ```
 
 測試以假的 Notion client 覆蓋建構流程（建立順序、關聯補丁、重複執行不重建）、
