@@ -35,6 +35,18 @@ on:
   issue_comment:
     types: [created]
 
+  # Review executes synthetic authorization tests only, at the exact PR head.
+  pull_request:
+    branches: [main]
+    paths:
+      - '.copilot/**'
+      - '.github/workflows/structure-indexer.yml'
+      - 'tests/test_Mrliou_structure_authorization.py'
+      - 'config/MRL_AUTHORIZATION_REGISTRY_v1.json'
+      - 'config/Mrliou_Structure_Authorization_Delivery_v1.json'
+      - 'run_structure_index.py'
+      - 'docs/Mrliou_Structure_Denial_Reporting_20261011.md'
+
 jobs:
   authorization-regression:
     if: |
@@ -47,6 +59,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
@@ -84,15 +97,16 @@ jobs:
       - name: Authorize MRL structure scan, generation and artifact destination
         id: authorization
         run: |
-          python .copilot/Mrliou_structure_authorization.py preflight --depth "$MRL_SCAN_DEPTH"
-          echo "allowed=true" >> "$GITHUB_OUTPUT"
+          python .copilot/Mrliou_structure_authorization.py preflight --depth "$MRL_SCAN_DEPTH" --report-expected-denial
 
       - name: 📦 Install Dependencies
+        if: success() && steps.authorization.outputs.allowed == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install pyyaml requests
       
       - name: 🔍 Run Structure Scanner
+        if: success() && steps.authorization.outputs.allowed == 'true'
         id: scan
         run: |
           python .copilot/scanner/structure_scanner.py \
@@ -102,6 +116,7 @@ jobs:
         continue-on-error: false
       
       - name: 🎨 Generate Emoji Index
+        if: success() && steps.authorization.outputs.allowed == 'true'
         id: index
         run: |
           python .copilot/generator/emoji_indexer.py \
@@ -111,6 +126,7 @@ jobs:
         continue-on-error: false
       
       - name: 📊 Check for Changes
+        if: success() && steps.authorization.outputs.allowed == 'true'
         id: check_changes
         run: |
           if git diff --quiet HEAD -- STRUCTURE.md .copilot/structure-index.json .copilot/structure.fltnz; then
@@ -183,6 +199,8 @@ jobs:
       - name: ✅ Summary
         if: always()
         env:
+          MRL_EXECUTION_STATUS: ${{ steps.authorization.outputs.execution_status }}
+          MRL_DENIAL_REASON: ${{ steps.authorization.outputs.reason }}
           MRL_AUTHORIZED: ${{ steps.authorization.outputs.allowed }}
           MRL_SCAN_OUTCOME: ${{ steps.scan.outcome }}
           MRL_INDEX_OUTCOME: ${{ steps.index.outcome }}
@@ -191,9 +209,18 @@ jobs:
           {
             echo '## MRL structure-index authorization result'
             echo 'origin_signature: MrLiouWord'
+            echo "Execution status: ${MRL_EXECUTION_STATUS:-AUTHORIZATION_NOT_COMPLETED}"
+            echo "Authorization reason: ${MRL_DENIAL_REASON:-UNAVAILABLE}"
             echo "Preflight allowed: ${MRL_AUTHORIZED:-false}"
             echo "Scan: ${MRL_SCAN_OUTCOME:-not_run}"
             echo "Generate: ${MRL_INDEX_OUTCOME:-not_run}"
             echo "Upload: ${MRL_UPLOAD_OUTCOME:-not_run}"
+            if [ "$MRL_EXECUTION_STATUS" = 'EXPECTED_DENY' ]; then
+              echo 'Expected DENY; scan, generation and upload skipped. Index was NOT updated.'
+            elif [ "$MRL_SCAN_OUTCOME" = 'success' ] && [ "$MRL_INDEX_OUTCOME" = 'success' ] && [ "$MRL_UPLOAD_OUTCOME" = 'success' ]; then
+              echo 'Authorized execution completed.'
+            else
+              echo 'Execution incomplete or failed; inspect step outcomes.'
+            fi
             echo 'No structure content is read by this summary.'
           } >> "$GITHUB_STEP_SUMMARY"
