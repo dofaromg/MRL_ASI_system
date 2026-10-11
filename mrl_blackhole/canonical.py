@@ -109,6 +109,8 @@ class CanonicalBlackHoleBuilder(BlackHoleBuilder):
                               ("root_page_id", MOTHER)):
             if norm(manifest.get(key, "")) != expected:
                 raise ValueError(f"Manifest {key} mismatch; legacy manifests require explicit review")
+        if manifest.get("canonical_authority") != "Mr.liou":
+            raise ValueError("Manifest canonical_authority mismatch")
         if manifest.get("origin_signature") != ORIGIN:
             raise ValueError("Manifest origin_signature mismatch")
         if manifest.get("model_scope") != SCOPE:
@@ -377,6 +379,12 @@ def audit_snapshot(data, now=None, overdue_hours=72):
                                     refs["event_horizon"][norm(link)].get("source_id") != row.get("source_id")
                                     for link in links):
                     fail("broken_source_registry", row, key)
+                else:
+                    for link in links:
+                        source_row = refs["event_horizon"][norm(link)]
+                        if any(row.get(name) != source_row.get(name) for name in
+                               ("original_name", "original_author", "source_times", "version_revision")):
+                            fail("source_lineage_mismatch", row, key)
     ledger_by_rid = {}
     for row in layers["return_ledger"]:
         ledger_by_rid.setdefault(row.get("return_id"), []).append(row)
@@ -406,7 +414,7 @@ def audit_snapshot(data, now=None, overdue_hours=72):
             fail("invalid_delivery_time", row, "Delivery requires ordered timezone-aware timestamps")
     # Pending is reported distinctly; no-output empty snapshots never establish live runtime acceptance.
     result = report.to_dict()
-    result["runtime_acceptance"] = "PASS" if report.conserved and report.captured > 0 and report.pending == 0 else "HOLD"
+    result["runtime_acceptance"] = "PASS" if report.conserved and report.captured > 0 and report.pending == 0 and not report.warnings else "HOLD"
     return result
 
 

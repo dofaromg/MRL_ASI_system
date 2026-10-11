@@ -1,0 +1,206 @@
+{
+  "record_id": "MRL_BLACKHOLE_CANONICAL_INTEGRATION_20261011_R01",
+  "record_mode": "APPEND_ONLY",
+  "origin_signature": "MrLiouWord",
+  "canonical_authority": "Mr.liou",
+  "source_head": "5d8ddd670fe095768a2d988110583fbe2167aa3b",
+  "notion_structure_status": "STRUCTURE_READBACK_PASS",
+  "python_builder_live_execution": "NOT_EXECUTED",
+  "content_round_trip": "HOLD_NO_SCOPED_ROWS",
+  "main_merge": "NOT_EXECUTED",
+  "bindings": {
+    "canonical_authority": "Mr.liou",
+    "origin_signature": "MrLiouWord",
+    "canonical_navigation_id": "3ede7f4e6c558064a840e3a531cb2aef",
+    "mother_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+    "source_head": "5d8ddd670fe095768a2d988110583fbe2167aa3b",
+    "record_mode": "APPEND_ONLY",
+    "layers": {
+      "event_horizon": {
+        "database_id": "08931d39bee446c2ab946edce202d847",
+        "data_source_id": "5b91dbed-6d49-448c-8977-59ce1edfedaa",
+        "parent_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+        "original_name": "MRL 檔案整合資料庫｜來源與承接",
+        "property_map": {
+          "物件 Object": "原始名稱",
+          "原始連結 Source URL": "source_location"
+        }
+      },
+      "accretion_disk": {
+        "database_id": "308e7f4e6c5581f8b609e88794f83af0",
+        "data_source_id": "308e7f4e-6c55-8126-88d3-000bfa6a3ee7",
+        "parent_page_id": "308e7f4e6c5581bd8c72c3a72c3e46b5",
+        "original_name": "🗂️ Claude.ai 專案總覽資料庫",
+        "property_map": {
+          "粒子 Particle": "專案名稱"
+        }
+      },
+      "singularity": {
+        "database_id": "308e7f4e6c558136b8acc4991f6530b9",
+        "data_source_id": "308e7f4e-6c55-81c4-8328-000bf2e0215e",
+        "parent_page_id": "308e7f4e6c5581bd8c72c3a72c3e46b5",
+        "original_name": "📦 文物分類資料庫",
+        "property_map": {
+          "核心 Core": "文物名稱",
+          "版本 Version": "version_revision",
+          "內容雜湊 Content Hash": "content_sha256"
+        }
+      },
+      "hawking_radiation": {
+        "database_id": "d3c4153040744e4182a1ffdb8c24c0f0",
+        "data_source_id": "a51f678c-6265-4293-bcae-8e8a40efff3b",
+        "parent_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+        "original_name": "L4 霍金輻射 Hawking Radiation",
+        "property_map": {}
+      },
+      "return_ledger": {
+        "database_id": "308e7f4e6c5581c2ab4fd71a87ff9df3",
+        "data_source_id": "308e7f4e-6c55-8183-9ac4-000b0cb985e9",
+        "parent_page_id": "308e7f4e6c5581bd8c72c3a72c3e46b5",
+        "original_name": "🔗 關聯索引資料庫",
+        "title_property": "關聯名稱",
+        "property_map": {}
+      }
+    }
+  },
+  "schema_comparison": {
+    "accretion_disk": {
+      "original_property_count": 14,
+      "required_property_count": 20,
+      "live_property_count": 33,
+      "missing": [],
+      "mismatches": [],
+      "title_preserved": true,
+      "second_preflight_additions": 0
+    },
+    "singularity": {
+      "original_property_count": 12,
+      "required_property_count": 18,
+      "live_property_count": 29,
+      "missing": [],
+      "mismatches": [],
+      "title_preserved": true,
+      "second_preflight_additions": 0
+    },
+    "event_horizon": {
+      "original_property_count": 16,
+      "required_property_count": 20,
+      "live_property_count": 26,
+      "missing": [],
+      "mismatches": [],
+      "title_preserved": true,
+      "second_preflight_additions": 0
+    },
+    "return_ledger": {
+      "original_property_count": 7,
+      "required_property_count": 20,
+      "live_property_count": 26,
+      "missing": [],
+      "mismatches": [],
+      "title_preserved": true,
+      "second_preflight_additions": 0
+    },
+    "hawking_radiation": {
+      "original_property_count": 17,
+      "required_property_count": 19,
+      "live_property_count": 19,
+      "missing": [],
+      "mismatches": [],
+      "title_preserved": true,
+      "second_preflight_additions": 0
+    }
+  },
+  "relation_count": 9,
+  "required_property_count": 97,
+  "original_properties_preserved": 49,
+  "schema_second_preflight": {
+    "missing": 0,
+    "mismatch": 0,
+    "additions": 0
+  },
+  "row_counts": {
+    "event_horizon": {
+      "total_rows": 20,
+      "scoped_rows": 0
+    },
+    "accretion_disk": {
+      "total_rows": 8,
+      "scoped_rows": 0
+    },
+    "return_ledger": {
+      "total_rows": 0,
+      "scoped_rows": null
+    },
+    "hawking_radiation": {
+      "total_rows": 0,
+      "scoped_rows": null
+    },
+    "singularity": {
+      "total_rows": 0,
+      "scoped_rows": null
+    }
+  },
+  "expected_file_list": [
+    "mrl_blackhole/canonical.py",
+    "mrl_blackhole/canonical_bindings.json",
+    "tests/test_mrl_blackhole_canonical.py",
+    ".github/workflows/mrl-blackhole-canonical.yml",
+    "cli.py",
+    "config.blackhole.canonical.sample.yaml",
+    "docs/mrl-blackhole-canonical-integration.md",
+    "docs/MRL_BLACKHOLE_CANONICAL_EVIDENCE_20261011.json"
+  ],
+  "payload_hashes": {
+    "mrl_blackhole/canonical.py": {
+      "size": 24028,
+      "sha256": "f31016512dff72874ab377bfac6417d88a252f143adb50fb2443ebf064fccc59"
+    },
+    "mrl_blackhole/canonical_bindings.json": {
+      "size": 2128,
+      "sha256": "debf2a140910d4b9c7a826e11839d3ae70fd65f4aab783bc256b2d7108a6f353"
+    },
+    "tests/test_mrl_blackhole_canonical.py": {
+      "size": 12429,
+      "sha256": "9e58178c7cedc2f2b08b4a66dd092fc761a6ad04984499c92ec1b24baa5480df"
+    },
+    ".github/workflows/mrl-blackhole-canonical.yml": {
+      "size": 1165,
+      "sha256": "e95dea9613131f1625707558d222c1920be19901b355666ba78230914a6cc401"
+    },
+    "cli.py": {
+      "size": 11658,
+      "sha256": "4ec8b4dceee67f3b69cd1e519bef13f9d83b402f8ed2d111ce1cac8a539050af"
+    },
+    "config.blackhole.canonical.sample.yaml": {
+      "size": 203,
+      "sha256": "ac66ebbf3dabb7ca87b602ddfbe47ae683e035998b32e0439eb6f1a3b8a75d4d"
+    },
+    "docs/mrl-blackhole-canonical-integration.md": {
+      "size": 5816,
+      "sha256": "be7312bb8105044ac8bd235149ab6160f52e913c8f720dd7ca4e9bb9b89a2c95"
+    }
+  },
+  "hash_scope": "Seven payloads; evidence file cannot contain its own final hash. Its Git blob SHA is available in the committed tree.",
+  "dependency_tree": {
+    "canonical_navigation_id": "3ede7f4e6c558064a840e3a531cb2aef",
+    "mother_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+    "layers": [
+      "event_horizon -> accretion_disk -> singularity -> hawking_radiation",
+      "return_ledger -> event_horizon",
+      "return_ledger -> hawking_radiation",
+      "all downstream -> event_horizon Source Registry"
+    ]
+  },
+  "package_map": {
+    "zip_requested": false,
+    "zip_created": 0,
+    "git_delivery": "PR #3 existing branch"
+  },
+  "synthetic_ci": {
+    "head": "304e01d5f28ee19046c602eccba65a9edb02e242",
+    "run": 38137224571,
+    "tests_passed": 48,
+    "scope": "Prior implementation; final binding and extra regressions require new exact-head run"
+  },
+  "delivery_status": "IN_PROGRESS_FINAL_HEAD_CI_PENDING"
+}

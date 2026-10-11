@@ -37,8 +37,8 @@
       }
     },
     "hawking_radiation": {
-      "database_id": null,
-      "data_source_id": null,
+      "database_id": "d3c4153040744e4182a1ffdb8c24c0f0",
+      "data_source_id": "a51f678c-6265-4293-bcae-8e8a40efff3b",
       "parent_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
       "original_name": "L4 霍金輻射 Hawking Radiation",
       "property_map": {}
