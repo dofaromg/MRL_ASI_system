@@ -95,3 +95,10 @@ Python builder 的 live API 執行／並行與 timeout 重播仍未實測；
 以上是 connector 正式 schema 寫入與讀回，不冒充 Python builder 執行回執。
 黑洞 scope rows 全部為 0；沒有新增合成資料列，沒有宣告內容交付或 owner ACK。
 main 尚未合併；正式資料往返 runtime_acceptance 維持 HOLD。
+
+## Exact-head 與 Neural Branch Sync
+既有 Neural Branch Sync 在 push 後可能再追加只含 neural-links 的 bot commit。
+此 workflow 不停止／修改原同步；先驗原事件 head，再等同 head 的同步 jobs 完成，
+fetch 最終分支，核對其包含原 head 且期間差異僅限兩個 neural-links 檔，
+明示 SETTLED_EXACT_HEAD，再對此實際 checkout 重跑全部黑洞測試。
+若有人同時改其他檔案，gate 直接 FAIL，不用舊測試覆蓋新程式。

@@ -164,8 +164,8 @@
       "sha256": "9e58178c7cedc2f2b08b4a66dd092fc761a6ad04984499c92ec1b24baa5480df"
     },
     ".github/workflows/mrl-blackhole-canonical.yml": {
-      "size": 1165,
-      "sha256": "e95dea9613131f1625707558d222c1920be19901b355666ba78230914a6cc401"
+      "size": 2658,
+      "sha256": "b7fd10372d460cd7ad267e8239ba905e5edefb73bc4702a2e74e662a5a129519"
     },
     "cli.py": {
       "size": 11658,
@@ -176,8 +176,8 @@
       "sha256": "ac66ebbf3dabb7ca87b602ddfbe47ae683e035998b32e0439eb6f1a3b8a75d4d"
     },
     "docs/mrl-blackhole-canonical-integration.md": {
-      "size": 5816,
-      "sha256": "be7312bb8105044ac8bd235149ab6160f52e913c8f720dd7ca4e9bb9b89a2c95"
+      "size": 6311,
+      "sha256": "1354d0ad5a4a4c223aebc1df713650a43fa1d5cdebbd28e4a0a40bc0b0368e7a"
     }
   },
   "hash_scope": "Seven payloads; evidence file cannot contain its own final hash. Its Git blob SHA is available in the committed tree.",
@@ -197,10 +197,10 @@
     "git_delivery": "PR #3 existing branch"
   },
   "synthetic_ci": {
-    "head": "304e01d5f28ee19046c602eccba65a9edb02e242",
-    "run": 38137224571,
-    "tests_passed": 48,
-    "scope": "Prior implementation; final binding and extra regressions require new exact-head run"
+    "head": "7102cca51933bee65b145f41504866dd653ddbfa",
+    "run": 38137475787,
+    "tests_passed": 50,
+    "scope": "Code PASS; subsequent neural bot head requires settled exact-head gate"
   },
   "delivery_status": "IN_PROGRESS_FINAL_HEAD_CI_PENDING"
 }

@@ -16,6 +16,7 @@ on:
       - '.github/workflows/mrl-blackhole-canonical.yml'
 permissions:
   contents: read
+  actions: read
 jobs:
   canonical-regression:
     runs-on: ubuntu-latest
@@ -34,3 +35,26 @@ jobs:
         run: |
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
           python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
+      - name: Validate settled exact head after Neural Branch Sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+          HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: |
+          pending=1
+          for round in $(seq 1 36); do
+            pending=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$EXPECTED_HEAD&per_page=100" --jq '[.workflow_runs[] | select(.name == "Neural Branch Sync" and .status != "completed")] | length')
+            if [ "$pending" = 0 ]; then break; fi
+            sleep 5
+          done
+          test "$pending" = 0
+          git fetch --no-tags origin "$HEAD_BRANCH"
+          settled_head=$(git rev-parse FETCH_HEAD)
+          git merge-base --is-ancestor "$EXPECTED_HEAD" "$settled_head"
+          git diff --name-only "$EXPECTED_HEAD" "$settled_head" > /tmp/mrl-head-diff
+          python -c 'from pathlib import Path; allowed={"neural-links/branch-map.json","neural-links/synaptic-graph.mermaid"}; changed=set(Path("/tmp/mrl-head-diff").read_text().splitlines()); assert changed <= allowed, changed'
+          git checkout --detach "$settled_head"
+          test "$(git rev-parse HEAD)" = "$settled_head"
+          echo "SETTLED_EXACT_HEAD=$settled_head"
+          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
+          echo "Exact head tested: $settled_head" >> "$GITHUB_STEP_SUMMARY"
