@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-11T12:00:45.999Z",
+  "updated_at": "2026-10-11T19:19:37.915Z",
   "neural_network": {
     "nodes": [
       {
@@ -12,14 +12,14 @@
         "energy": 1
       },
       {
-        "id": "cursor/notion-mrl-blackhole-model-9f1b",
-        "type": "experimental",
-        "layer": "L3",
+        "id": "copilot/complete-black-hole-model",
+        "type": "cognitive",
+        "layer": "L6",
         "parent": "main",
         "status": "active",
         "energy": 0.7,
-        "merged_pr": 3,
-        "created_at": "2026-10-11T06:18:41Z"
+        "merged_pr": 4,
+        "created_at": "2026-10-11T19:19:08Z"
       },
       {
         "id": "Mrliou/mrl-authorization-repair-r07",
@@ -51,12 +51,31 @@
         "energy": 0.7
       },
       {
+        "id": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7
+      },
+      {
         "id": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "cognitive",
         "layer": "L6",
         "parent": "main",
         "status": "active",
         "energy": 0.7
+      },
+      {
+        "id": "cursor/notion-mrl-blackhole-model-9f1b",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "merged",
+        "energy": 0.95,
+        "merged_pr": 3,
+        "created_at": "2026-10-11T06:18:41Z",
+        "merged_at": "2026-10-11T18:46:07Z"
       },
       {
         "id": "copilot/create-branch-neural-map",
@@ -71,11 +90,11 @@
     "synapses": [
       {
         "from": "main",
-        "to": "cursor/notion-mrl-blackhole-model-9f1b",
+        "to": "copilot/complete-black-hole-model",
         "type": "influence",
         "weight": 0.5,
-        "pr_number": 3,
-        "timestamp": "2026-10-11T06:18:41Z"
+        "pr_number": 4,
+        "timestamp": "2026-10-11T19:19:08Z"
       },
       {
         "from": "main",
@@ -98,14 +117,38 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-11T12:00:45.999Z"
+        "timestamp": "2026-10-11T19:19:37.915Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
+        "type": "influence",
+        "weight": 0.5,
+        "timestamp": "2026-10-11T19:19:37.915Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-11T12:00:45.999Z"
+        "timestamp": "2026-10-11T19:19:37.915Z"
+      },
+      {
+        "from": "main",
+        "to": "cursor/notion-mrl-blackhole-model-9f1b",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 3,
+        "timestamp": "2026-10-11T18:46:07Z"
+      },
+      {
+        "from": "main",
+        "to": "cursor/notion-mrl-blackhole-model-9f1b",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 3,
+        "timestamp": "2026-10-11T06:18:41Z",
+        "historical_only": true
       },
       {
         "from": "main",
