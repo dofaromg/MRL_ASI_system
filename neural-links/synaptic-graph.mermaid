@@ -4,19 +4,27 @@ graph TD
 
   %% 節點定義
   main["● main<br/>L7"]:::trunk
-  cursor_notion_mrl_blackhole_model_9f1b["● cursor/notion-mrl-blackhole-model-9f1b<br/>L3 #3"]:::experimental
+  cursor_notion_mrl_blackhole_model_9f1b["● cursor/notion-mrl-blackhole-model-9f1b<br/>L3 #5"]:::experimental
   Mrliou_mrl_authorization_repair_r07["✓ Mrliou/mrl-authorization-repair-r07<br/>L3 #1"]:::experimental
   Mrliou_structure_denial_reporting_20261011["● Mrliou/structure-denial-reporting-20261011<br/>L3 #2"]:::experimental
+  copilot_complete_black_hole_model["✓ copilot/complete-black-hole-model<br/>L6 #4"]:::cognitive
   copilot_construct_deployment["● copilot/construct-deployment<br/>L6"]:::cognitive
+  copilot_task_217537952_1287894039_5c792a5a_45b5_4030_af5a_7f91e6d1a150["● copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150<br/>L6"]:::cognitive
   copilot_task_217537952_1287894039_6fbdb916_c8ca_4968_a8ac_bb746afff72a["● copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a<br/>L6"]:::cognitive
+  copilot_update_mrl_world_model_persistent_memory["● copilot/update-mrl-world-model-persistent-memory<br/>L6"]:::cognitive
   copilot_create_branch_neural_map["● copilot/create-branch-neural-map<br/>L6"]:::cognitive
 
   %% 連結定義
   main -.->|active| cursor_notion_mrl_blackhole_model_9f1b
   main -->|merged| Mrliou_mrl_authorization_repair_r07
   main -.->|active| Mrliou_structure_denial_reporting_20261011
+  main -->|merged| copilot_complete_black_hole_model
   main -.->|active| copilot_construct_deployment
+  main -.->|active| copilot_task_217537952_1287894039_5c792a5a_45b5_4030_af5a_7f91e6d1a150
   main -.->|active| copilot_task_217537952_1287894039_6fbdb916_c8ca_4968_a8ac_bb746afff72a
+  main -.->|active| copilot_update_mrl_world_model_persistent_memory
+  main -.->|active| copilot_complete_black_hole_model
+  main -->|merged| cursor_notion_mrl_blackhole_model_9f1b
   main -.->|active| Mrliou_mrl_authorization_repair_r07
   main -.->|active| copilot_create_branch_neural_map
 
