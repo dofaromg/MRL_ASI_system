@@ -5,13 +5,15 @@ on:
     paths:
       - 'mrl_blackhole/**'
       - 'tests/test_mrl_blackhole*.py'
+      - 'tests/test_celestial_vectors.py'
       - 'cli.py'
       - '.github/workflows/mrl-blackhole-canonical.yml'
   push:
-    branches: ['cursor/notion-mrl-blackhole-model-9f1b']
+    branches: ['main', 'cursor/notion-mrl-blackhole-model-9f1b', 'Mrliou/blackhole-runtime-continuation-20261013']
     paths:
       - 'mrl_blackhole/**'
       - 'tests/test_mrl_blackhole*.py'
+      - 'tests/test_celestial_vectors.py'
       - 'cli.py'
       - '.github/workflows/mrl-blackhole-canonical.yml'
 permissions:
@@ -35,7 +37,7 @@ jobs:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
-          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
+          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py tests/test_mrl_blackhole_translation.py tests/test_mrl_blackhole_genesis.py tests/test_celestial_vectors.py tests/test_mrl_blackhole_local_validation.py
       - name: Validate settled exact head after Neural Branch Sync
         env:
           GH_TOKEN: ${{ github.token }}
@@ -58,5 +60,5 @@ jobs:
           git checkout --detach "$settled_head"
           test "$(git rev-parse HEAD)" = "$settled_head"
           echo "SETTLED_EXACT_HEAD=$settled_head"
-          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
+          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py tests/test_mrl_blackhole_translation.py tests/test_mrl_blackhole_genesis.py tests/test_celestial_vectors.py tests/test_mrl_blackhole_local_validation.py
           echo "Exact head tested: $settled_head" >> "$GITHUB_STEP_SUMMARY"
