@@ -8,7 +8,7 @@ import pytest
 
 from mrl_blackhole.canonical import (
     BINDINGS_PATH, CANONICAL, MOTHER, ORIGIN, SCOPE, LINEAGE,
-    CanonicalBlackHoleBuilder, audit_snapshot, bound_model, make_lineage_return_id,
+    CanonicalAPIClient, CanonicalBlackHoleBuilder, audit_snapshot, bound_model, make_lineage_return_id,
     paginate, snapshot,
 )
 
@@ -94,6 +94,7 @@ def test_reuse_four_existing_ids_and_preserve_titles(tmp_path):
     assert result["root_page_id"] == MOTHER
     creates = [c for c in client.calls if c[0] == "POST"]
     assert len(creates) == 1 and creates[0][1] == "/databases"
+    assert result["created"] == ["hawking_radiation"]
     for c in client.calls:
         if c[0] == "PATCH":
             assert all(next(iter(spec)) != "title" for spec in c[2]["properties"].values())
@@ -163,6 +164,51 @@ def test_wrong_relation_target_fails_before_writes(tmp_path):
     with pytest.raises(ValueError, match="target conflict"):
         builder(tmp_path, client).build()
     assert not [c for c in client.calls if c[0] in ("POST", "PATCH")]
+
+
+def test_unresolved_relation_target_fails_before_creating_missing_layer(tmp_path):
+    client = Client()
+    source = bindings()["layers"]["accretion_disk"]["data_source_id"]
+    client.sources[source]["properties"]["來源物件 Captured Object"] = {
+        "type": "relation", "relation": {"data_source_id": "wrong"}}
+    b = builder(tmp_path, client)
+    resolve = b._resolve
+
+    def missing_event_horizon(manifest):
+        ids, sources, missing = resolve(manifest)
+        ids.pop("event_horizon")
+        sources.pop("event_horizon")
+        return ids, sources, [b.model.layer("event_horizon")]
+
+    b._resolve = missing_event_horizon
+    with pytest.raises(ValueError, match="Relation target conflict"):
+        b.build()
+    assert not [c for c in client.calls if c[0] in ("POST", "PATCH")]
+
+
+def test_get_pagination_payload_uses_query_parameters(monkeypatch):
+    import requests
+
+    class Response:
+        status_code = 200
+
+        @staticmethod
+        def json():
+            return {"results": []}
+
+    calls = {}
+
+    def fake_request(method, url, **kwargs):
+        calls.update(method=method, url=url, **kwargs)
+        return Response()
+
+    monkeypatch.setattr(requests, "request", fake_request)
+    CanonicalAPIClient(token="test-token").request(
+        "GET", "/blocks/page/children", {"page_size": 100, "start_cursor": "next"}
+    )
+
+    assert calls["params"] == {"page_size": 100, "start_cursor": "next"}
+    assert "json" not in calls
 
 
 def test_concurrent_build_is_rejected(tmp_path):
@@ -258,6 +304,19 @@ def test_full_chain_regressions(case):
     else:
         layers["hawking_radiation"][0]["交付時間 Delivered At"] = "2026-10-10T00:00:00Z"
     assert not audit_snapshot(data)["conserved"]
+
+
+@pytest.mark.parametrize("captured_at", [None, "", "not-a-date"])
+def test_missing_or_invalid_capture_time_is_a_conservation_violation(captured_at):
+    data = closed_snapshot()
+    data["layers"]["event_horizon"][0]["入境時間 Captured At"] = captured_at
+    data["layers"]["hawking_radiation"] = []
+    data["layers"]["return_ledger"][0]["輸出成果 Outbound"] = []
+
+    result = audit_snapshot(data, now=datetime(2026, 10, 20, tzinfo=timezone.utc))
+
+    assert not result["conserved"]
+    assert "invalid_capture_time" in {item["kind"] for item in result["violations"]}
 
 
 def test_empty_snapshot_is_not_runtime_acceptance():

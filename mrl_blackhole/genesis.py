@@ -186,7 +186,8 @@ def audit_genesis_structure(structure: GenesisStructure, source: Source) -> Gene
         violations.append("source_coverage_gap_or_overlap")
 
     for particle in structure.particles:
-        if particle.start < 0 or particle.end < particle.start or particle.end > len(source_data):
+        if particle.start < 0 or particle.end <= particle.start or particle.end > len(source_data):
+            violations.append("invalid_particle_bounds")
             fragment = b""
         else:
             fragment = source_data[particle.start:particle.end]

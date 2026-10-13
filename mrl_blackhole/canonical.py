@@ -81,8 +81,9 @@ class CanonicalAPIClient(NotionAPIClient):
     def request(self, method, path, payload=None):
         # Avoid logging private response bodies or blindly retrying mutations.
         import requests
+        request_data = {"params": payload} if method.upper() == "GET" else {"json": payload}
         response = requests.request(method, "https://api.notion.com/v1" + path,
-                                    headers=self._headers(), json=payload,
+                                    headers=self._headers(), **request_data,
                                     timeout=self.timeout)
         if response.status_code >= 400:
             raise RuntimeError(f"Notion {method} {path}: HTTP {response.status_code}")
@@ -161,6 +162,12 @@ class CanonicalBlackHoleBuilder(BlackHoleBuilder):
         existing = live.get("properties")
         if not isinstance(existing, dict):
             raise RuntimeError("Notion schema unavailable")
+        for prop in layer.relation_properties():
+            if sources.get(prop.relation_to) is None and prop.name in existing:
+                current = existing[prop.name]
+                if current.get("type") != "relation":
+                    raise ValueError(f"Schema type conflict: {layer.key}/{prop.name}")
+                raise ValueError(f"Relation target conflict: unresolved target for {layer.key}/{prop.name}")
         missing = {}
         for name, wanted in self._schema(layer, sources).items():
             current = existing.get(name)
@@ -262,7 +269,8 @@ class CanonicalBlackHoleBuilder(BlackHoleBuilder):
             manifest.update({"canonical_navigation_id": CANONICAL, "root_page_id": MOTHER,
                              "canonical_authority": "Mr.liou", "origin_signature": ORIGIN,
                              "model_scope": SCOPE, "model_version": self.model.version,
-                             "databases": plan["databases"], "data_sources": plan["data_sources"]})
+                             "databases": plan["databases"], "data_sources": plan["data_sources"],
+                             "created": []})
             manifest.setdefault("created_at", datetime.now(timezone.utc).isoformat())
             manifest["status"] = "BUILD_IN_PROGRESS"
             self.save_manifest(manifest)
@@ -277,6 +285,7 @@ class CanonicalBlackHoleBuilder(BlackHoleBuilder):
                 db = self.client.request("POST", "/databases", payload)
                 # Save acknowledged database ID before resolving its data source.
                 manifest["databases"][layer.key] = db["id"]
+                manifest["created"].append(layer.key)
                 self.save_manifest(manifest)
                 sources = db.get("data_sources", [])
                 if len(sources) != 1:
@@ -350,6 +359,15 @@ def audit_snapshot(data, now=None, overdue_hours=72):
     report = audit_conservation(captured, outputs, now=now, overdue_hours=overdue_hours)
     def fail(kind, row, detail):
         report.violations.append(Violation(kind, row.get("return_id"), row.get("original_name") or "", detail))
+    for row in captured:
+        captured_at = row.get("captured_at")
+        if not isinstance(captured_at, str) or not captured_at.strip():
+            fail("invalid_capture_time", row, "Capture requires a valid timestamp")
+            continue
+        try:
+            datetime.fromisoformat(captured_at.replace("Z", "+00:00"))
+        except ValueError:
+            fail("invalid_capture_time", row, "Capture requires a valid timestamp")
     refs = {key: {norm(r["page_id"]): r for r in rows} for key, rows in layers.items()}
     edges = {"accretion_disk": ("來源物件 Captured Object", "event_horizon"),
              "singularity": ("來源粒子 Source Particle", "accretion_disk"),

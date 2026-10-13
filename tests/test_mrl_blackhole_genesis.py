@@ -130,6 +130,23 @@ def test_parallel_world_projection_must_map_every_particle():
         _structure(particles=_specs(include_world=True), parallel_worlds=[world])
 
 
+@pytest.mark.parametrize("start,end", [(-1, 0), (1, 1), (1, 3)])
+def test_invalid_particle_bounds_are_rejected_in_parallel_worlds(start, end):
+    world = ParallelWorld(
+        "mirror",
+        "Mirror world",
+        (("negative", "negative-twin"), ("positive", "positive-twin")),
+    )
+    structure = _structure(particles=_specs(include_world=True), parallel_worlds=[world])
+    particles = list(structure.particles)
+    particles[2] = replace(particles[2], start=start, end=end)
+
+    report = audit_genesis_structure(replace(structure, particles=tuple(particles)), SOURCE)
+
+    assert not report.conserved
+    assert "invalid_particle_bounds" in report.violations
+
+
 @pytest.mark.unit
 def test_translation_return_id_is_bound_to_the_genesis_source():
     structure = _structure()

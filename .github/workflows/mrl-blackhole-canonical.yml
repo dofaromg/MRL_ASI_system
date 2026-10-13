@@ -5,6 +5,7 @@ on:
     paths:
       - 'mrl_blackhole/**'
       - 'tests/test_mrl_blackhole*.py'
+      - 'tests/test_celestial_vectors.py'
       - 'cli.py'
       - '.github/workflows/mrl-blackhole-canonical.yml'
   push:
@@ -12,6 +13,7 @@ on:
     paths:
       - 'mrl_blackhole/**'
       - 'tests/test_mrl_blackhole*.py'
+      - 'tests/test_celestial_vectors.py'
       - 'cli.py'
       - '.github/workflows/mrl-blackhole-canonical.yml'
 permissions:
@@ -35,12 +37,13 @@ jobs:
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
           test "$(git rev-parse HEAD)" = "$EXPECTED_HEAD"
-          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
+          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py tests/test_mrl_blackhole_translation.py tests/test_mrl_blackhole_genesis.py tests/test_celestial_vectors.py
       - name: Validate settled exact head after Neural Branch Sync
         env:
           GH_TOKEN: ${{ github.token }}
           EXPECTED_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
           HEAD_BRANCH: ${{ github.head_ref || github.ref_name }}
+          HEAD_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
         run: |
           pending=1
           for round in $(seq 1 36); do
@@ -50,7 +53,7 @@ jobs:
           done
           test "$pending" = 0
           gh auth setup-git
-          git fetch --no-tags origin "$HEAD_BRANCH"
+          git fetch --no-tags "https://github.com/$HEAD_REPOSITORY.git" "refs/heads/$HEAD_BRANCH"
           settled_head=$(git rev-parse FETCH_HEAD)
           git merge-base --is-ancestor "$EXPECTED_HEAD" "$settled_head"
           git diff --name-only "$EXPECTED_HEAD" "$settled_head" > /tmp/mrl-head-diff
@@ -58,5 +61,5 @@ jobs:
           git checkout --detach "$settled_head"
           test "$(git rev-parse HEAD)" = "$settled_head"
           echo "SETTLED_EXACT_HEAD=$settled_head"
-          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py
+          python -m pytest tests/test_mrl_blackhole.py tests/test_mrl_blackhole_canonical.py tests/test_mrl_blackhole_translation.py tests/test_mrl_blackhole_genesis.py tests/test_celestial_vectors.py
           echo "Exact head tested: $settled_head" >> "$GITHUB_STEP_SUMMARY"
