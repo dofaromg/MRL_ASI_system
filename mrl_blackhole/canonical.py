@@ -356,18 +356,22 @@ def audit_snapshot(data, now=None, overdue_hours=72):
     captured = [dict(r, captured_at=r.get("入境時間 Captured At")) for r in layers["event_horizon"]]
     outputs = [dict(r, delivered_at=r.get("交付時間 Delivered At"),
                     acknowledged=r.get("接收確認 Acknowledged")) for r in layers["hawking_radiation"]]
-    report = audit_conservation(captured, outputs, now=now, overdue_hours=overdue_hours)
-    def fail(kind, row, detail):
-        report.violations.append(Violation(kind, row.get("return_id"), row.get("original_name") or "", detail))
+    invalid_capture_violations = []
     for row in captured:
         captured_at = row.get("captured_at")
-        if not isinstance(captured_at, str) or not captured_at.strip():
-            fail("invalid_capture_time", row, "Capture requires a valid timestamp")
-            continue
         try:
+            if not isinstance(captured_at, str) or not captured_at.strip():
+                raise ValueError()
             datetime.fromisoformat(captured_at.replace("Z", "+00:00"))
         except ValueError:
-            fail("invalid_capture_time", row, "Capture requires a valid timestamp")
+            invalid_capture_violations.append(
+                Violation("invalid_capture_time", row.get("return_id"),
+                          row.get("original_name") or "", "Capture requires a valid timestamp")
+            )
+    report = audit_conservation(captured, outputs, now=now, overdue_hours=overdue_hours)
+    report.violations.extend(invalid_capture_violations)
+    def fail(kind, row, detail):
+        report.violations.append(Violation(kind, row.get("return_id"), row.get("original_name") or "", detail))
     refs = {key: {norm(r["page_id"]): r for r in rows} for key, rows in layers.items()}
     edges = {"accretion_disk": ("來源物件 Captured Object", "event_horizon"),
              "singularity": ("來源粒子 Source Particle", "accretion_disk"),
