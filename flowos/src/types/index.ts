@@ -124,6 +124,13 @@ export interface ArtifactRecord {
   versions: ArtifactVersion[];
 }
 
+export interface CommercialLabel {
+  id: UUID;
+  key: string;
+  value: string;
+  createdAt: number;
+}
+
 export interface MemoryEntry {
   id: UUID;
   scope: 'conversation' | 'project' | 'global';
@@ -148,6 +155,7 @@ export interface FlowSnapshot {
   conversations: ConversationThread[];
   projects: ProjectMetadata[];
   artifacts: ArtifactRecord[];
+  commercialLabels: CommercialLabel[];
   memories: MemoryEntry[];
 }
 

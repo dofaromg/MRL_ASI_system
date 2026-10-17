@@ -14,6 +14,7 @@ import { ProjectRegistry } from './app/projects';
 import { ArtifactVault } from './app/artifacts';
 import { MemorySystem } from './app/memory';
 import { ToolRegistry } from './app/tools';
+import { CommercialLabelRegistry } from './app/commercial-labels';
 import { MemoryStorage } from './storage';
 import { FlowLaw } from './lib/flow-law';
 import { randomId, now } from './utils';
@@ -29,6 +30,7 @@ export class FlowOS {
   public readonly artifacts: ArtifactVault;
   public readonly memory: MemorySystem;
   public readonly tools: ToolRegistry;
+  public readonly commercialLabels: CommercialLabelRegistry;
   private law: FlowLaw;
 
   constructor() {
@@ -47,6 +49,7 @@ export class FlowOS {
     this.artifacts = new ArtifactVault(this.storage);
     this.memory = new MemorySystem(this.storage);
     this.tools = new ToolRegistry();
+    this.commercialLabels = new CommercialLabelRegistry(this.storage);
     
     // Initialize governance
     this.law = new FlowLaw();
@@ -78,7 +81,7 @@ export class FlowOS {
    */
   enforce(context?: FlowContext): FlowLawResult {
     const particles = this.particles.listParticles();
-    return this.law.evaluate(particles, context);
+    return this.law.evaluate(particles, context, this.commercialLabels.listLabels());
   }
 
   /**
@@ -93,6 +96,7 @@ export class FlowOS {
       conversations: snap.conversations.length,
       projects: snap.projects.length,
       artifacts: snap.artifacts.length,
+      commercialLabels: snap.commercialLabels.length,
       memories: snap.memories.length,
       tools: this.tools.listTools().length,
       chainDigest: this.chain.digest(),

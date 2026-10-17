@@ -67,6 +67,7 @@ flowcore_naming.py          ← single source of truth / 單一真實來源
 | `loop` | `FlowCore.Loop` |
 | `ai` | `FlowCore.AI` |
 | `web` | `FlowCore.Web` |
+| `commercial_labels` | `FlowCore.CommercialLabels` |
 
 ---
 
