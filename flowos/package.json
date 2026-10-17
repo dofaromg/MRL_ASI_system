@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "node --experimental-modules --no-warnings dist/test.js",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:commercial-labels": "tsc -p tsconfig.commercial-labels.json && node --test tests/commercial-labels.test.cjs"
   }
 }
