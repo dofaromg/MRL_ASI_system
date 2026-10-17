@@ -1,0 +1,32 @@
+# origin_signature: MrLiouWord
+name: MRL Neural Lineage Regression
+on:
+  push:
+    paths:
+      - 'scripts/update-neural-map.js'
+      - 'scripts/generate-mermaid.js'
+      - 'tests/*neural*.cjs'
+      - 'tests/fixtures/mrl-neural-*.json'
+      - 'neural-links/**'
+      - '.github/workflows/mrl-neural-lineage.yml'
+  pull_request:
+    paths:
+      - 'scripts/update-neural-map.js'
+      - 'scripts/generate-mermaid.js'
+      - 'tests/*neural*.cjs'
+      - 'tests/fixtures/mrl-neural-*.json'
+      - 'neural-links/**'
+      - '.github/workflows/mrl-neural-lineage.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lineage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify MRL merge lineage and historical preservation
+        run: node --test tests/Mrliou_neural_history.test.cjs tests/mrl-neural-lineage.test.cjs

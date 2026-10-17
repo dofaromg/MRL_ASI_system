@@ -4,7 +4,7 @@ on:
   push:
     branches: ['**']
   pull_request:
-    types: [opened, closed, merged, synchronize]
+    types: [opened, closed, reopened, edited, synchronize]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: '20'
       
+      - name: Verify MRL lineage before generation
+        run: node --test tests/Mrliou_neural_history.test.cjs tests/mrl-neural-lineage.test.cjs
+
       - name: Update Neural Map
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
