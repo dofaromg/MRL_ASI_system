@@ -28,6 +28,6 @@ jobs:
           npm install --prefix "$RUNNER_TEMP/flowos-toolchain" --no-save --package-lock=false --ignore-scripts typescript@5.9.3 @types/node@24.10.0
           ln -s "$RUNNER_TEMP/flowos-toolchain/node_modules" flowos/node_modules
           echo "$RUNNER_TEMP/flowos-toolchain/node_modules/.bin" >> "$GITHUB_PATH"
-      - name: Typecheck, build and run commercial label regressions
+      - name: Typecheck and run FlowOS commercial regressions
         working-directory: flowos
-        run: npm run test:commercial-labels
+        run: npm run test:commercial-service
