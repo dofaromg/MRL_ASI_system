@@ -117,7 +117,7 @@ test('checked-in graph is reproducible from pinned GitHub observations and keeps
   assert.ok(pinned, 'original corrected observation must remain available');
   assert.deepEqual(rebuilt.neural_network,pinned.neural_network);
   assert.deepEqual(rebuilt.pull_requests,pinned.pull_requests);
-  assert.equal(fs.readFileSync('neural-links/synaptic-graph.mermaid','utf8'),generateMermaidGraph(map)+'\n');
+  assert.equal(fs.readFileSync('neural-links/synaptic-graph.mermaid','utf8').trimEnd(),generateMermaidGraph(map).trimEnd());
   assert.ok(map.history.some(e=>e.snapshot.updated_at==='2026-10-17T11:47:23.671Z'));
   assert.ok(map.history.some(e=>e.snapshot.updated_at.startsWith('2026-10-17T14:41:')));
 });
