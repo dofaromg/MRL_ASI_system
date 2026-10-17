@@ -1,0 +1,33 @@
+name: FlowOS Commercial Labels Regression
+
+on:
+  pull_request:
+    paths:
+      - 'flowos/**'
+      - '.github/workflows/flowos-commercial-labels.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'flowos/**'
+      - '.github/workflows/flowos-commercial-labels.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  commercial-labels:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install isolated regression toolchain
+        run: |
+          npm install --prefix "$RUNNER_TEMP/flowos-toolchain" --no-save --package-lock=false --ignore-scripts typescript@5.9.3 @types/node@24.10.0
+          ln -s "$RUNNER_TEMP/flowos-toolchain/node_modules" flowos/node_modules
+          echo "$RUNNER_TEMP/flowos-toolchain/node_modules/.bin" >> "$GITHUB_PATH"
+      - name: Typecheck, build and run commercial label regressions
+        working-directory: flowos
+        run: npm run test:commercial-labels
