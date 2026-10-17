@@ -26,12 +26,23 @@ function createCommercialService({ accounts, dataDir, clock = () => new Date() }
   fs.mkdirSync(dataDir, { recursive: true, mode: 0o700 });
   const lock = path.join(dataDir, 'service.lock');
   const lockFd = fs.openSync(lock, 'wx', 0o600);
-  fs.writeSync(lockFd, String(process.pid));
   const ledger = path.join(dataDir, 'usage.jsonl');
   const records = new Map();
   const usage = new Map();
   let ledgerFd;
   let poisoned = false;
+  let released = false;
+  // Terminal, idempotent cleanup: recreate the instance after failure or close.
+  const release = () => {
+    if (released) return;
+    released = true;
+    try {
+      if (ledgerFd !== undefined) fs.closeSync(ledgerFd);
+    } finally {
+      try { fs.closeSync(lockFd); }
+      finally { fs.unlinkSync(lock); }
+    }
+  };
   const index = (r) => {
     const k = JSON.stringify([r.accountId, r.period, r.requestId]);
     if (records.has(k)) throw new Error('MRL_LEDGER_DUPLICATE');
@@ -40,14 +51,26 @@ function createCommercialService({ accounts, dataDir, clock = () => new Date() }
     usage.set(uk, (usage.get(uk) || 0) + 1);
   };
   try {
+    fs.writeSync(lockFd, String(process.pid));
     if (fs.existsSync(ledger)) {
       const text = fs.readFileSync(ledger, 'utf8');
       if (text && !text.endsWith('\n')) throw new Error('MRL_LEDGER_INCOMPLETE');
       for (const line of text.split('\n').filter(Boolean)) {
         const r = JSON.parse(line);
-        if (r.origin_signature !== 'MrLiouWord' || typeof r.accountId !== 'string' ||
-            !/^\d{4}-\d{2}$/.test(r.period) || !/^[a-zA-Z0-9_-]{1,128}$/.test(r.requestId) ||
-            !/^[a-f0-9]{64}$/.test(r.inputHash) || !r.result || r.units !== 1) {
+        const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+        const result = r?.result;
+        // Validate before inserting into either the usage or replay index.
+        if (!object(r) || r.origin_signature !== 'MrLiouWord' ||
+            typeof r.accountId !== 'string' || !/^[a-zA-Z0-9_-]{1,64}$/.test(r.accountId) ||
+            typeof r.period !== 'string' || !/^\d{4}-(0[1-9]|1[0-2])$/.test(r.period) ||
+            typeof r.requestId !== 'string' || !/^[a-zA-Z0-9_-]{1,128}$/.test(r.requestId) ||
+            typeof r.inputHash !== 'string' || !/^[a-f0-9]{64}$/.test(r.inputHash) || r.units !== 1 ||
+            typeof r.ownerGrantRef !== 'string' || !r.ownerGrantRef.trim() ||
+            !object(result) || ['accountId', 'requestId', 'period', 'units', 'origin_signature']
+              .some(field => result[field] !== r[field]) ||
+            !object(result.snapshot) || ['particles', 'personas', 'seeds', 'conversations',
+              'projects', 'artifacts', 'commercialLabels', 'memories']
+              .some(field => !Array.isArray(result.snapshot[field]))) {
           throw new Error('MRL_LEDGER_INVALID');
         }
         index(r);
@@ -55,7 +78,7 @@ function createCommercialService({ accounts, dataDir, clock = () => new Date() }
     }
     ledgerFd = fs.openSync(ledger, 'a', 0o600);
   } catch (error) {
-    fs.closeSync(lockFd); fs.unlinkSync(lock); throw error;
+    release(); throw error;
   }
   const send = (res, status, body) => {
     res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -124,7 +147,19 @@ function createCommercialService({ accounts, dataDir, clock = () => new Date() }
   });
   server.requestTimeout = 15000;
   server.headersTimeout = 10000;
-  server.on('close', () => { fs.closeSync(ledgerFd); fs.closeSync(lockFd); fs.unlinkSync(lock); });
+  server.on('close', release);
+  let started = false;
+  server.once('listening', () => { started = true; });
+  server.on('error', () => { if (!started) release(); });
+  const listen = server.listen;
+  server.listen = function (...args) {
+    if (released) throw new Error('MRL_SERVICE_CLOSED');
+    try { return listen.apply(this, args); }
+    catch (error) {
+      if (!started) release();
+      throw error;
+    }
+  };
   return server;
 }
 
@@ -132,6 +167,10 @@ if (require.main === module) {
   const accounts = JSON.parse(fs.readFileSync(process.env.MRL_ACCOUNTS_FILE, 'utf8'));
   const server = createCommercialService({ accounts, dataDir: process.env.MRL_DATA_DIR || '' });
   const port = Number(process.env.MRL_SERVICE_PORT || 7820);
+  server.on('error', error => {
+    console.error(`MRL_CommercialService startup failed: ${error.code || 'MRL_LISTEN_ERROR'}`);
+    process.exitCode = 1;
+  });
   server.listen(port, '127.0.0.1', () => console.log(`MRL_CommercialService listening on 127.0.0.1:${port}`));
   for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close());
 }

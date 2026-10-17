@@ -5,10 +5,24 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const { once } = require('node:events');
+const http = require('node:http');
+const { spawn } = require('node:child_process');
 const { createCommercialService, digest } = require('../service/MRL_CommercialService.cjs');
 const token = 'a'.repeat(48);
 const tokenB = 'b'.repeat(48);
 const account = (id = 'customer-a', key = token, extra = {}) => ({ id, keyHash: digest(key), monthlyQuota: 2, enabled: true, ownerGrantRef: 'owner-grant-test-only', ...extra });
+function trackedService(dataDir) {
+  const opened = [];
+  const open = fs.openSync;
+  try {
+    fs.openSync = (...args) => { const fd = open(...args); opened.push(fd); return fd; };
+    return { server: createCommercialService({ accounts: [account()], dataDir }), opened };
+  } finally { fs.openSync = open; }
+}
+function assertDescriptorsClosed(opened) {
+  assert.equal(opened.length, 2);
+  for (const fd of opened) assert.throws(() => fs.fstatSync(fd), { code: 'EBADF' });
+}
 async function fixture(t, accounts = [account()]) {
   const dataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'MRL-service-'));
   let date = new Date('2026-10-17T00:00:00Z');
@@ -142,4 +156,157 @@ test('offline provisioning stores only a hash in config and never overwrites acc
     assert.equal(fs.existsSync(path.join(dir, 'second.key')), false);
     assert.equal(fs.readFileSync(result.configFile, 'utf8'), config);
   } finally { fs.rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('cross-customer receipts fail closed; restored ledger preserves isolated replays and usage', async t => {
+  const f = await fixture(t, [account(), account('customer-b', tokenB)]);
+  const a = await f.request(undefined, { content: 'synthetic-a' });
+  const b = await f.request(undefined, { key: tokenB, content: 'synthetic-b' });
+  await f.stop();
+  const ledger = path.join(f.dataDir, 'usage.jsonl');
+  const original = fs.readFileSync(ledger, 'utf8');
+  const records = original.trim().split('\n').map(JSON.parse);
+  records[0].result = records[1].result;
+  const corrupt = records.map(JSON.stringify).join('\n') + '\n';
+  fs.writeFileSync(ledger, corrupt);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    assert.throws(() => createCommercialService({ accounts: [account(), account('customer-b', tokenB)], dataDir: f.dataDir }), /MRL_LEDGER_INVALID/);
+    assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+    assert.equal(fs.readFileSync(ledger, 'utf8'), corrupt);
+  }
+  fs.writeFileSync(ledger, original); await f.start();
+  for (const [key, content, first] of [[token, 'synthetic-a', a], [tokenB, 'synthetic-b', b]]) {
+    const replay = await f.request(undefined, { key, content });
+    assert.equal(replay.body.replayed, true);
+    assert.deepEqual(replay.body.snapshot, first.body.snapshot);
+    assert.equal((await f.request('/v1/usage', { key })).body.units, 1);
+  }
+  assert.equal(fs.readFileSync(ledger, 'utf8'), original);
+});
+
+const invalidReceipts = {
+  accountId: r => { r.result.accountId = 'customer-b'; },
+  requestId: r => { r.result.requestId = 'other-request'; },
+  period: r => { r.result.period = '2026-09'; },
+  units: r => { r.result.units = 2; },
+  signature: r => { r.result.origin_signature = 'external'; },
+  missingSignature: r => { delete r.result.origin_signature; },
+  nullResult: r => { r.result = null; },
+  stringResult: r => { r.result = 'receipt'; },
+  arrayResult: r => { r.result = []; },
+  missingSnapshot: r => { delete r.result.snapshot; },
+  nullSnapshot: r => { r.result.snapshot = null; },
+  arraySnapshot: r => { r.result.snapshot = []; },
+  brokenSnapshotCollection: r => { r.result.snapshot.particles = {}; },
+  missingSnapshotCollection: r => { delete r.result.snapshot.memories; },
+  invalidAccountId: r => { r.accountId = r.result.accountId = ''; },
+  invalidMonth: r => { r.period = r.result.period = '2026-13'; },
+  externalAuthority: r => { r.origin_signature = r.result.origin_signature = 'external'; },
+  invalidGrant: r => { r.ownerGrantRef = ''; },
+};
+for (const [name, mutate] of Object.entries(invalidReceipts)) {
+  test(`ledger rejects ${name} without modifying durable data or blocking recovery`, async t => {
+    const f = await fixture(t); await f.request(); await f.stop();
+    const ledger = path.join(f.dataDir, 'usage.jsonl');
+    const original = fs.readFileSync(ledger, 'utf8');
+    const record = JSON.parse(original); mutate(record);
+    const damaged = JSON.stringify(record) + '\n';
+    fs.writeFileSync(ledger, damaged);
+    assert.throws(() => createCommercialService({ accounts: [account()], dataDir: f.dataDir }), /MRL_LEDGER_INVALID/);
+    assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+    assert.equal(fs.readFileSync(ledger, 'utf8'), damaged);
+    fs.writeFileSync(ledger, original); await f.start();
+    assert.equal((await f.request('/v1/usage')).body.units, 1);
+    assert.equal((await f.request()).body.replayed, true);
+  });
+}
+
+for (const [name, damage, error] of [
+  ['invalid JSON after valid record', text => text + '{broken}\n', SyntaxError],
+  ['null record', text => text + 'null\n', /MRL_LEDGER_INVALID/],
+  ['duplicate record', text => text + text, /MRL_LEDGER_DUPLICATE/],
+  ['partial trailing write', text => text + '{', /MRL_LEDGER_INCOMPLETE/],
+]) {
+  test(`damaged ledger: ${name} rejects the entire startup`, async t => {
+    const f = await fixture(t); await f.request(); await f.stop();
+    const ledger = path.join(f.dataDir, 'usage.jsonl');
+    const original = fs.readFileSync(ledger, 'utf8');
+    const damaged = damage(original); fs.writeFileSync(ledger, damaged);
+    assert.throws(() => createCommercialService({ accounts: [account()], dataDir: f.dataDir }), error);
+    assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+    assert.equal(fs.readFileSync(ledger, 'utf8'), damaged);
+    fs.writeFileSync(ledger, original); await f.start();
+    assert.equal((await f.request('/v1/usage')).body.units, 1);
+    assert.equal((await f.request()).body.replayed, true);
+  });
+}
+
+test('occupied port releases startup descriptors and lock; later close cannot delete a replacement lock', async t => {
+  const f = await fixture(t); await f.request(); await f.stop();
+  const blocker = http.createServer(); blocker.listen(0, '127.0.0.1'); await once(blocker, 'listening');
+  t.after(() => new Promise(resolve => blocker.close(resolve)));
+  const port = blocker.address().port;
+  const { server: failed, opened } = trackedService(f.dataDir);
+  const ledger = fs.readFileSync(path.join(f.dataDir, 'usage.jsonl'), 'utf8');
+  const error = once(failed, 'error'); failed.listen(port, '127.0.0.1');
+  assert.equal((await error)[0].code, 'EADDRINUSE');
+  assertDescriptorsClosed(opened);
+  assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+  await f.start();
+  await new Promise(resolve => failed.close(resolve));
+  assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), true);
+  assert.throws(() => failed.listen(0), /MRL_SERVICE_CLOSED/);
+  assert.throws(() => createCommercialService({ accounts: [account()], dataDir: f.dataDir }), { code: 'EEXIST' });
+  assert.equal((await f.request('/v1/usage')).body.units, 1);
+  assert.equal((await f.request()).body.replayed, true);
+  assert.equal(fs.readFileSync(path.join(f.dataDir, 'usage.jsonl'), 'utf8'), ledger);
+});
+
+for (const port of [-1, 65536, NaN]) {
+  test(`invalid port ${port} releases the lock synchronously and supports restart`, async t => {
+    const f = await fixture(t); await f.stop();
+    const { server: failed, opened } = trackedService(f.dataDir);
+    assert.throws(() => failed.listen(port, '127.0.0.1'), { code: 'ERR_SOCKET_BAD_PORT' });
+    assertDescriptorsClosed(opened);
+    assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+    await f.start();
+    await new Promise(resolve => failed.close(resolve));
+    assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), true);
+    assert.equal((await f.request('/v1/usage')).body.units, 0);
+    assert.equal((await f.request()).status, 200);
+  });
+}
+
+test('CLI exits unsuccessfully on occupied port and leaves data directory restartable', async t => {
+  const f = await fixture(t); await f.stop();
+  const blocker = http.createServer(); blocker.listen(0, '127.0.0.1'); await once(blocker, 'listening');
+  t.after(() => new Promise(resolve => blocker.close(resolve)));
+  const config = path.join(f.dataDir, 'test-accounts.json');
+  fs.writeFileSync(config, JSON.stringify([account()]));
+  const child = spawn(process.execPath, [path.resolve(__dirname, '../service/MRL_CommercialService.cjs')], {
+    env: { ...process.env, MRL_ACCOUNTS_FILE: config, MRL_DATA_DIR: f.dataDir, MRL_SERVICE_PORT: String(blocker.address().port) },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  t.after(() => { if (child.exitCode === null) child.kill(); });
+  let stderr = ''; child.stderr.on('data', chunk => { stderr += chunk; });
+  const [code] = await once(child, 'exit');
+  assert.equal(code, 1); assert.match(stderr, /EADDRINUSE/);
+  assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+  await f.start(); assert.equal((await f.request()).status, 200);
+});
+
+test('failure writing the lock PID releases the acquired lock and descriptor', async t => {
+  const f = await fixture(t); await f.stop();
+  const write = fs.writeSync;
+  const close = fs.closeSync;
+  const closed = [];
+  try {
+    fs.writeSync = () => { throw new Error('synthetic lock write failure'); };
+    fs.closeSync = fd => { closed.push(fd); return close(fd); };
+    assert.throws(() => createCommercialService({ accounts: [account()], dataDir: f.dataDir }), /synthetic lock write failure/);
+  } finally { fs.writeSync = write; fs.closeSync = close; }
+  assert.equal(closed.length, 1);
+  assert.throws(() => fs.fstatSync(closed[0]), { code: 'EBADF' });
+  assert.equal(fs.existsSync(path.join(f.dataDir, 'service.lock')), false);
+  await f.start(); assert.equal((await f.request()).status, 200);
 });

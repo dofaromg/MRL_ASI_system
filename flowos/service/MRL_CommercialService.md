@@ -50,3 +50,15 @@ Get-FileHash D:\MRL_Mother\CommercialService\data\usage.jsonl -Algorithm SHA256
 自動化測試以實際 loopback HTTP、真實 FlowOS 與暫時檔案帳本驗證成功、驗證失敗、停用、配額、並行、重試、重啟、客戶隔離、月份邊界、獨占鎖及磁碟失敗。所有測試資料為合成資料。此 scoped build 承接 PR #8；既有 src/index.ts Worker 語法錯誤仍需另行修復。
 
 工程測試通過不等於 DL580 已部署、正式對外可用或 FIRST_REALIZED_REVENUE_PASS；這些需對應實機與真實交易回執。
+
+## PR #9 P2 修復驗收（2026-10-18 Asia/Taipei）
+
+承接 PR #8 整合分支的 `009349f03ad85d577ad0abd6b0d3ab8066e4fd3b`。既有 JSONL 寫入格式、原始來源與 `origin_signature: MrLiouWord` 保留；不遷移、不覆寫帳本。載入時逐筆確認回執為物件、snapshot 的既有集合為陣列，並嚴格核對回執與外層的 accountId、requestId、period、units、origin_signature。任一筆異常則整次啟動失敗，不提供部分載入的用量或重播結果。此一致性檢查不構成密碼學簽章驗證。
+
+鎖 PID 寫入、帳本載入、同步 listen 例外、非同步監聽失敗及正常 close 使用同一個可重複呼叫的清理路徑，關閉帳本與鎖的 descriptor 並移除鎖。失敗／關閉的 server 物件不可重新 listen，應重新呼叫 createCommercialService。舊物件後續 close 不會移除新實例的鎖。CLI 非同步監聽失敗以非零狀態結束。
+
+驗證指令：`npm run test:commercial-service`。專用測試共 70 項（商業標籤 26、商業服務 44），使用合成帳戶、loopback HTTP 與暫存檔。新增 29 項涵蓋跨客戶回執、五欄一致性、損壞／殘缺／重複帳本、復原後用量與重播、埠占用、無效埠、descriptor 關閉、舊實例 close、CLI 啟動失敗及鎖寫入失敗。
+
+交付範圍為三個既有檔案：service/MRL_CommercialService.cjs、tests/MRL_CommercialService.test.cjs、service/MRL_CommercialService.md。依賴鏈為 service → scoped build 的 FlowOS → MemoryStorage／FlowLaw；tests → service／provisioner／HTTP／暫存檔，沿用既有 test:commercial-service 與 CI workflow。未新增帳本格式、依賴套件或部署動作。
+
+GitHub exact-head CI 須在推送後另行讀回，不能以本機結果替代。DL580 驗收仍待實機執行；正式帳本與憑證只存於 D:，不讀取或上傳平台。本修復不合併 main。
