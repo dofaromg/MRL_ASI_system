@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-17T18:27:16.090Z",
+  "updated_at": "2026-10-17T18:27:54.325Z",
   "neural_network": {
     "nodes": [
       {
@@ -12,14 +12,14 @@
         "energy": 1
       },
       {
-        "id": "copilot/fix-github-actions-job",
+        "id": "copilot/add-module-features-and-stability",
         "type": "cognitive",
         "layer": "L6",
         "parent": "main",
         "status": "active",
         "energy": 0.7,
-        "merged_pr": 14,
-        "created_at": "2026-10-17T18:15:05Z"
+        "merged_pr": 11,
+        "created_at": "2026-10-17T18:13:59Z"
       },
       {
         "id": "Mrliou/MRL-CommercialService-v01-20261017",
@@ -95,16 +95,6 @@
         "created_at": "2026-10-11T06:17:58Z"
       },
       {
-        "id": "copilot/add-module-features-and-stability",
-        "type": "cognitive",
-        "layer": "L6",
-        "parent": "main",
-        "status": "active",
-        "energy": 0.7,
-        "merged_pr": 11,
-        "created_at": "2026-10-17T18:13:59Z"
-      },
-      {
         "id": "copilot/add-system-function-modules",
         "type": "cognitive",
         "layer": "L6",
@@ -138,6 +128,17 @@
         "parent": "main",
         "status": "active",
         "energy": 0.7
+      },
+      {
+        "id": "copilot/fix-github-actions-job",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "merged",
+        "energy": 0.95,
+        "merged_pr": 14,
+        "created_at": "2026-10-17T18:15:05Z",
+        "merged_at": "2026-10-17T18:27:41Z"
       },
       {
         "id": "copilot/fix-github-actions-job-failure",
@@ -224,11 +225,11 @@
     "synapses": [
       {
         "from": "main",
-        "to": "copilot/fix-github-actions-job",
+        "to": "copilot/add-module-features-and-stability",
         "type": "influence",
         "weight": 0.5,
-        "pr_number": 14,
-        "timestamp": "2026-10-17T18:15:05Z"
+        "pr_number": 11,
+        "timestamp": "2026-10-17T18:13:59Z"
       },
       {
         "from": "main",
@@ -288,25 +289,17 @@
       },
       {
         "from": "main",
-        "to": "copilot/add-module-features-and-stability",
-        "type": "influence",
-        "weight": 0.5,
-        "pr_number": 11,
-        "timestamp": "2026-10-17T18:13:59Z"
-      },
-      {
-        "from": "main",
         "to": "copilot/add-system-function-modules",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
         "to": "copilot/build-world-model-for-mrliouword",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
@@ -321,7 +314,15 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/fix-github-actions-job",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 14,
+        "timestamp": "2026-10-17T18:27:41Z"
       },
       {
         "from": "main",
@@ -336,35 +337,35 @@
         "to": "copilot/mrliouagi",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
         "to": "copilot/update-mrl-world-model-persistent-memory",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:27:16.091Z"
+        "timestamp": "2026-10-17T18:27:54.326Z"
       },
       {
         "from": "main",
@@ -381,6 +382,15 @@
         "weight": 0.95,
         "pr_number": 5,
         "timestamp": "2026-10-13T10:47:25Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/fix-github-actions-job",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 14,
+        "timestamp": "2026-10-17T18:15:05Z",
+        "historical_only": true
       },
       {
         "from": "main",
