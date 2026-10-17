@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-17T11:47:23.671Z",
+  "updated_at": "2026-10-17T18:19:09.056Z",
   "neural_network": {
     "nodes": [
       {
@@ -12,14 +12,45 @@
         "energy": 1
       },
       {
-        "id": "copilot/wake-up-mrl-world-model-system",
-        "type": "cognitive",
-        "layer": "L6",
+        "id": "Mrliou/flowos-commercial-labels-regression-20261017",
+        "type": "experimental",
+        "layer": "L3",
         "parent": "main",
         "status": "active",
         "energy": 0.7,
-        "merged_pr": 7,
-        "created_at": "2026-10-17T11:47:01Z"
+        "merged_pr": 8,
+        "created_at": "2026-10-17T13:44:30Z"
+      },
+      {
+        "id": "Mrliou/MRL-CommercialService-v01-20261017",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "merged",
+        "energy": 0.95,
+        "merged_pr": 9,
+        "created_at": "2026-10-17T13:50:43Z",
+        "merged_at": "2026-10-17T13:58:11Z"
+      },
+      {
+        "id": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 10,
+        "created_at": "2026-10-17T14:41:26Z"
+      },
+      {
+        "id": "Mrliou/MRL-neural-merge-lineage-20261018",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 15,
+        "created_at": "2026-10-17T18:17:07Z"
       },
       {
         "id": "Mrliou/blackhole-runtime-continuation-20261013",
@@ -58,6 +89,16 @@
         "layer": "L6",
         "parent": "main",
         "status": "active",
+        "energy": 0.7,
+        "merged_pr": 11,
+        "created_at": "2026-10-17T18:13:59Z"
+      },
+      {
+        "id": "copilot/add-system-function-modules",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
         "energy": 0.7
       },
       {
@@ -86,6 +127,26 @@
         "parent": "main",
         "status": "active",
         "energy": 0.7
+      },
+      {
+        "id": "copilot/fix-github-actions-job",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 14,
+        "created_at": "2026-10-17T18:15:05Z"
+      },
+      {
+        "id": "copilot/fix-github-actions-job-failure",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 12,
+        "created_at": "2026-10-17T18:14:59Z"
       },
       {
         "id": "copilot/mrliouagi",
@@ -128,6 +189,17 @@
         "energy": 0.7
       },
       {
+        "id": "copilot/wake-up-mrl-world-model-system",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "merged",
+        "energy": 0.95,
+        "merged_pr": 7,
+        "created_at": "2026-10-17T11:47:01Z",
+        "merged_at": "2026-10-17T11:47:50Z"
+      },
+      {
         "id": "cursor/notion-mrl-blackhole-model-9f1b",
         "type": "experimental",
         "layer": "L3",
@@ -151,11 +223,35 @@
     "synapses": [
       {
         "from": "main",
-        "to": "copilot/wake-up-mrl-world-model-system",
+        "to": "Mrliou/flowos-commercial-labels-regression-20261017",
         "type": "influence",
         "weight": 0.5,
-        "pr_number": 7,
-        "timestamp": "2026-10-17T11:47:01Z"
+        "pr_number": 8,
+        "timestamp": "2026-10-17T13:44:30Z"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/MRL-CommercialService-v01-20261017",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 9,
+        "timestamp": "2026-10-17T13:58:11Z"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 10,
+        "timestamp": "2026-10-17T14:41:26Z"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/MRL-neural-merge-lineage-20261018",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 15,
+        "timestamp": "2026-10-17T18:17:07Z"
       },
       {
         "from": "main",
@@ -186,14 +282,22 @@
         "to": "copilot/add-module-features-and-stability",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "pr_number": 11,
+        "timestamp": "2026-10-17T18:13:59Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/add-system-function-modules",
+        "type": "influence",
+        "weight": 0.5,
+        "timestamp": "2026-10-17T18:19:09.056Z"
       },
       {
         "from": "main",
         "to": "copilot/build-world-model-for-mrliouword",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
       },
       {
         "from": "main",
@@ -208,42 +312,66 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/fix-github-actions-job",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 14,
+        "timestamp": "2026-10-17T18:15:05Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/fix-github-actions-job-failure",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 12,
+        "timestamp": "2026-10-17T18:14:59Z"
       },
       {
         "from": "main",
         "to": "copilot/mrliouagi",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
       },
       {
         "from": "main",
         "to": "copilot/update-mrl-world-model-persistent-memory",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T11:47:23.672Z"
+        "timestamp": "2026-10-17T18:19:09.056Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/wake-up-mrl-world-model-system",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 7,
+        "timestamp": "2026-10-17T11:47:50Z"
       },
       {
         "from": "main",
@@ -252,6 +380,24 @@
         "weight": 0.95,
         "pr_number": 5,
         "timestamp": "2026-10-13T10:47:25Z"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/MRL-CommercialService-v01-20261017",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 9,
+        "timestamp": "2026-10-17T13:50:43Z",
+        "historical_only": true
+      },
+      {
+        "from": "main",
+        "to": "copilot/wake-up-mrl-world-model-system",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 7,
+        "timestamp": "2026-10-17T11:47:01Z",
+        "historical_only": true
       },
       {
         "from": "main",

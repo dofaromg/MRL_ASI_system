@@ -17,10 +17,21 @@ import { ToolRegistry } from './app/tools';
 import { CommercialLabelRegistry } from './app/commercial-labels';
 import { MemoryStorage } from './storage';
 import { FlowLaw } from './lib/flow-law';
+import { ConfigManager } from './core/config';
+import { FlowGate, GateDecision } from './core/gate';
+import { NeuralLink, NeuralLinkPacket } from './core/neural_link';
 import { randomId, now } from './utils';
+
+export interface NeuralSignalResult {
+  decision: GateDecision;
+  packet?: NeuralLinkPacket;
+}
 
 export class FlowOS {
   private storage: MemoryStorage;
+  public readonly config: ConfigManager;
+  public readonly gate: FlowGate;
+  public readonly neuralLink: NeuralLink;
   public readonly particles: ParticleEngine;
   public readonly personas: PersonaRegistry;
   public readonly seeds: SeedRegistry;
@@ -35,6 +46,9 @@ export class FlowOS {
 
   constructor() {
     this.storage = new MemoryStorage();
+    this.config = new ConfigManager();
+    this.gate = new FlowGate();
+    this.neuralLink = new NeuralLink();
     
     // Initialize core subsystems
     const particleStore = new ParticleStore(this.storage);
@@ -82,6 +96,17 @@ export class FlowOS {
   enforce(context?: FlowContext): FlowLawResult {
     const particles = this.particles.listParticles();
     return this.law.evaluate(particles, context, this.commercialLabels.listLabels());
+  }
+
+  async emitSignal(
+    type: string,
+    payload: Record<string, unknown>,
+    context?: FlowContext,
+  ): Promise<NeuralSignalResult> {
+    const decision = this.gate.evaluate(payload, context);
+    if (!decision.allowed) return { decision };
+    const packet = await this.neuralLink.transmit(type, payload, context);
+    return { decision, packet };
   }
 
   /**

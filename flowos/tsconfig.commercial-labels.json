@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./.commercial-labels-dist",
+    "noEmitOnError": true
+  },
+  "include": ["src/flowos.ts"],
+  "exclude": []
+}
