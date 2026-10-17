@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-13T10:45:19.514Z",
+  "updated_at": "2026-10-17T11:47:23.671Z",
   "neural_network": {
     "nodes": [
       {
@@ -12,14 +12,24 @@
         "energy": 1
       },
       {
-        "id": "cursor/notion-mrl-blackhole-model-9f1b",
+        "id": "copilot/wake-up-mrl-world-model-system",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 7,
+        "created_at": "2026-10-17T11:47:01Z"
+      },
+      {
+        "id": "Mrliou/blackhole-runtime-continuation-20261013",
         "type": "experimental",
         "layer": "L3",
         "parent": "main",
         "status": "active",
         "energy": 0.7,
-        "merged_pr": 5,
-        "created_at": "2026-10-13T10:40:16Z"
+        "merged_pr": 6,
+        "created_at": "2026-10-13T12:13:56Z"
       },
       {
         "id": "Mrliou/mrl-authorization-repair-r07",
@@ -43,6 +53,22 @@
         "created_at": "2026-10-11T06:17:58Z"
       },
       {
+        "id": "copilot/add-module-features-and-stability",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7
+      },
+      {
+        "id": "copilot/build-world-model-for-mrliouword",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7
+      },
+      {
         "id": "copilot/complete-black-hole-model",
         "type": "cognitive",
         "layer": "L6",
@@ -55,6 +81,22 @@
       },
       {
         "id": "copilot/construct-deployment",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7
+      },
+      {
+        "id": "copilot/mrliouagi",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7
+      },
+      {
+        "id": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
         "type": "cognitive",
         "layer": "L6",
         "parent": "main",
@@ -86,6 +128,17 @@
         "energy": 0.7
       },
       {
+        "id": "cursor/notion-mrl-blackhole-model-9f1b",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "merged",
+        "energy": 0.95,
+        "merged_pr": 5,
+        "created_at": "2026-10-13T10:40:16Z",
+        "merged_at": "2026-10-13T10:47:25Z"
+      },
+      {
         "id": "copilot/create-branch-neural-map",
         "type": "cognitive",
         "layer": "L6",
@@ -98,11 +151,19 @@
     "synapses": [
       {
         "from": "main",
-        "to": "cursor/notion-mrl-blackhole-model-9f1b",
+        "to": "copilot/wake-up-mrl-world-model-system",
         "type": "influence",
         "weight": 0.5,
-        "pr_number": 5,
-        "timestamp": "2026-10-13T10:40:16Z"
+        "pr_number": 7,
+        "timestamp": "2026-10-17T11:47:01Z"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/blackhole-runtime-continuation-20261013",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 6,
+        "timestamp": "2026-10-13T12:13:56Z"
       },
       {
         "from": "main",
@@ -122,6 +183,20 @@
       },
       {
         "from": "main",
+        "to": "copilot/add-module-features-and-stability",
+        "type": "influence",
+        "weight": 0.5,
+        "timestamp": "2026-10-17T11:47:23.672Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/build-world-model-for-mrliouword",
+        "type": "influence",
+        "weight": 0.5,
+        "timestamp": "2026-10-17T11:47:23.672Z"
+      },
+      {
+        "from": "main",
         "to": "copilot/complete-black-hole-model",
         "type": "merge",
         "weight": 0.95,
@@ -133,28 +208,59 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-13T10:45:19.515Z"
+        "timestamp": "2026-10-17T11:47:23.672Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/mrliouagi",
+        "type": "influence",
+        "weight": 0.5,
+        "timestamp": "2026-10-17T11:47:23.672Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
+        "type": "influence",
+        "weight": 0.5,
+        "timestamp": "2026-10-17T11:47:23.672Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-13T10:45:19.515Z"
+        "timestamp": "2026-10-17T11:47:23.672Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-13T10:45:19.515Z"
+        "timestamp": "2026-10-17T11:47:23.672Z"
       },
       {
         "from": "main",
         "to": "copilot/update-mrl-world-model-persistent-memory",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-13T10:45:19.515Z"
+        "timestamp": "2026-10-17T11:47:23.672Z"
+      },
+      {
+        "from": "main",
+        "to": "cursor/notion-mrl-blackhole-model-9f1b",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 5,
+        "timestamp": "2026-10-13T10:47:25Z"
+      },
+      {
+        "from": "main",
+        "to": "cursor/notion-mrl-blackhole-model-9f1b",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 5,
+        "timestamp": "2026-10-13T10:40:16Z",
+        "historical_only": true
       },
       {
         "from": "main",
@@ -163,15 +269,6 @@
         "weight": 0.5,
         "pr_number": 4,
         "timestamp": "2026-10-11T19:19:08Z",
-        "historical_only": true
-      },
-      {
-        "from": "main",
-        "to": "cursor/notion-mrl-blackhole-model-9f1b",
-        "type": "merge",
-        "weight": 0.95,
-        "pr_number": 3,
-        "timestamp": "2026-10-11T18:46:07Z",
         "historical_only": true
       },
       {
