@@ -1,6 +1,6 @@
 {
   "origin_signature": "MrLiouWord",
-  "updated_at": "2026-10-17T18:14:42.982Z",
+  "updated_at": "2026-10-17T18:27:16.090Z",
   "neural_network": {
     "nodes": [
       {
@@ -12,14 +12,14 @@
         "energy": 1
       },
       {
-        "id": "copilot/add-module-features-and-stability",
+        "id": "copilot/fix-github-actions-job",
         "type": "cognitive",
         "layer": "L6",
         "parent": "main",
         "status": "active",
         "energy": 0.7,
-        "merged_pr": 11,
-        "created_at": "2026-10-17T18:13:59Z"
+        "merged_pr": 14,
+        "created_at": "2026-10-17T18:15:05Z"
       },
       {
         "id": "Mrliou/MRL-CommercialService-v01-20261017",
@@ -41,6 +41,17 @@
         "energy": 0.7,
         "merged_pr": 10,
         "created_at": "2026-10-17T14:41:26Z"
+      },
+      {
+        "id": "Mrliou/MRL-neural-merge-lineage-20261018",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "status": "merged",
+        "energy": 0.95,
+        "merged_pr": 15,
+        "created_at": "2026-10-17T18:17:07Z",
+        "merged_at": "2026-10-17T18:21:42Z"
       },
       {
         "id": "Mrliou/blackhole-runtime-continuation-20261013",
@@ -84,6 +95,16 @@
         "created_at": "2026-10-11T06:17:58Z"
       },
       {
+        "id": "copilot/add-module-features-and-stability",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 11,
+        "created_at": "2026-10-17T18:13:59Z"
+      },
+      {
         "id": "copilot/add-system-function-modules",
         "type": "cognitive",
         "layer": "L6",
@@ -117,6 +138,16 @@
         "parent": "main",
         "status": "active",
         "energy": 0.7
+      },
+      {
+        "id": "copilot/fix-github-actions-job-failure",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "main",
+        "status": "active",
+        "energy": 0.7,
+        "merged_pr": 12,
+        "created_at": "2026-10-17T18:14:59Z"
       },
       {
         "id": "copilot/mrliouagi",
@@ -193,11 +224,11 @@
     "synapses": [
       {
         "from": "main",
-        "to": "copilot/add-module-features-and-stability",
+        "to": "copilot/fix-github-actions-job",
         "type": "influence",
         "weight": 0.5,
-        "pr_number": 11,
-        "timestamp": "2026-10-17T18:13:59Z"
+        "pr_number": 14,
+        "timestamp": "2026-10-17T18:15:05Z"
       },
       {
         "from": "main",
@@ -214,6 +245,14 @@
         "weight": 0.5,
         "pr_number": 10,
         "timestamp": "2026-10-17T14:41:26Z"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/MRL-neural-merge-lineage-20261018",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 15,
+        "timestamp": "2026-10-17T18:21:42Z"
       },
       {
         "from": "main",
@@ -249,17 +288,25 @@
       },
       {
         "from": "main",
+        "to": "copilot/add-module-features-and-stability",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 11,
+        "timestamp": "2026-10-17T18:13:59Z"
+      },
+      {
+        "from": "main",
         "to": "copilot/add-system-function-modules",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.982Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
         "to": "copilot/build-world-model-for-mrliouword",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.982Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
@@ -274,42 +321,50 @@
         "to": "copilot/construct-deployment",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.983Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
+      },
+      {
+        "from": "main",
+        "to": "copilot/fix-github-actions-job-failure",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 12,
+        "timestamp": "2026-10-17T18:14:59Z"
       },
       {
         "from": "main",
         "to": "copilot/mrliouagi",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.983Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.983Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.983Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
         "to": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.983Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
         "to": "copilot/update-mrl-world-model-persistent-memory",
         "type": "influence",
         "weight": 0.5,
-        "timestamp": "2026-10-17T18:14:42.983Z"
+        "timestamp": "2026-10-17T18:27:16.091Z"
       },
       {
         "from": "main",
@@ -369,6 +424,70 @@
         "type": "influence",
         "weight": 0.5,
         "timestamp": "2026-02-08T09:04:52.254Z",
+        "historical_only": true
+      },
+      {
+        "from": "cursor/notion-mrl-blackhole-model-9f1b",
+        "to": "copilot/complete-black-hole-model",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 4,
+        "merge_commit": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
+        "head_commit": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
+        "base_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+        "timestamp": "2026-10-13T10:38:40Z",
+        "observed_at": "2026-10-17T18:21:58.107Z",
+        "evidence": "github_pr",
+        "main_integration": "not_in_main",
+        "deployment": "not_verified",
+        "historical_only": true
+      },
+      {
+        "from": "Mrliou/flowos-commercial-labels-regression-20261017",
+        "to": "Mrliou/MRL-CommercialService-v01-20261017",
+        "type": "merge",
+        "weight": 0.95,
+        "pr_number": 9,
+        "merge_commit": "f022d69e41e8c415cc955a226ff84b64313060e2",
+        "head_commit": "18b54e02a90429310689feb6cfb54bced8dd8160",
+        "base_commit": "c519d7bdfe63dd6849990b8b2f2a3209ad7ee36c",
+        "timestamp": "2026-10-17T13:58:11Z",
+        "observed_at": "2026-10-17T18:21:58.107Z",
+        "evidence": "github_pr",
+        "main_integration": "not_in_main",
+        "deployment": "not_verified",
+        "historical_only": true
+      },
+      {
+        "from": "copilot/add-module-features-and-stability",
+        "to": "copilot/fix-github-actions-job-failure",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 12,
+        "merge_commit": null,
+        "head_commit": "5b84abb517c5b49d236f2c562715d9cbd941b26e",
+        "base_commit": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+        "timestamp": "2026-10-17T18:14:59Z",
+        "observed_at": "2026-10-17T18:21:58.107Z",
+        "evidence": "github_pr",
+        "main_integration": "not_established",
+        "deployment": "not_verified",
+        "historical_only": true
+      },
+      {
+        "from": "copilot/add-module-features-and-stability",
+        "to": "copilot/fix-github-actions-job",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 14,
+        "merge_commit": null,
+        "head_commit": "8c5a5789f622f9b379cc6978295d040c9ab030f7",
+        "base_commit": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+        "timestamp": "2026-10-17T18:15:05Z",
+        "observed_at": "2026-10-17T18:21:58.107Z",
+        "evidence": "github_pr",
+        "main_integration": "not_established",
+        "deployment": "not_verified",
         "historical_only": true
       }
     ]
