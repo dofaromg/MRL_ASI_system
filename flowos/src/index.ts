@@ -14,6 +14,7 @@ import { handleVCSCommit } from './vcs-gate-unified';
 
 // Export FlowOS class for backward compatibility
 export { FlowOS } from './flowos';
+export { CommercialLabelRegistry } from './app/commercial-labels';
 
 // Export defensive client
 export * from './core/defensive_client';

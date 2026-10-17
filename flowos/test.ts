@@ -13,6 +13,20 @@ const project = flow.projects.registerProject('FlowOS Sandbox', 'Playground for 
 const artifact = flow.artifacts.registerArtifact(project.id, 'Transcript');
 flow.artifacts.addVersion(artifact.id, 'v1');
 
+flow.commercialLabels.registerLabel('product.tier', 'professional');
+if (flow.enforce().violations.some(({ code }) => code.startsWith('COMMERCIAL_LABEL_'))) {
+  throw new Error('Commercial label validation failed for a valid label');
+}
+
+try {
+  flow.commercialLabels.registerLabel('Product Tier', ' ');
+  throw new Error('Invalid commercial label was accepted');
+} catch (error) {
+  if (!(error instanceof Error) || !error.message.includes('COMMERCIAL_LABEL_')) {
+    throw error;
+  }
+}
+
 flow.memory.remember('project', 'first-run', { project: project.name, conversation: conversation.id });
 
 console.log('Flow snapshot:', JSON.stringify(flow.snapshot(), null, 2));
