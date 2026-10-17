@@ -1,4 +1,4 @@
-import { FlowSnapshot, MemoryEntry, PersonaRecord, SeedDefinition, FlowParticleSnapshot, ConversationThread, ProjectMetadata, ArtifactRecord } from '../types';
+import { FlowSnapshot, MemoryEntry, PersonaRecord, SeedDefinition, FlowParticleSnapshot, ConversationThread, ProjectMetadata, ArtifactRecord, CommercialLabel } from '../types';
 import { randomId, now } from '../utils';
 
 type Collection<T> = Map<string, T>;
@@ -10,6 +10,7 @@ export class MemoryStorage {
   private conversations: Collection<ConversationThread> = new Map();
   private projects: Collection<ProjectMetadata> = new Map();
   private artifacts: Collection<ArtifactRecord> = new Map();
+  private commercialLabels: Collection<CommercialLabel> = new Map();
   private memories: Collection<MemoryEntry> = new Map();
 
   upsertParticle(snapshot: FlowParticleSnapshot): FlowParticleSnapshot {
@@ -75,6 +76,15 @@ export class MemoryStorage {
     return [...this.artifacts.values()];
   }
 
+  upsertCommercialLabel(label: CommercialLabel): CommercialLabel {
+    this.commercialLabels.set(label.id, label);
+    return label;
+  }
+
+  listCommercialLabels(): CommercialLabel[] {
+    return [...this.commercialLabels.values()];
+  }
+
   upsertMemory(memory: MemoryEntry): MemoryEntry {
     const item = memory.id ? memory : { ...memory, id: randomId(), createdAt: now() };
     this.memories.set(item.id, item);
@@ -95,6 +105,7 @@ export class MemoryStorage {
       conversations: this.listConversations(),
       projects: this.listProjects(),
       artifacts: this.listArtifacts(),
+      commercialLabels: this.listCommercialLabels(),
       memories: this.listMemories(),
     };
   }

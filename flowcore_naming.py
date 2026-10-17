@@ -54,6 +54,7 @@ COMPONENTS: Dict[str, str] = {
     "loop": "FlowCore.Loop",
     "ai": "FlowCore.AI",
     "web": "FlowCore.Web",
+    "commercial_labels": "FlowCore.CommercialLabels",
 }
 
 # ---------------------------------------------------------------------------
