@@ -59,7 +59,7 @@
   "renamed": [],
   "orphan": [],
   "mismatch": [],
-  "coverage": 1.0,
+  "coverage": 1,
   "local_tests": {
     "passed": 17,
     "failed": 0
@@ -83,5 +83,51 @@
     ]
   },
   "package_map": "source files committed individually; no ZIP requested",
-  "delivery_gate": "LOCAL_PAYLOAD_PASS; remote readback and CI pending"
+  "delivery_gate": "DELIVERY_PASS",
+  "payload_commit": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+  "remote_readback": {
+    "files": 11,
+    "missing": [],
+    "extra": [],
+    "mismatch": [],
+    "coverage": 1,
+    "exact_commit": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38"
+  },
+  "ci": {
+    "head_sha": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+    "regression_push": {
+      "run_id": 39057408920,
+      "job_id": 117468107318,
+      "conclusion": "success",
+      "tests_passed": 17,
+      "tests_failed": 0
+    },
+    "regression_pr": {
+      "run_id": 39057422672,
+      "conclusion": "success"
+    },
+    "neural_sync_push": {
+      "run_id": 39057408823,
+      "job_id": 117468106597,
+      "conclusion": "success"
+    },
+    "neural_sync_pr": {
+      "run_id": 39057422602,
+      "conclusion": "success"
+    },
+    "repository_wide": "Other existing workflows may still run; no blanket all-CI assertion"
+  },
+  "generated_followup": {
+    "commit": "f08662834ea8bae8fd93c2d946740654b925d862",
+    "changed_files": [
+      "neural-links/branch-map.json",
+      "neural-links/synaptic-graph.mermaid"
+    ],
+    "classification": "Expected bot regeneration; original payload hashes above remain pinned to payload_commit",
+    "readback_verified": true,
+    "local_regression_passed": 17,
+    "pr9_target": "Mrliou/flowos-commercial-labels-regression-20261017",
+    "pr9_main_integration": "not_in_main",
+    "deployment": "not_verified"
+  }
 }
