@@ -17,24 +17,6 @@ interface NeuralLinkEnv {
   GITHUB_TOKEN?: string;
 }
 
-interface RequestInit {
-  method?: string;
-  headers?: Record<string, string>;
-  body?: string;
-}
-
-interface RequestInfo {}
-
-interface Response {
-  ok: boolean;
-  status: number;
-  statusText?: string;
-  headers?: { get(name: string): string | null };
-  json(): Promise<unknown>;
-}
-
-declare function fetch(input: RequestInfo | string, init?: RequestInit): Promise<Response>;
-
 export class NeuralLink {
   private readonly handlers = new Map<string, NeuralLinkHandler[]>();
 
@@ -77,7 +59,7 @@ export class ParticleNeuralLink {
   ) {}
 
   async fireInternal(
-    stub: { fetch(input: RequestInfo, init?: RequestInit): Promise<Response> },
+    stub: { fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> },
     path: string,
     payload: Record<string, unknown>,
   ): Promise<Response> {

@@ -56,7 +56,7 @@ async function runTests() {
   if (packets.length > 0 && packets[0].type === 'test-event') {
     console.log('✓ NeuralLink event transmission working');
   } else {
-    console.error('✗ NeuralLink test failed');
+    throw new Error('NeuralLink test failed');
   }
 
   // Test ConfigManager
@@ -68,7 +68,7 @@ async function runTests() {
   if (version === FLOWOS_VERSION && philosophy === '怎麼過去，就怎麼回來') {
     console.log('✓ ConfigManager working');
   } else {
-    console.error('✗ ConfigManager test failed');
+    throw new Error('ConfigManager test failed');
   }
 
   // Test GateEngine
@@ -86,11 +86,14 @@ async function runTests() {
   if (allowedDecision.allowed && !blockedDecision.allowed) {
     console.log('✓ GateEngine working');
   } else {
-    console.error('✗ GateEngine test failed');
+    throw new Error('GateEngine test failed');
   }
 
   console.log(`\nFlowOS Neural Link System v${FLOWOS_VERSION} - Tests Complete`);
   console.log('Philosophy: 怎麼過去，就怎麼回來');
 }
 
-runTests().catch(console.error);
+runTests().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

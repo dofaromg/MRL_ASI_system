@@ -10,8 +10,20 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ],
+    "noEmitOnError": true,
+    "declaration": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ]
   },
-  "include": ["src/**/*"],
-  "exclude": ["test.ts"]
+  "include": [
+    "src/**/*",
+    "test.ts"
+  ],
+  "exclude": []
 }

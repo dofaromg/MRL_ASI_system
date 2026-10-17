@@ -20,14 +20,27 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
       - name: Install isolated regression toolchain
         run: |
-          npm install --prefix "$RUNNER_TEMP/flowos-toolchain" --no-save --package-lock=false --ignore-scripts typescript@5.9.3 @types/node@24.10.0
+          npm install --prefix "$RUNNER_TEMP/flowos-toolchain" --no-save --package-lock=false --ignore-scripts typescript@5.9.3 @types/node@24.10.0 wrangler@4.92.0 miniflare@4.20260515.0
           ln -s "$RUNNER_TEMP/flowos-toolchain/node_modules" flowos/node_modules
           echo "$RUNNER_TEMP/flowos-toolchain/node_modules/.bin" >> "$GITHUB_PATH"
-      - name: Typecheck and run FlowOS commercial regressions
+      - name: Full FlowOS typecheck and regressions
         working-directory: flowos
-        run: npm run test:commercial-service
+        run: |
+          echo "Verified source HEAD: $(git rev-parse HEAD)"
+          npm run typecheck
+          npm test
+      - name: Build Worker bundle without deployment
+        working-directory: flowos
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: wrangler deploy --dry-run --outdir "$RUNNER_TEMP/flowos-worker-bundle"
+      - name: Exercise bundled Worker in local workerd
+        working-directory: flowos
+        run: MRL_WORKER_BUNDLE="$RUNNER_TEMP/flowos-worker-bundle/index.js" node --test tests/worker-runtime.test.cjs
