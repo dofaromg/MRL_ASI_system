@@ -1,8 +1,8 @@
 {
   "origin_signature": "MrLiouWord",
   "schema_version": 2,
-  "updated_at": "2026-10-17T18:15:11.333Z",
-  "source_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+  "updated_at": "2026-10-17T18:17:09.925Z",
+  "source_commit": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
   "pull_requests": [
     {
       "number": 1,
@@ -20,7 +20,7 @@
       "updatedAt": "2026-10-10T12:34:02Z",
       "mergedAt": "2026-10-10T12:33:12Z",
       "mergeCommit": "374e1d46cb2760fb17727766bec92f655c431a74",
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -41,7 +41,7 @@
       "updatedAt": "2026-10-11T06:23:44Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -62,7 +62,7 @@
       "updatedAt": "2026-10-11T18:50:15Z",
       "mergedAt": "2026-10-11T18:46:07Z",
       "mergeCommit": "7cb80e5237df6fd7fe531ae2066815b590547901",
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -83,7 +83,7 @@
       "updatedAt": "2026-10-13T10:45:41Z",
       "mergedAt": "2026-10-13T10:38:40Z",
       "mergeCommit": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "merged",
       "main_integration": "not_in_main",
       "deployment": "not_verified"
@@ -104,7 +104,7 @@
       "updatedAt": "2026-10-13T10:55:29Z",
       "mergedAt": "2026-10-13T10:47:25Z",
       "mergeCommit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -125,7 +125,7 @@
       "updatedAt": "2026-10-13T12:16:49Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -146,7 +146,7 @@
       "updatedAt": "2026-10-17T11:50:27Z",
       "mergedAt": "2026-10-17T11:47:50Z",
       "mergeCommit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -167,7 +167,7 @@
       "updatedAt": "2026-10-17T17:04:04Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -188,7 +188,7 @@
       "updatedAt": "2026-10-17T13:59:19Z",
       "mergedAt": "2026-10-17T13:58:11Z",
       "mergeCommit": "f022d69e41e8c415cc955a226ff84b64313060e2",
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "merged",
       "main_integration": "not_in_main",
       "deployment": "not_verified"
@@ -209,7 +209,91 @@
       "updatedAt": "2026-10-17T14:43:52Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-17T18:15:11.333Z",
+      "observed_at": "2026-10-17T18:17:09.925Z",
+      "branch_merge": "not_merged",
+      "main_integration": "not_established",
+      "deployment": "not_verified"
+    },
+    {
+      "number": 11,
+      "title": "Validate inputs to foundational matrix operations",
+      "author": "Copilot",
+      "url": "https://github.com/dofaromg/MRL_ASI_system/pull/11",
+      "baseRefName": "main",
+      "headRefName": "copilot/add-module-features-and-stability",
+      "baseRepository": "dofaromg/MRL_ASI_system",
+      "headRepository": "dofaromg/MRL_ASI_system",
+      "baseRefOid": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+      "headRefOid": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+      "state": "OPEN",
+      "createdAt": "2026-10-17T18:13:59Z",
+      "updatedAt": "2026-10-17T18:16:39Z",
+      "mergedAt": null,
+      "mergeCommit": null,
+      "observed_at": "2026-10-17T18:17:09.925Z",
+      "branch_merge": "not_merged",
+      "main_integration": "not_established",
+      "deployment": "not_verified"
+    },
+    {
+      "number": 12,
+      "title": "[WIP] Fix the failing GitHub Actions job",
+      "author": "Copilot",
+      "url": "https://github.com/dofaromg/MRL_ASI_system/pull/12",
+      "baseRefName": "copilot/add-module-features-and-stability",
+      "headRefName": "copilot/fix-github-actions-job-failure",
+      "baseRepository": "dofaromg/MRL_ASI_system",
+      "headRepository": "dofaromg/MRL_ASI_system",
+      "baseRefOid": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+      "headRefOid": "5b84abb517c5b49d236f2c562715d9cbd941b26e",
+      "state": "OPEN",
+      "createdAt": "2026-10-17T18:14:59Z",
+      "updatedAt": "2026-10-17T18:17:03Z",
+      "mergedAt": null,
+      "mergeCommit": null,
+      "observed_at": "2026-10-17T18:17:09.925Z",
+      "branch_merge": "not_merged",
+      "main_integration": "not_established",
+      "deployment": "not_verified"
+    },
+    {
+      "number": 14,
+      "title": "[WIP] Fix failing GitHub Actions job",
+      "author": "Copilot",
+      "url": "https://github.com/dofaromg/MRL_ASI_system/pull/14",
+      "baseRefName": "copilot/add-module-features-and-stability",
+      "headRefName": "copilot/fix-github-actions-job",
+      "baseRepository": "dofaromg/MRL_ASI_system",
+      "headRepository": "dofaromg/MRL_ASI_system",
+      "baseRefOid": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+      "headRefOid": "8c5a5789f622f9b379cc6978295d040c9ab030f7",
+      "state": "OPEN",
+      "createdAt": "2026-10-17T18:15:05Z",
+      "updatedAt": "2026-10-17T18:16:54Z",
+      "mergedAt": null,
+      "mergeCommit": null,
+      "observed_at": "2026-10-17T18:17:09.925Z",
+      "branch_merge": "not_merged",
+      "main_integration": "not_established",
+      "deployment": "not_verified"
+    },
+    {
+      "number": 15,
+      "title": "fix(MRL): preserve actual PR merge lineage in Neural Branch Sync",
+      "author": "dofaromg",
+      "url": "https://github.com/dofaromg/MRL_ASI_system/pull/15",
+      "baseRefName": "main",
+      "headRefName": "Mrliou/MRL-neural-merge-lineage-20261018",
+      "baseRepository": "dofaromg/MRL_ASI_system",
+      "headRepository": "dofaromg/MRL_ASI_system",
+      "baseRefOid": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+      "headRefOid": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+      "state": "OPEN",
+      "createdAt": "2026-10-17T18:17:07Z",
+      "updatedAt": "2026-10-17T18:17:07Z",
+      "mergedAt": null,
+      "mergeCommit": null,
+      "observed_at": "2026-10-17T18:17:09.925Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -250,6 +334,22 @@
           10
         ],
         "created_at": "2026-10-17T14:41:26Z"
+      },
+      {
+        "id": "Mrliou/MRL-neural-merge-lineage-20261018",
+        "type": "experimental",
+        "layer": "L3",
+        "parent": "main",
+        "parents": [
+          "main"
+        ],
+        "parent_semantics": "PR target; not branch creation ancestry",
+        "status": "active",
+        "energy": 0.7,
+        "pr_numbers": [
+          15
+        ],
+        "created_at": "2026-10-17T18:17:07Z"
       },
       {
         "id": "Mrliou/blackhole-runtime-continuation-20261013",
@@ -321,12 +421,17 @@
         "id": "copilot/add-module-features-and-stability",
         "type": "cognitive",
         "layer": "L6",
-        "parent": null,
-        "parents": [],
+        "parent": "main",
+        "parents": [
+          "main"
+        ],
         "parent_semantics": "PR target; not branch creation ancestry",
         "status": "active",
         "energy": 0.7,
-        "pr_numbers": []
+        "pr_numbers": [
+          11
+        ],
+        "created_at": "2026-10-17T18:13:59Z"
       },
       {
         "id": "copilot/add-system-function-modules",
@@ -378,6 +483,38 @@
         "status": "active",
         "energy": 0.7,
         "pr_numbers": []
+      },
+      {
+        "id": "copilot/fix-github-actions-job",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "copilot/add-module-features-and-stability",
+        "parents": [
+          "copilot/add-module-features-and-stability"
+        ],
+        "parent_semantics": "PR target; not branch creation ancestry",
+        "status": "active",
+        "energy": 0.7,
+        "pr_numbers": [
+          14
+        ],
+        "created_at": "2026-10-17T18:15:05Z"
+      },
+      {
+        "id": "copilot/fix-github-actions-job-failure",
+        "type": "cognitive",
+        "layer": "L6",
+        "parent": "copilot/add-module-features-and-stability",
+        "parents": [
+          "copilot/add-module-features-and-stability"
+        ],
+        "parent_semantics": "PR target; not branch creation ancestry",
+        "status": "active",
+        "energy": 0.7,
+        "pr_numbers": [
+          12
+        ],
+        "created_at": "2026-10-17T18:14:59Z"
       },
       {
         "id": "copilot/mrliouagi",
@@ -501,7 +638,7 @@
         "head_commit": "19dafe0625938ed5586d93eaa5cf45ace459c463",
         "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
         "timestamp": "2026-10-10T12:33:12Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -516,7 +653,7 @@
         "head_commit": "cd8937bc843af161b62c01dc6f8c12ed12801d86",
         "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
         "timestamp": "2026-10-11T06:17:58Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -531,7 +668,7 @@
         "head_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
         "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
         "timestamp": "2026-10-11T18:46:07Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -546,7 +683,7 @@
         "head_commit": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
         "base_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
         "timestamp": "2026-10-13T10:38:40Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "not_in_main",
         "deployment": "not_verified"
@@ -561,7 +698,7 @@
         "head_commit": "b780d0eda34a99ec682951c316d2fd52668175d7",
         "base_commit": "7cb80e5237df6fd7fe531ae2066815b590547901",
         "timestamp": "2026-10-13T10:47:25Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -576,7 +713,7 @@
         "head_commit": "b573a15929d6f78a6ca36be13b2db118324789fe",
         "base_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
         "timestamp": "2026-10-13T12:13:56Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -591,7 +728,7 @@
         "head_commit": "a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57",
         "base_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
         "timestamp": "2026-10-17T11:47:50Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -606,7 +743,7 @@
         "head_commit": "2197fc1004a9d7597df9d3d001a96bce666f540e",
         "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
         "timestamp": "2026-10-17T13:44:30Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -621,7 +758,7 @@
         "head_commit": "18b54e02a90429310689feb6cfb54bced8dd8160",
         "base_commit": "c519d7bdfe63dd6849990b8b2f2a3209ad7ee36c",
         "timestamp": "2026-10-17T13:58:11Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "not_in_main",
         "deployment": "not_verified"
@@ -636,14 +773,73 @@
         "head_commit": "0bf3a9f9eff42c49b87985997bde7195795a242b",
         "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
         "timestamp": "2026-10-17T14:41:26Z",
-        "observed_at": "2026-10-17T18:15:11.333Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
+        "evidence": "github_pr",
+        "main_integration": "not_established",
+        "deployment": "not_verified"
+      },
+      {
+        "from": "main",
+        "to": "copilot/add-module-features-and-stability",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 11,
+        "merge_commit": null,
+        "head_commit": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+        "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+        "timestamp": "2026-10-17T18:13:59Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
+        "evidence": "github_pr",
+        "main_integration": "not_established",
+        "deployment": "not_verified"
+      },
+      {
+        "from": "copilot/add-module-features-and-stability",
+        "to": "copilot/fix-github-actions-job-failure",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 12,
+        "merge_commit": null,
+        "head_commit": "5b84abb517c5b49d236f2c562715d9cbd941b26e",
+        "base_commit": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+        "timestamp": "2026-10-17T18:14:59Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
+        "evidence": "github_pr",
+        "main_integration": "not_established",
+        "deployment": "not_verified"
+      },
+      {
+        "from": "copilot/add-module-features-and-stability",
+        "to": "copilot/fix-github-actions-job",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 14,
+        "merge_commit": null,
+        "head_commit": "8c5a5789f622f9b379cc6978295d040c9ab030f7",
+        "base_commit": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
+        "timestamp": "2026-10-17T18:15:05Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
+        "evidence": "github_pr",
+        "main_integration": "not_established",
+        "deployment": "not_verified"
+      },
+      {
+        "from": "main",
+        "to": "Mrliou/MRL-neural-merge-lineage-20261018",
+        "type": "influence",
+        "weight": 0.5,
+        "pr_number": 15,
+        "merge_commit": null,
+        "head_commit": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+        "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+        "timestamp": "2026-10-17T18:17:07Z",
+        "observed_at": "2026-10-17T18:17:09.925Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
       }
     ]
   },
-  "observation_source": "tests/fixtures/mrl-neural-ancestry-20261017.json",
   "history": [
     {
       "sha256": "e09480aad888752660a7c1559ca6f1b7f2244bd4e3822993389efc941a296136",
@@ -1315,6 +1511,656 @@
             }
           ]
         }
+      }
+    },
+    {
+      "sha256": "17eab58d9f5ed83af5df99258c456fc45453cc59946a1b43a7d8a2d9587d2c13",
+      "snapshot": {
+        "origin_signature": "MrLiouWord",
+        "schema_version": 2,
+        "updated_at": "2026-10-17T18:15:11.333Z",
+        "source_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+        "pull_requests": [
+          {
+            "number": 1,
+            "title": "fix: enforce MrLiouWord authorization for structure indexing (R07)",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/1",
+            "baseRefName": "main",
+            "headRefName": "Mrliou/mrl-authorization-repair-r07",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "651ab1b7a03d059abb689337bb7c06f924f519f0",
+            "headRefOid": "19dafe0625938ed5586d93eaa5cf45ace459c463",
+            "state": "MERGED",
+            "createdAt": "2026-09-19T08:27:55Z",
+            "updatedAt": "2026-10-10T12:34:02Z",
+            "mergedAt": "2026-10-10T12:33:12Z",
+            "mergeCommit": "374e1d46cb2760fb17727766bec92f655c431a74",
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "merged",
+            "main_integration": "confirmed",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 2,
+            "title": "Distinguish expected structure authorization DENY from execution failures",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/2",
+            "baseRefName": "main",
+            "headRefName": "Mrliou/structure-denial-reporting-20261011",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "6764c918da84da04bb6dcbdeed2ab314418561a8",
+            "headRefOid": "cd8937bc843af161b62c01dc6f8c12ed12801d86",
+            "state": "OPEN",
+            "createdAt": "2026-10-11T06:17:58Z",
+            "updatedAt": "2026-10-11T06:23:44Z",
+            "mergedAt": null,
+            "mergeCommit": null,
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "not_merged",
+            "main_integration": "not_established",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 3,
+            "title": "feat: MRL 黑洞模型 — Notion 結構建構與守恆稽核",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/3",
+            "baseRefName": "main",
+            "headRefName": "cursor/notion-mrl-blackhole-model-9f1b",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "6764c918da84da04bb6dcbdeed2ab314418561a8",
+            "headRefOid": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+            "state": "MERGED",
+            "createdAt": "2026-10-11T06:18:41Z",
+            "updatedAt": "2026-10-11T18:50:15Z",
+            "mergedAt": "2026-10-11T18:46:07Z",
+            "mergeCommit": "7cb80e5237df6fd7fe531ae2066815b590547901",
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "merged",
+            "main_integration": "confirmed",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 4,
+            "title": "建立星體軌跡與模式向量圖資料庫",
+            "author": "Copilot",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/4",
+            "baseRefName": "cursor/notion-mrl-blackhole-model-9f1b",
+            "headRefName": "copilot/complete-black-hole-model",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+            "headRefOid": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
+            "state": "MERGED",
+            "createdAt": "2026-10-11T19:19:08Z",
+            "updatedAt": "2026-10-13T10:45:41Z",
+            "mergedAt": "2026-10-13T10:38:40Z",
+            "mergeCommit": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "merged",
+            "main_integration": "not_in_main",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 5,
+            "title": "Mrliouword-system/Cursor/notion mrl blackhole model 9f1b",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/5",
+            "baseRefName": "main",
+            "headRefName": "cursor/notion-mrl-blackhole-model-9f1b",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "7cb80e5237df6fd7fe531ae2066815b590547901",
+            "headRefOid": "b780d0eda34a99ec682951c316d2fd52668175d7",
+            "state": "MERGED",
+            "createdAt": "2026-10-13T10:40:16Z",
+            "updatedAt": "2026-10-13T10:55:29Z",
+            "mergedAt": "2026-10-13T10:47:25Z",
+            "mergeCommit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "merged",
+            "main_integration": "confirmed",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 6,
+            "title": "feat: DL580 本地黑洞實機驗收入口與完整模組 CI",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/6",
+            "baseRefName": "main",
+            "headRefName": "Mrliou/blackhole-runtime-continuation-20261013",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+            "headRefOid": "b573a15929d6f78a6ca36be13b2db118324789fe",
+            "state": "OPEN",
+            "createdAt": "2026-10-13T12:13:56Z",
+            "updatedAt": "2026-10-13T12:16:49Z",
+            "mergedAt": null,
+            "mergeCommit": null,
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "not_merged",
+            "main_integration": "not_established",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 7,
+            "title": "Register FlowOS commercial labels and enforce baseline laws",
+            "author": "Copilot",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/7",
+            "baseRefName": "main",
+            "headRefName": "copilot/wake-up-mrl-world-model-system",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+            "headRefOid": "a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57",
+            "state": "MERGED",
+            "createdAt": "2026-10-17T11:47:01Z",
+            "updatedAt": "2026-10-17T11:50:27Z",
+            "mergedAt": "2026-10-17T11:47:50Z",
+            "mergeCommit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "merged",
+            "main_integration": "confirmed",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 8,
+            "title": "test(flowos): verify commercial labels independently and in CI",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/8",
+            "baseRefName": "main",
+            "headRefName": "Mrliou/flowos-commercial-labels-regression-20261017",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+            "headRefOid": "2197fc1004a9d7597df9d3d001a96bce666f540e",
+            "state": "OPEN",
+            "createdAt": "2026-10-17T13:44:30Z",
+            "updatedAt": "2026-10-17T17:04:04Z",
+            "mergedAt": null,
+            "mergeCommit": null,
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "not_merged",
+            "main_integration": "not_established",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 9,
+            "title": "feat(MRL): add authenticated commercial particle API and durable usage ledger",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/9",
+            "baseRefName": "Mrliou/flowos-commercial-labels-regression-20261017",
+            "headRefName": "Mrliou/MRL-CommercialService-v01-20261017",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "c519d7bdfe63dd6849990b8b2f2a3209ad7ee36c",
+            "headRefOid": "18b54e02a90429310689feb6cfb54bced8dd8160",
+            "state": "MERGED",
+            "createdAt": "2026-10-17T13:50:43Z",
+            "updatedAt": "2026-10-17T13:59:19Z",
+            "mergedAt": "2026-10-17T13:58:11Z",
+            "mergeCommit": "f022d69e41e8c415cc955a226ff84b64313060e2",
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "merged",
+            "main_integration": "not_in_main",
+            "deployment": "not_verified"
+          },
+          {
+            "number": 10,
+            "title": "fix(MRL): preserve MetaCode identity and state during packet restoration",
+            "author": "dofaromg",
+            "url": "https://github.com/dofaromg/MRL_ASI_system/pull/10",
+            "baseRefName": "main",
+            "headRefName": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+            "baseRepository": "dofaromg/MRL_ASI_system",
+            "headRepository": "dofaromg/MRL_ASI_system",
+            "baseRefOid": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+            "headRefOid": "0bf3a9f9eff42c49b87985997bde7195795a242b",
+            "state": "OPEN",
+            "createdAt": "2026-10-17T14:41:26Z",
+            "updatedAt": "2026-10-17T14:43:52Z",
+            "mergedAt": null,
+            "mergeCommit": null,
+            "observed_at": "2026-10-17T18:15:11.333Z",
+            "branch_merge": "not_merged",
+            "main_integration": "not_established",
+            "deployment": "not_verified"
+          }
+        ],
+        "neural_network": {
+          "nodes": [
+            {
+              "id": "Mrliou/MRL-CommercialService-v01-20261017",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "Mrliou/flowos-commercial-labels-regression-20261017",
+              "parents": [
+                "Mrliou/flowos-commercial-labels-regression-20261017"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "merged",
+              "energy": 0.95,
+              "pr_numbers": [
+                9
+              ],
+              "created_at": "2026-10-17T13:50:43Z",
+              "merged_at": "2026-10-17T13:58:11Z",
+              "merged_pr": 9
+            },
+            {
+              "id": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": [
+                10
+              ],
+              "created_at": "2026-10-17T14:41:26Z"
+            },
+            {
+              "id": "Mrliou/blackhole-runtime-continuation-20261013",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": [
+                6
+              ],
+              "created_at": "2026-10-13T12:13:56Z"
+            },
+            {
+              "id": "Mrliou/flowos-commercial-labels-regression-20261017",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": [
+                8
+              ],
+              "created_at": "2026-10-17T13:44:30Z"
+            },
+            {
+              "id": "Mrliou/mrl-authorization-repair-r07",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "merged",
+              "energy": 0.95,
+              "pr_numbers": [
+                1
+              ],
+              "created_at": "2026-09-19T08:27:55Z",
+              "merged_at": "2026-10-10T12:33:12Z",
+              "merged_pr": 1
+            },
+            {
+              "id": "Mrliou/structure-denial-reporting-20261011",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": [
+                2
+              ],
+              "created_at": "2026-10-11T06:17:58Z"
+            },
+            {
+              "id": "copilot/add-module-features-and-stability",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/add-system-function-modules",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/build-world-model-for-mrliouword",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/complete-black-hole-model",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": "cursor/notion-mrl-blackhole-model-9f1b",
+              "parents": [
+                "cursor/notion-mrl-blackhole-model-9f1b"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "merged",
+              "energy": 0.95,
+              "pr_numbers": [
+                4
+              ],
+              "created_at": "2026-10-11T19:19:08Z",
+              "merged_at": "2026-10-13T10:38:40Z",
+              "merged_pr": 4
+            },
+            {
+              "id": "copilot/construct-deployment",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/mrliouagi",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/update-mrl-world-model-persistent-memory",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "parents": [],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "active",
+              "energy": 0.7,
+              "pr_numbers": []
+            },
+            {
+              "id": "copilot/wake-up-mrl-world-model-system",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "merged",
+              "energy": 0.95,
+              "pr_numbers": [
+                7
+              ],
+              "created_at": "2026-10-17T11:47:01Z",
+              "merged_at": "2026-10-17T11:47:50Z",
+              "merged_pr": 7
+            },
+            {
+              "id": "cursor/notion-mrl-blackhole-model-9f1b",
+              "type": "experimental",
+              "layer": "L3",
+              "parent": "main",
+              "parents": [
+                "main"
+              ],
+              "parent_semantics": "PR target; not branch creation ancestry",
+              "status": "merged",
+              "energy": 0.95,
+              "pr_numbers": [
+                3,
+                5
+              ],
+              "created_at": "2026-10-13T10:40:16Z",
+              "merged_at": "2026-10-13T10:47:25Z",
+              "merged_pr": 5
+            },
+            {
+              "id": "main",
+              "type": "trunk",
+              "layer": "L7",
+              "frequency_hz": 164.88,
+              "status": "active",
+              "energy": 1
+            },
+            {
+              "id": "copilot/create-branch-neural-map",
+              "type": "cognitive",
+              "layer": "L6",
+              "parent": null,
+              "status": "unknown",
+              "energy": 0.7,
+              "historical_only": true,
+              "parents": []
+            }
+          ],
+          "synapses": [
+            {
+              "from": "main",
+              "to": "Mrliou/mrl-authorization-repair-r07",
+              "type": "merge",
+              "weight": 0.95,
+              "pr_number": 1,
+              "merge_commit": "374e1d46cb2760fb17727766bec92f655c431a74",
+              "head_commit": "19dafe0625938ed5586d93eaa5cf45ace459c463",
+              "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
+              "timestamp": "2026-10-10T12:33:12Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "confirmed",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "Mrliou/structure-denial-reporting-20261011",
+              "type": "influence",
+              "weight": 0.5,
+              "pr_number": 2,
+              "merge_commit": null,
+              "head_commit": "cd8937bc843af161b62c01dc6f8c12ed12801d86",
+              "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
+              "timestamp": "2026-10-11T06:17:58Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "not_established",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "cursor/notion-mrl-blackhole-model-9f1b",
+              "type": "merge",
+              "weight": 0.95,
+              "pr_number": 3,
+              "merge_commit": "7cb80e5237df6fd7fe531ae2066815b590547901",
+              "head_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+              "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
+              "timestamp": "2026-10-11T18:46:07Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "confirmed",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "cursor/notion-mrl-blackhole-model-9f1b",
+              "to": "copilot/complete-black-hole-model",
+              "type": "merge",
+              "weight": 0.95,
+              "pr_number": 4,
+              "merge_commit": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
+              "head_commit": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
+              "base_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+              "timestamp": "2026-10-13T10:38:40Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "not_in_main",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "cursor/notion-mrl-blackhole-model-9f1b",
+              "type": "merge",
+              "weight": 0.95,
+              "pr_number": 5,
+              "merge_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+              "head_commit": "b780d0eda34a99ec682951c316d2fd52668175d7",
+              "base_commit": "7cb80e5237df6fd7fe531ae2066815b590547901",
+              "timestamp": "2026-10-13T10:47:25Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "confirmed",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "Mrliou/blackhole-runtime-continuation-20261013",
+              "type": "influence",
+              "weight": 0.5,
+              "pr_number": 6,
+              "merge_commit": null,
+              "head_commit": "b573a15929d6f78a6ca36be13b2db118324789fe",
+              "base_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+              "timestamp": "2026-10-13T12:13:56Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "not_established",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "copilot/wake-up-mrl-world-model-system",
+              "type": "merge",
+              "weight": 0.95,
+              "pr_number": 7,
+              "merge_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+              "head_commit": "a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57",
+              "base_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+              "timestamp": "2026-10-17T11:47:50Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "confirmed",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "Mrliou/flowos-commercial-labels-regression-20261017",
+              "type": "influence",
+              "weight": 0.5,
+              "pr_number": 8,
+              "merge_commit": null,
+              "head_commit": "2197fc1004a9d7597df9d3d001a96bce666f540e",
+              "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+              "timestamp": "2026-10-17T13:44:30Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "not_established",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "Mrliou/flowos-commercial-labels-regression-20261017",
+              "to": "Mrliou/MRL-CommercialService-v01-20261017",
+              "type": "merge",
+              "weight": 0.95,
+              "pr_number": 9,
+              "merge_commit": "f022d69e41e8c415cc955a226ff84b64313060e2",
+              "head_commit": "18b54e02a90429310689feb6cfb54bced8dd8160",
+              "base_commit": "c519d7bdfe63dd6849990b8b2f2a3209ad7ee36c",
+              "timestamp": "2026-10-17T13:58:11Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "not_in_main",
+              "deployment": "not_verified"
+            },
+            {
+              "from": "main",
+              "to": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+              "type": "influence",
+              "weight": 0.5,
+              "pr_number": 10,
+              "merge_commit": null,
+              "head_commit": "0bf3a9f9eff42c49b87985997bde7195795a242b",
+              "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+              "timestamp": "2026-10-17T14:41:26Z",
+              "observed_at": "2026-10-17T18:15:11.333Z",
+              "evidence": "github_pr",
+              "main_integration": "not_established",
+              "deployment": "not_verified"
+            }
+          ]
+        },
+        "observation_source": "tests/fixtures/mrl-neural-ancestry-20261017.json"
       }
     }
   ]
