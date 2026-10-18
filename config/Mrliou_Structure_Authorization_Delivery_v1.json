@@ -169,8 +169,8 @@
     },
     {
       "path": "scripts/update-neural-map.js",
-      "size_bytes": 6289,
-      "sha256": "b1220ef8ee5c21540345c3a4839243b5c788f91bbcf56054df157b189d4067bb"
+      "size_bytes": 10756,
+      "sha256": "c3f184f51a244a9b7914222f7624703ad996051c54fe21e072c6773314ac6021"
     },
     {
       "path": "tests/Mrliou_neural_history.test.cjs",
