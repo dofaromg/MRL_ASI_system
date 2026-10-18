@@ -18,6 +18,8 @@ graph TD
   copilot_construct_deployment["● copilot/construct-deployment<br/>L6"]:::cognitive
   copilot_fix_github_actions_job["✓ copilot/fix-github-actions-job<br/>L6 #14"]:::cognitive
   copilot_fix_github_actions_job_failure["● copilot/fix-github-actions-job-failure<br/>L6"]:::cognitive
+  copilot_fix_recent_errors["● copilot/fix-recent-errors<br/>L6"]:::cognitive
+  copilot_fix_syntax_error_in_module["● copilot/fix-syntax-error-in-module<br/>L6"]:::cognitive
   copilot_mrliouagi["● copilot/mrliouagi<br/>L6"]:::cognitive
   copilot_task_217537952_1287894039_41476e6b_9b27_4264_8440_0b86de791976["● copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976<br/>L6"]:::cognitive
   copilot_task_217537952_1287894039_5c792a5a_45b5_4030_af5a_7f91e6d1a150["● copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150<br/>L6"]:::cognitive
@@ -43,6 +45,7 @@ graph TD
   main -.->|active| copilot_fix_github_actions_job_failure
   copilot_add_module_features_and_stability -->|merged| copilot_fix_github_actions_job
   main -->|merged| Mrliou_MRL_neural_merge_lineage_20261018
+  copilot_fix_github_actions_job_failure -.->|active| copilot_39057405264_job_117471823300
 
   %% 樣式定義
   classDef trunk fill:#ff6b6b,stroke:#333,stroke-width:4px,color:#fff
