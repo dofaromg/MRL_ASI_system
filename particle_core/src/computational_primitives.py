@@ -14,29 +14,45 @@ from functools import reduce
 
 class MatrixOperations:
     """矩陣運算模組 - Matrix computation primitives"""
+
+    @staticmethod
+    def _shape(matrix: List[List[float]]) -> Tuple[int, int]:
+        """Validate a non-empty rectangular matrix and return its dimensions."""
+        if not matrix or not matrix[0]:
+            raise ValueError("Matrix cannot be empty")
+
+        columns = len(matrix[0])
+        if any(len(row) != columns for row in matrix):
+            raise ValueError("Matrix rows must have consistent lengths")
+
+        return len(matrix), columns
     
     @staticmethod
     def add(a: List[List[float]], b: List[List[float]]) -> List[List[float]]:
         """矩陣加法 - Matrix addition"""
-        if len(a) != len(b) or len(a[0]) != len(b[0]):
+        shape_a = MatrixOperations._shape(a)
+        shape_b = MatrixOperations._shape(b)
+        if shape_a != shape_b:
             raise ValueError("Matrix dimensions must match")
         
         return [
-            [a[i][j] + b[i][j] for j in range(len(a[0]))]
-            for i in range(len(a))
+            [a[i][j] + b[i][j] for j in range(shape_a[1])]
+            for i in range(shape_a[0])
         ]
     
     @staticmethod
     def multiply(a: List[List[float]], b: List[List[float]]) -> List[List[float]]:
         """矩陣乘法 - Matrix multiplication"""
-        if len(a[0]) != len(b):
+        rows_a, columns_a = MatrixOperations._shape(a)
+        rows_b, columns_b = MatrixOperations._shape(b)
+        if columns_a != rows_b:
             raise ValueError("Invalid matrix dimensions for multiplication")
         
-        result = [[0] * len(b[0]) for _ in range(len(a))]
+        result = [[0] * columns_b for _ in range(rows_a)]
         
-        for i in range(len(a)):
-            for j in range(len(b[0])):
-                for k in range(len(b)):
+        for i in range(rows_a):
+            for j in range(columns_b):
+                for k in range(columns_a):
                     result[i][j] += a[i][k] * b[k][j]
         
         return result
@@ -44,7 +60,8 @@ class MatrixOperations:
     @staticmethod
     def transpose(matrix: List[List[float]]) -> List[List[float]]:
         """矩陣轉置 - Matrix transpose"""
-        return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+        rows, columns = MatrixOperations._shape(matrix)
+        return [[matrix[j][i] for j in range(rows)] for i in range(columns)]
     
     @staticmethod
     def scalar_multiply(matrix: List[List[float]], scalar: float) -> List[List[float]]:
@@ -61,7 +78,11 @@ class MatrixOperations:
     @staticmethod
     def determinant(matrix: List[List[float]]) -> float:
         """計算行列式 (僅支援 2x2 和 3x3) - Determinant"""
-        n = len(matrix)
+        rows, columns = MatrixOperations._shape(matrix)
+        if rows != columns:
+            raise ValueError("Determinant requires a square matrix")
+
+        n = rows
         if n == 2:
             return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
         elif n == 3:
