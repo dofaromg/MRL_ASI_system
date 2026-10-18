@@ -1,0 +1,133 @@
+{
+  "origin_signature": "MrLiouWord",
+  "expected_file_count": 11,
+  "payload": [
+    {
+      "path": "scripts/update-neural-map.js",
+      "size": 10756,
+      "sha256": "c3f184f51a244a9b7914222f7624703ad996051c54fe21e072c6773314ac6021"
+    },
+    {
+      "path": ".github/workflows/neural-sync.yml",
+      "size": 2887,
+      "sha256": "1079cf33ee4c942fc8fab1ff1f19781b34137a25cb51fa21d96cb74e6377c4d2"
+    },
+    {
+      "path": ".github/workflows/mrl-neural-lineage.yml",
+      "size": 951,
+      "sha256": "7bb231af75529315f39001977549e5bb730e9b7c3b49aa7fc930436bae0ba37f"
+    },
+    {
+      "path": "tests/mrl-neural-lineage.test.cjs",
+      "size": 7508,
+      "sha256": "59e9a0f7f5a095c155217b8bfbc8256d0c83207717e52980f70ff4ad407a99ad"
+    },
+    {
+      "path": "tests/fixtures/mrl-neural-prs-20261017.json",
+      "size": 8102,
+      "sha256": "65e2376f0bb840e566b35fd574702a981ffad5f71a4762e0b1341ee3f6a38694"
+    },
+    {
+      "path": "tests/fixtures/mrl-neural-ancestry-20261017.json",
+      "size": 7731,
+      "sha256": "865308cbe62d080b1bba06ce5e8c3089dc90b0e66009e03a5be83be9b844b362"
+    },
+    {
+      "path": "neural-links/history/0bf3a9f9eff42c49b87985997bde7195795a242b.branch-map.json",
+      "size": 10181,
+      "sha256": "741ec788a052ff19102c8bcb4c01dac6e9ba8f70489a501192599ec891f4e427"
+    },
+    {
+      "path": "neural-links/branch-map.json",
+      "size": 45088,
+      "sha256": "49af49b3bf11fae33e5bb7798d9dfd3113d4a7468d88ea24cd1130b337fac8a6"
+    },
+    {
+      "path": "neural-links/synaptic-graph.mermaid",
+      "size": 3472,
+      "sha256": "81af2d2086b0c5f48854f82ad9d4107f340f241d964fd2d4f62fbe51400ecd6d"
+    },
+    {
+      "path": "docs/mrl-neural-lineage-20261018.md",
+      "size": 5582,
+      "sha256": "b77352c17db5aaf4e7029c2c109555a3cfc57f9cacd19cc7859e065b28430ba9"
+    }
+  ],
+  "audit_file": "docs/mrl-neural-lineage-audit-20261018.json",
+  "missing": [],
+  "extra": [],
+  "renamed": [],
+  "orphan": [],
+  "mismatch": [],
+  "coverage": 1,
+  "local_tests": {
+    "passed": 17,
+    "failed": 0
+  },
+  "dependency_tree": {
+    "generator": [
+      "GitHub PR API",
+      "git merge-base",
+      "historical snapshots"
+    ],
+    "branch-map.json": [
+      "generator"
+    ],
+    "synaptic-graph.mermaid": [
+      "branch-map.json",
+      "scripts/generate-mermaid.js"
+    ],
+    "CI": [
+      "tests/Mrliou_neural_history.test.cjs",
+      "tests/mrl-neural-lineage.test.cjs"
+    ]
+  },
+  "package_map": "source files committed individually; no ZIP requested",
+  "delivery_gate": "DELIVERY_PASS",
+  "payload_commit": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+  "remote_readback": {
+    "files": 11,
+    "missing": [],
+    "extra": [],
+    "mismatch": [],
+    "coverage": 1,
+    "exact_commit": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38"
+  },
+  "ci": {
+    "head_sha": "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+    "regression_push": {
+      "run_id": 39057408920,
+      "job_id": 117468107318,
+      "conclusion": "success",
+      "tests_passed": 17,
+      "tests_failed": 0
+    },
+    "regression_pr": {
+      "run_id": 39057422672,
+      "conclusion": "success"
+    },
+    "neural_sync_push": {
+      "run_id": 39057408823,
+      "job_id": 117468106597,
+      "conclusion": "success"
+    },
+    "neural_sync_pr": {
+      "run_id": 39057422602,
+      "conclusion": "success"
+    },
+    "repository_wide": "Other existing workflows may still run; no blanket all-CI assertion"
+  },
+  "generated_followup": {
+    "commit": "f08662834ea8bae8fd93c2d946740654b925d862",
+    "changed_files": [
+      "neural-links/branch-map.json",
+      "neural-links/synaptic-graph.mermaid"
+    ],
+    "classification": "Expected bot regeneration; original payload hashes above remain pinned to payload_commit",
+    "readback_verified": true,
+    "local_regression_passed": 17,
+    "pr9_target": "Mrliou/flowos-commercial-labels-regression-20261017",
+    "pr9_main_integration": "not_in_main",
+    "deployment": "not_verified"
+  }
+}
