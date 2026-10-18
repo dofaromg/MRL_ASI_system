@@ -17,7 +17,7 @@ graph TD
   copilot_complete_black_hole_model["✓ copilot/complete-black-hole-model<br/>L6 #4"]:::cognitive
   copilot_construct_deployment["● copilot/construct-deployment<br/>L6"]:::cognitive
   copilot_fix_github_actions_job["✓ copilot/fix-github-actions-job<br/>L6 #14"]:::cognitive
-  copilot_fix_github_actions_job_failure["● copilot/fix-github-actions-job-failure<br/>L6"]:::cognitive
+  copilot_fix_github_actions_job_failure["✓ copilot/fix-github-actions-job-failure<br/>L6 #12"]:::cognitive
   copilot_fix_recent_errors["● copilot/fix-recent-errors<br/>L6"]:::cognitive
   copilot_fix_syntax_error_in_module["● copilot/fix-syntax-error-in-module<br/>L6"]:::cognitive
   copilot_mrliouagi["● copilot/mrliouagi<br/>L6"]:::cognitive
@@ -42,10 +42,10 @@ graph TD
   Mrliou_flowos_commercial_labels_regression_20261017 -->|merged| Mrliou_MRL_CommercialService_v01_20261017
   main -.->|active| Mrliou_MRL_MetaCode_atomic_restore_20261017
   main -->|merged| copilot_add_module_features_and_stability
-  main -.->|active| copilot_fix_github_actions_job_failure
+  main -->|merged| copilot_fix_github_actions_job_failure
   copilot_add_module_features_and_stability -->|merged| copilot_fix_github_actions_job
   main -->|merged| Mrliou_MRL_neural_merge_lineage_20261018
-  copilot_fix_github_actions_job_failure -.->|active| copilot_39057405264_job_117471823300
+  main -.->|active| copilot_39057405264_job_117471823300
 
   %% 樣式定義
   classDef trunk fill:#ff6b6b,stroke:#333,stroke-width:4px,color:#fff
