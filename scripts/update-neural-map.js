@@ -87,7 +87,7 @@ function buildNeuralNetwork(options = {}) {
     const parents = [...new Set(prs.map(pr => pr.baseRefName))];
     return id === 'main'
       ? {id, type:'trunk', layer:'L7', frequency_hz:164.88, status:'active', energy:1}
-      : {id, type:getBranchType(id), layer:getBranchLayer(id),
+      : {id, type:getBranchType(latest?.headRefName ?? id), layer:getBranchLayer(latest?.headRefName ?? id),
           parent:parents.length === 1 ? parents[0] : null, parents,
           parent_semantics:'PR target; not branch creation ancestry',
           status:latest?.state === 'MERGED' ? 'merged' : latest?.state === 'CLOSED' ? 'closed' : 'active',
@@ -141,7 +141,23 @@ function getBranchLayer(branch) {
 function mergeNeuralHistory(current, snapshots) {
   const result = JSON.parse(JSON.stringify(current));
   if (result.schema_version === 2) {
-    const observations = new Map((result.history ?? []).map(entry => [entry.sha256, entry]));
+    const observations = new Map();
+    const preserveObservation = entry => {
+      // Abort before writing rather than collapse malformed entries under undefined
+      // or replace an existing observation that claims the same identity.
+      if (!entry || !/^[a-f0-9]{64}$/.test(entry.sha256 ?? '') ||
+          !entry.snapshot || typeof entry.snapshot !== 'object' ||
+          Array.isArray(entry.snapshot) || entry.snapshot.history !== undefined ||
+          createHash('sha256').update(JSON.stringify(entry.snapshot)).digest('hex') !== entry.sha256) {
+        throw new Error('Invalid neural history identity; refusing replacement');
+      }
+      const existing = observations.get(entry.sha256);
+      if (existing && JSON.stringify(existing) !== JSON.stringify(entry)) {
+        throw new Error('Conflicting neural history identity; refusing replacement');
+      }
+      if (!existing) observations.set(entry.sha256, entry);
+    };
+    for (const entry of result.history ?? []) preserveObservation(entry);
     const liveIds = new Set(result.neural_network.nodes.map(n => n.id));
     for (const snapshot of snapshots) {
       if (snapshot.origin_signature !== result.origin_signature ||
@@ -153,11 +169,12 @@ function mergeNeuralHistory(current, snapshots) {
       if (snapshot.neural_network.synapses.some(e => !snapshotIds.has(e.from) || !snapshotIds.has(e.to))) {
         throw new Error('Historical edge has a missing endpoint');
       }
-      for (const entry of snapshot.history ?? []) observations.set(entry.sha256, entry);
+      for (const entry of snapshot.history ?? []) preserveObservation(entry);
       // Avoid recursive copies and exponential growth across regeneration.
       const {history, ...payload} = snapshot;
       const sha256 = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
-      observations.set(sha256, {sha256, snapshot:payload});
+      // Existing entries may carry original metadata; never replace them.
+      if (!observations.has(sha256)) preserveObservation({sha256, snapshot:payload});
       for (const node of snapshot.neural_network.nodes) {
         if (!liveIds.has(node.id)) {
           liveIds.add(node.id);

@@ -54,6 +54,70 @@ test('fork head names do not collapse into same-repository branch names', () => 
   const map=build({prData:[...prs,external]});
   assert.equal(edge(map,99).to,`external/repo:${external.headRefName}`);
 });
+test('fork and deleted-head classification uses the original branch ref', () => {
+  for (const repository of [{full_name:'external/repo'}, null]) {
+    for (const [ref,type,layer] of [['feature/work','feature','L5'],['fix/work','hotfix','L4'],['copilot/work','cognitive','L6']]) {
+      const external=normalizePR({...raw[0],number:99,head:{...raw[0].head,ref,repo:repository}});
+      const map=build({prData:[external]});
+      const node=map.neural_network.nodes.find(n=>n.pr_numbers?.includes(99));
+      assert.equal(node.type,type); assert.equal(node.layer,layer);
+      assert.notEqual(node.id,ref);
+    }
+  }
+});
+test('malformed historical identities fail closed without mutating either input', () => {
+  const {createHash}=require('node:crypto');
+  const snapshot=build(), sha256=createHash('sha256').update(JSON.stringify(snapshot)).digest('hex');
+  for (const bad of [null, {}, {snapshot}, {sha256:'',snapshot}, {sha256:'bad',snapshot},
+    {sha256:'0'.repeat(64),snapshot}, {sha256,snapshot:{...snapshot,history:[]}}]) {
+    for (const location of ['current','incoming']) {
+      const current=build(), incoming=build();
+      (location==='current'?current:incoming).history=[bad,bad];
+      const before=JSON.stringify([current,incoming]);
+      assert.throws(()=>mergeNeuralHistory(current,[incoming]),/Invalid neural history identity/);
+      assert.equal(JSON.stringify([current,incoming]),before);
+    }
+  }
+});
+test('conflicting identity metadata fails closed; identical duplicates are idempotent', () => {
+  const archived=mergeNeuralHistory(build(),[build()]);
+  const duplicate=structuredClone(archived);
+  duplicate.history[0].original_source='conflicting metadata';
+  assert.throws(()=>mergeNeuralHistory(archived,[duplicate]),/Conflicting neural history identity/);
+  assert.deepEqual(mergeNeuralHistory(archived,[archived]),archived);
+});
+test('existing observation metadata survives when the same snapshot is archived again', () => {
+  const snapshot=build(), current=mergeNeuralHistory(build(),[snapshot]);
+  current.history[0].original_source='preserved evidence';
+  assert.deepEqual(mergeNeuralHistory(current,[snapshot]),current);
+});
+test('PR 16 conflict resolution preserves main effective observation and both original snapshots', () => {
+  const fs=require('node:fs'),{createHash}=require('node:crypto');
+  const sources=[
+    ['bf4569431afaf9e5b64facdddcda0d0879dbc999','a6a9252c064ea741dbfb0461882853af1561cc7853d9ad741d3fe078b3704ea8'],
+    ['9016d4c7cdca4e17a45889ebed4eb7cb45fe1fce','41969a7313cf38de657da156ea11baf72e1a06254015fdeff24f16f2092d88d9']
+  ].map(([commit,expected])=>{
+    const bytes=fs.readFileSync(`neural-links/history/${commit}.branch-map.json`);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),expected);
+    return JSON.parse(bytes);
+  });
+  const resolved=mergeNeuralHistory(sources[0],sources);
+  const {history,...effective}=resolved,{history:oldHistory,...mainEffective}=sources[0];
+  assert.deepEqual(effective,mainEffective);
+  assert.equal(history.length,12);
+  for (const source of sources) {
+    for (const entry of source.history) assert.deepEqual(history.find(e=>e.sha256===entry.sha256),entry);
+    const {history:ignored,...payload}=source;
+    assert.ok(history.some(e=>JSON.stringify(e.snapshot)===JSON.stringify(payload)));
+  }
+  assert.equal(pr(resolved,9).main_integration,'not_in_main');
+  assert.equal(pr(resolved,15).mergeCommit,'d16872f594b62b896d57fedc7bc2830cf8961ac9');
+  assert.equal(pr(resolved,16).baseRefName,'main');
+  assert.equal(pr(resolved,16).mergeCommit,null);
+  assert.equal(pr(resolved,16).main_integration,'not_established');
+  const map=JSON.parse(fs.readFileSync('neural-links/branch-map.json','utf8'));
+  for (const entry of resolved.history) assert.deepEqual(map.history.find(e=>e.sha256===entry.sha256),entry);
+});
 test('unassociated branches get no fabricated main parent or edge', () => {
   const map=build();
   assert.equal(map.neural_network.nodes.find(n=>n.id==='unassociated').parent,null);
