@@ -1,8 +1,8 @@
 {
   "origin_signature": "MrLiouWord",
   "schema_version": 2,
-  "updated_at": "2026-10-18T19:01:54.229Z",
-  "source_commit": "e8375a3bc34a34b4ba664c0af48add08b1efa841",
+  "updated_at": "2026-10-19T08:34:01.767Z",
+  "source_commit": "7efa7b9abb4658e2ddd1d9c3638f39874d179105",
   "pull_requests": [
     {
       "number": 1,
@@ -20,7 +20,7 @@
       "updatedAt": "2026-10-10T12:34:02Z",
       "mergedAt": "2026-10-10T12:33:12Z",
       "mergeCommit": "374e1d46cb2760fb17727766bec92f655c431a74",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -41,7 +41,7 @@
       "updatedAt": "2026-10-11T06:23:44Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -62,7 +62,7 @@
       "updatedAt": "2026-10-11T18:50:15Z",
       "mergedAt": "2026-10-11T18:46:07Z",
       "mergeCommit": "7cb80e5237df6fd7fe531ae2066815b590547901",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -83,7 +83,7 @@
       "updatedAt": "2026-10-13T10:45:41Z",
       "mergedAt": "2026-10-13T10:38:40Z",
       "mergeCommit": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "not_in_main",
       "deployment": "not_verified"
@@ -104,7 +104,7 @@
       "updatedAt": "2026-10-13T10:55:29Z",
       "mergedAt": "2026-10-13T10:47:25Z",
       "mergeCommit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -125,7 +125,7 @@
       "updatedAt": "2026-10-13T12:16:49Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -146,7 +146,7 @@
       "updatedAt": "2026-10-17T11:50:27Z",
       "mergedAt": "2026-10-17T11:47:50Z",
       "mergeCommit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -167,7 +167,7 @@
       "updatedAt": "2026-10-17T18:20:47Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -188,7 +188,7 @@
       "updatedAt": "2026-10-17T13:59:19Z",
       "mergedAt": "2026-10-17T13:58:11Z",
       "mergeCommit": "f022d69e41e8c415cc955a226ff84b64313060e2",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "not_in_main",
       "deployment": "not_verified"
@@ -209,7 +209,7 @@
       "updatedAt": "2026-10-17T14:43:52Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -230,7 +230,7 @@
       "updatedAt": "2026-10-18T17:38:58Z",
       "mergedAt": "2026-10-18T17:38:57Z",
       "mergeCommit": "3ff73ef86a60bb1d070d8849fb6c8798554bd3ab",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -248,10 +248,10 @@
       "headRefOid": "059b2981861078349e191196670960588bf060bc",
       "state": "MERGED",
       "createdAt": "2026-10-17T18:14:59Z",
-      "updatedAt": "2026-10-18T19:01:39Z",
+      "updatedAt": "2026-10-18T19:03:13Z",
       "mergedAt": "2026-10-18T19:01:39Z",
       "mergeCommit": "e8375a3bc34a34b4ba664c0af48add08b1efa841",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -272,7 +272,7 @@
       "updatedAt": "2026-10-17T18:29:03Z",
       "mergedAt": "2026-10-17T18:27:41Z",
       "mergeCommit": "b9d2887bc4c77372cd3c0dda8124ac156f403b54",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -293,7 +293,7 @@
       "updatedAt": "2026-10-17T18:23:00Z",
       "mergedAt": "2026-10-17T18:21:42Z",
       "mergeCommit": "d16872f594b62b896d57fedc7bc2830cf8961ac9",
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "merged",
       "main_integration": "confirmed",
       "deployment": "not_verified"
@@ -307,14 +307,14 @@
       "headRefName": "copilot/39057405264-job-117471823300",
       "baseRepository": "dofaromg/MRL_ASI_system",
       "headRepository": "dofaromg/MRL_ASI_system",
-      "baseRefOid": "e8375a3bc34a34b4ba664c0af48add08b1efa841",
-      "headRefOid": "9016d4c7cdca4e17a45889ebed4eb7cb45fe1fce",
+      "baseRefOid": "bf4569431afaf9e5b64facdddcda0d0879dbc999",
+      "headRefOid": "7efa7b9abb4658e2ddd1d9c3638f39874d179105",
       "state": "OPEN",
       "createdAt": "2026-10-18T18:35:01Z",
-      "updatedAt": "2026-10-18T19:01:49Z",
+      "updatedAt": "2026-10-19T08:33:58Z",
       "mergedAt": null,
       "mergeCommit": null,
-      "observed_at": "2026-10-18T19:01:54.229Z",
+      "observed_at": "2026-10-19T08:34:01.767Z",
       "branch_merge": "not_merged",
       "main_integration": "not_established",
       "deployment": "not_verified"
@@ -705,7 +705,7 @@
         "head_commit": "19dafe0625938ed5586d93eaa5cf45ace459c463",
         "base_commit": "651ab1b7a03d059abb689337bb7c06f924f519f0",
         "timestamp": "2026-10-10T12:33:12Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -720,7 +720,7 @@
         "head_commit": "cd8937bc843af161b62c01dc6f8c12ed12801d86",
         "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
         "timestamp": "2026-10-11T06:17:58Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -735,7 +735,7 @@
         "head_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
         "base_commit": "6764c918da84da04bb6dcbdeed2ab314418561a8",
         "timestamp": "2026-10-11T18:46:07Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -750,7 +750,7 @@
         "head_commit": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
         "base_commit": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
         "timestamp": "2026-10-13T10:38:40Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_in_main",
         "deployment": "not_verified"
@@ -765,7 +765,7 @@
         "head_commit": "b780d0eda34a99ec682951c316d2fd52668175d7",
         "base_commit": "7cb80e5237df6fd7fe531ae2066815b590547901",
         "timestamp": "2026-10-13T10:47:25Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -780,7 +780,7 @@
         "head_commit": "b573a15929d6f78a6ca36be13b2db118324789fe",
         "base_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
         "timestamp": "2026-10-13T12:13:56Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -795,7 +795,7 @@
         "head_commit": "a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57",
         "base_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
         "timestamp": "2026-10-17T11:47:50Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -810,7 +810,7 @@
         "head_commit": "97f6984da25ee48ec0bc37eb0715b95c96f6bc9b",
         "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
         "timestamp": "2026-10-17T13:44:30Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -825,7 +825,7 @@
         "head_commit": "18b54e02a90429310689feb6cfb54bced8dd8160",
         "base_commit": "c519d7bdfe63dd6849990b8b2f2a3209ad7ee36c",
         "timestamp": "2026-10-17T13:58:11Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_in_main",
         "deployment": "not_verified"
@@ -840,7 +840,7 @@
         "head_commit": "0bf3a9f9eff42c49b87985997bde7195795a242b",
         "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
         "timestamp": "2026-10-17T14:41:26Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
@@ -855,7 +855,7 @@
         "head_commit": "4a648c761f6fca9087f67f8e2f12934cb8ef5760",
         "base_commit": "474181ef9a4bce28aab478f514aa0d34497c0df7",
         "timestamp": "2026-10-18T17:38:57Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -870,7 +870,7 @@
         "head_commit": "059b2981861078349e191196670960588bf060bc",
         "base_commit": "1fb4006252514ae74bd7f5d76c32ae060d04bf64",
         "timestamp": "2026-10-18T19:01:39Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -885,7 +885,7 @@
         "head_commit": "9c13ad349d28a5e4237a5967b087c3084c5fd0f0",
         "base_commit": "7f8c800abb457e306dc338cadd1b3a69fe0ad5bf",
         "timestamp": "2026-10-17T18:27:41Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -900,7 +900,7 @@
         "head_commit": "dddeecf6defaedf32412ff952ab07fd1fe038909",
         "base_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
         "timestamp": "2026-10-17T18:21:42Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "confirmed",
         "deployment": "not_verified"
@@ -912,10 +912,10 @@
         "weight": 0.5,
         "pr_number": 16,
         "merge_commit": null,
-        "head_commit": "9016d4c7cdca4e17a45889ebed4eb7cb45fe1fce",
-        "base_commit": "e8375a3bc34a34b4ba664c0af48add08b1efa841",
+        "head_commit": "7efa7b9abb4658e2ddd1d9c3638f39874d179105",
+        "base_commit": "bf4569431afaf9e5b64facdddcda0d0879dbc999",
         "timestamp": "2026-10-18T18:35:01Z",
-        "observed_at": "2026-10-18T19:01:54.229Z",
+        "observed_at": "2026-10-19T08:34:01.767Z",
         "evidence": "github_pr",
         "main_integration": "not_established",
         "deployment": "not_verified"
