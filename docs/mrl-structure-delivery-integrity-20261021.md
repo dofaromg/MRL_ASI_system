@@ -1,3 +1,10 @@
+---
+title: MRL structure delivery integrity repair
+description: 'Reconcile the neural script receipt and account for repair sources and generated outputs.'
+origin_signature: MrLiouWord
+canonical_authority: Mr.liou
+---
+
 # MRL structure delivery integrity repair — 2026-10-21
 
 origin_signature: MrLiouWord
@@ -38,7 +45,7 @@ Local verification: Python 3.12.14, 47/47 passed; Node 24.19.0, 22/22 passed, ze
 
 ## Expected delivery and dependencies
 
-Expected_File_List / package map (three actual PR files; no ZIP requested):
+Expected repair-source list / package map (three repair-source files; no ZIP requested):
 
 1. config/Mrliou_Structure_Authorization_Delivery_v1.json — corrected receipt and appended lineage.
 2. .github/workflows/mrl-neural-lineage.yml — read-only head verification, unchanged lineage suite plus authorization suite.
@@ -46,7 +53,7 @@ Expected_File_List / package map (three actual PR files; no ZIP requested):
 
 Dependency tree: owner-merged Git script -> measured byte receipt -> unchanged DeliveryContractTests; registry + scanner/generator/updater -> synthetic authorization tests; pinned original neural snapshots + generator/renderer -> existing lineage tests; existing read-only CI -> both suites. All original manifest dependencies remain present. The audit and CI are repair-support files, not substituted for original payload content. No new executable dependency is introduced.
 
-Requested vs delivered locally: Missing=0, Extra=0, Mismatch=0, Renamed=0, Orphan=0, Coverage=100% (3/3 planned repair files); original delivery 20/20 paths and 19/19 receipts match after repair. Remote publication and latest-head CI must be verified separately. No automatic merge or deployment.
+Repair-source-only accounting: Missing=0, unaccounted Extra=0, Mismatch=0, Renamed=0, Orphan=0, Coverage=100% (3/3 planned repair files); original delivery 20/20 paths and 19/19 receipts match after repair. Remote publication and latest-head CI must be verified separately. No automatic merge or deployment.
 
 ## Measured current delivery payload and external dependencies
 
@@ -75,3 +82,18 @@ Manifest intentionally excludes its own recursive hash. Its final hash and this 
 | `requirements.txt` | 92 | `77363d263482d45f0c94c348dada0020caac4ac6fd0ac5a200c12d30c7bc9097` |
 | `package-lock.json` (external dependency) | 358790 | `53592a9273718f566d7672c0b3448fb278a7516829f96b65a47884e3d35ee071` |
 | `package.json` (external dependency) | 1037 | `80a317aa171c8c6cb91c5cc859292705076247679fc533a283df69ff32cd788c` |
+
+## Generated-output accounting and review reconciliation
+
+The PR contains five changed paths: the three repair-source paths above plus the two existing bot-generated outputs below. The 3/3 count applies only to planned repair sources, not to the complete PR. The full path inventory is 5/5; generated outputs are attributed to Neural Branch Sync rather than described as unexpected extras.
+
+The following immutable snapshot was independently read at `ae1efffed2cbf7248392df56959215cfb207c3df`. Later generator revisions must carry their own observed commit and hashes; these historical measurements must not be silently reassigned to a newer head.
+
+| Generated output | Bytes | SHA-256 |
+|---|---:|---|
+| neural-links/branch-map.json | 469462 | a398a56c56bdf7e778cd1d686bef3071ab4d1f3455890caaf015ff00616ed0c2 |
+| neural-links/synaptic-graph.mermaid | 4609 | b4b24ec74de48b1edba9858592f27650d51ba97ee3368481978e269bda574c5e |
+
+Git commit metadata confirms that `ae1efffed2cbf7248392df56959215cfb207c3df` has the sole parent `7eb29aefa118f5286188139f046e1b1bf0aed8e7`, which is also the graph's declared source_commit. The source is therefore retained in the actual reviewed branch ancestry. The separate review reference to `05f7f12...` does not describe that parent relationship and must not be used to declare this retained lineage broken. No commit, original snapshot or source identity is removed to resolve the review.
+
+The successful remote regression run 39557104894 checked out repair source `7eb29ae...`: authorization 47/47 and lineage 22/22. Those results are not assigned to a later bot head. The exact amended head requires a fresh remote run; a skipped or missing check remains pending even when a parent was tested. Local source checks do not replace that remote result or a main merge/deployment receipt.
