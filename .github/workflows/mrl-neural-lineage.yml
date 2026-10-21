@@ -9,6 +9,20 @@ on:
       - 'tests/fixtures/mrl-neural-*.json'
       - 'neural-links/**'
       - '.github/workflows/mrl-neural-lineage.yml'
+      - 'config/Mrliou_Structure_Authorization_Delivery_v1.json'
+      - 'docs/mrl-structure-delivery-integrity-20261021.md'
+      - 'config/MRL_AUTHORIZATION_REGISTRY_v1.json'
+      - '.copilot/**'
+      - 'tests/test_Mrliou_structure_authorization.py'
+      - 'run_structure_index.py'
+      - 'requirements.txt'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05*'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/**'
+      - '.github/workflows/structure-indexer.yml'
+      - '.github/workflows/blank.yml'
+      - '.github/workflows/runner-version-check.yml'
+      - 'package.json'
+      - 'package-lock.json'
   pull_request:
     paths:
       - 'scripts/update-neural-map.js'
@@ -17,6 +31,20 @@ on:
       - 'tests/fixtures/mrl-neural-*.json'
       - 'neural-links/**'
       - '.github/workflows/mrl-neural-lineage.yml'
+      - 'config/Mrliou_Structure_Authorization_Delivery_v1.json'
+      - 'docs/mrl-structure-delivery-integrity-20261021.md'
+      - 'config/MRL_AUTHORIZATION_REGISTRY_v1.json'
+      - '.copilot/**'
+      - 'tests/test_Mrliou_structure_authorization.py'
+      - 'run_structure_index.py'
+      - 'requirements.txt'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05*'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/**'
+      - '.github/workflows/structure-indexer.yml'
+      - '.github/workflows/blank.yml'
+      - '.github/workflows/runner-version-check.yml'
+      - 'package.json'
+      - 'package-lock.json'
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,8 +53,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
       - name: Verify MRL merge lineage and historical preservation
         run: node --test tests/Mrliou_neural_history.test.cjs tests/mrl-neural-lineage.test.cjs
+  authorization-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Verify delivery integrity and authorization with synthetic repositories only
+        run: python -m unittest discover -s tests -p test_Mrliou_structure_authorization.py -v

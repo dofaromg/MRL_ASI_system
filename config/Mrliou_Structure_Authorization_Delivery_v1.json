@@ -169,8 +169,8 @@
     },
     {
       "path": "scripts/update-neural-map.js",
-      "size_bytes": 6289,
-      "sha256": "b1220ef8ee5c21540345c3a4839243b5c788f91bbcf56054df157b189d4067bb"
+      "size_bytes": 11813,
+      "sha256": "f8e0e2c282f8cae4e5104c2442a96a2c3460b6e51a97386ce95eb6fad8874467"
     },
     {
       "path": "tests/Mrliou_neural_history.test.cjs",
@@ -188,5 +188,28 @@
   "external_repository_dependencies": [
     "package-lock.json",
     "package.json"
-  ]
+  ],
+  "canonical_authority": "Mr.liou",
+  "integrity_revision": {
+    "id": "MRL_ASI_DELIVERY_INTEGRITY_20261021",
+    "repository": "dofaromg/MRL_ASI_system",
+    "source_commit": "89ad82d13452c2eb9a487e104c2eab4fcca1d31e",
+    "previous_manifest_blob": "1a113d21f14f906f8261c781436769a1c2ec08ba",
+    "previous_payload_entry": {
+      "path": "scripts/update-neural-map.js",
+      "size_bytes": 6289,
+      "sha256": "b1220ef8ee5c21540345c3a4839243b5c788f91bbcf56054df157b189d4067bb"
+    },
+    "payload_source_commits": [
+      "886be1058d969a5ddbf86036cee7d71424ecfb2c",
+      "1a4b01c513e032ef7d46c4e3c0fe90c5de3ecb38",
+      "7efa7b9abb4658e2ddd1d9c3638f39874d179105"
+    ],
+    "merged_source_pull_requests": [
+      15,
+      16
+    ],
+    "evidence": "docs/mrl-structure-delivery-integrity-20261021.md",
+    "scope": "Refresh one stale payload receipt after owner-merged lineage repairs; inherited repository/base/revision fields above retain the original delivery provenance. No runtime grants are issued."
+  }
 }
