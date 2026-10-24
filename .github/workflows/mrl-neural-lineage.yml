@@ -1,0 +1,143 @@
+# origin_signature: MrLiouWord
+name: MRL Neural Lineage Regression
+on:
+  push:
+    paths:
+      - 'scripts/update-neural-map.js'
+      - 'scripts/generate-mermaid.js'
+      - 'tests/*neural*.cjs'
+      - 'tests/fixtures/mrl-neural-*.json'
+      - 'neural-links/**'
+      - '.github/workflows/mrl-neural-lineage.yml'
+      - 'config/Mrliou_Structure_Authorization_Delivery_v1.json'
+      - 'docs/mrl-structure-delivery-integrity-20261021.md'
+      - 'config/MRL_AUTHORIZATION_REGISTRY_v1.json'
+      - '.copilot/**'
+      - 'tests/test_Mrliou_structure_authorization.py'
+      - 'run_structure_index.py'
+      - 'requirements.txt'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05*'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/**'
+      - '.github/workflows/structure-indexer.yml'
+      - '.github/workflows/blank.yml'
+      - '.github/workflows/runner-version-check.yml'
+      - 'package.json'
+      - 'package-lock.json'
+  pull_request:
+    paths:
+      - 'scripts/update-neural-map.js'
+      - 'scripts/generate-mermaid.js'
+      - 'tests/*neural*.cjs'
+      - 'tests/fixtures/mrl-neural-*.json'
+      - 'neural-links/**'
+      - '.github/workflows/mrl-neural-lineage.yml'
+      - 'config/Mrliou_Structure_Authorization_Delivery_v1.json'
+      - 'docs/mrl-structure-delivery-integrity-20261021.md'
+      - 'config/MRL_AUTHORIZATION_REGISTRY_v1.json'
+      - '.copilot/**'
+      - 'tests/test_Mrliou_structure_authorization.py'
+      - 'run_structure_index.py'
+      - 'requirements.txt'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05*'
+      - 'docs/Mrliou_MRL_Legacy_Indexer_Repair_R05_original/**'
+      - '.github/workflows/structure-indexer.yml'
+      - '.github/workflows/blank.yml'
+      - '.github/workflows/runner-version-check.yml'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lineage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify MRL merge lineage and historical preservation
+        run: node --test tests/Mrliou_neural_history.test.cjs tests/mrl-neural-lineage.test.cjs
+  authorization-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Verify delivery integrity and authorization with synthetic repositories only
+        run: python -m unittest discover -s tests -p test_Mrliou_structure_authorization.py -v
+
+  latest-head:
+    needs: [lineage, authorization-regression]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Resolve current same-repository PR head
+        id: current
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MRL_REPOSITORY: ${{ github.repository }}
+          MRL_PR_NUMBER: ${{ github.event.pull_request.number }}
+          MRL_EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          python - <<'PY'
+          import json, os, re, urllib.request
+          sha = os.environ["MRL_EVENT_HEAD"]
+          number = os.environ.get("MRL_PR_NUMBER", "")
+          repo = os.environ["MRL_REPOSITORY"]
+          if number:
+              if not number.isdecimal():
+                  raise SystemExit("Invalid PR number")
+              request = urllib.request.Request(
+                  "https://api.github.com/repos/" + repo + "/pulls/" + number,
+                  headers={"Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                           "Accept": "application/vnd.github+json"})
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  pr = json.load(response)
+              if pr["head"]["repo"]["full_name"] != repo:
+                  raise SystemExit("Latest-head verification requires the same repository")
+              sha = pr["head"]["sha"]
+          if not re.fullmatch(r"[0-9a-f]{40}", sha):
+              raise SystemExit("Invalid source SHA")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write("sha=" + sha + "\n")
+          print("MRL_LATEST_HEAD=" + sha)
+          PY
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.current.outputs.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify source ancestry and bound generated-only drift
+        env:
+          MRL_LATEST_HEAD: ${{ steps.current.outputs.sha }}
+          MRL_EVENT_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          test "$(git rev-parse HEAD)" = "$MRL_LATEST_HEAD"
+          git merge-base --is-ancestor "$MRL_EVENT_HEAD" "$MRL_LATEST_HEAD"
+          git diff --name-only "$MRL_EVENT_HEAD" "$MRL_LATEST_HEAD" -- | while IFS= read -r file; do
+            case "$file" in
+              neural-links/branch-map.json|neural-links/synaptic-graph.mermaid) ;;
+              *) echo "Source changed during verification: $file"; exit 1 ;;
+            esac
+          done
+          echo "MRL_VERIFIED_SOURCE=$MRL_LATEST_HEAD"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Verify actual latest graph and unchanged authorization payload
+        run: |
+          node --test tests/Mrliou_neural_history.test.cjs tests/mrl-neural-lineage.test.cjs
+          python -m unittest discover -s tests -p test_Mrliou_structure_authorization.py -v

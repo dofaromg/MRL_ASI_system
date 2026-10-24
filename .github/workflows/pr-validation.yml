@@ -101,7 +101,7 @@ jobs:
       - name: Validate YAML syntax
         run: |
           echo "=== Checking YAML Syntax ==="
-          python -c "import yaml; yaml.safe_load(open('/tmp/prod-manifests.yaml'))"
+          python -c "import yaml; list(yaml.safe_load_all(open('/tmp/prod-manifests.yaml')))"
           echo "Production manifests are valid YAML"
 
   # Docker 建置測試 (Docker Build Test)

@@ -1,0 +1,272 @@
+[
+  {
+    "number": 10,
+    "title": "fix(MRL): preserve MetaCode identity and state during packet restoration",
+    "state": "open",
+    "created_at": "2026-10-17T14:41:26Z",
+    "updated_at": "2026-10-17T14:43:52Z",
+    "merged_at": null,
+    "merge_commit_sha": "512d542b78019075763fbee7a96ccc9fe26a5d07",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/10",
+    "base": {
+      "ref": "main",
+      "sha": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+      "sha": "0bf3a9f9eff42c49b87985997bde7195795a242b",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 9,
+    "title": "feat(MRL): add authenticated commercial particle API and durable usage ledger",
+    "state": "closed",
+    "created_at": "2026-10-17T13:50:43Z",
+    "updated_at": "2026-10-17T13:59:19Z",
+    "merged_at": "2026-10-17T13:58:11Z",
+    "merge_commit_sha": "f022d69e41e8c415cc955a226ff84b64313060e2",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/9",
+    "base": {
+      "ref": "Mrliou/flowos-commercial-labels-regression-20261017",
+      "sha": "c519d7bdfe63dd6849990b8b2f2a3209ad7ee36c",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "Mrliou/MRL-CommercialService-v01-20261017",
+      "sha": "18b54e02a90429310689feb6cfb54bced8dd8160",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 8,
+    "title": "test(flowos): verify commercial labels independently and in CI",
+    "state": "open",
+    "created_at": "2026-10-17T13:44:30Z",
+    "updated_at": "2026-10-17T17:04:04Z",
+    "merged_at": null,
+    "merge_commit_sha": "c88550548bd27b2f1a058dca699bc168f1b8297d",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/8",
+    "base": {
+      "ref": "main",
+      "sha": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "Mrliou/flowos-commercial-labels-regression-20261017",
+      "sha": "2197fc1004a9d7597df9d3d001a96bce666f540e",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 7,
+    "title": "Register FlowOS commercial labels and enforce baseline laws",
+    "state": "closed",
+    "created_at": "2026-10-17T11:47:01Z",
+    "updated_at": "2026-10-17T11:50:27Z",
+    "merged_at": "2026-10-17T11:47:50Z",
+    "merge_commit_sha": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+    "user": {
+      "login": "Copilot"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/7",
+    "base": {
+      "ref": "main",
+      "sha": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "copilot/wake-up-mrl-world-model-system",
+      "sha": "a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 6,
+    "title": "feat: DL580 本地黑洞實機驗收入口與完整模組 CI",
+    "state": "open",
+    "created_at": "2026-10-13T12:13:56Z",
+    "updated_at": "2026-10-13T12:16:49Z",
+    "merged_at": null,
+    "merge_commit_sha": "e879f5d7d8c7ea047788642f7920e58c822fca46",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/6",
+    "base": {
+      "ref": "main",
+      "sha": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "Mrliou/blackhole-runtime-continuation-20261013",
+      "sha": "b573a15929d6f78a6ca36be13b2db118324789fe",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 5,
+    "title": "Mrliouword-system/Cursor/notion mrl blackhole model 9f1b",
+    "state": "closed",
+    "created_at": "2026-10-13T10:40:16Z",
+    "updated_at": "2026-10-13T10:55:29Z",
+    "merged_at": "2026-10-13T10:47:25Z",
+    "merge_commit_sha": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/5",
+    "base": {
+      "ref": "main",
+      "sha": "7cb80e5237df6fd7fe531ae2066815b590547901",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "cursor/notion-mrl-blackhole-model-9f1b",
+      "sha": "b780d0eda34a99ec682951c316d2fd52668175d7",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 4,
+    "title": "建立星體軌跡與模式向量圖資料庫",
+    "state": "closed",
+    "created_at": "2026-10-11T19:19:08Z",
+    "updated_at": "2026-10-13T10:45:41Z",
+    "merged_at": "2026-10-13T10:38:40Z",
+    "merge_commit_sha": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
+    "user": {
+      "login": "Copilot"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/4",
+    "base": {
+      "ref": "cursor/notion-mrl-blackhole-model-9f1b",
+      "sha": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "copilot/complete-black-hole-model",
+      "sha": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 3,
+    "title": "feat: MRL 黑洞模型 — Notion 結構建構與守恆稽核",
+    "state": "closed",
+    "created_at": "2026-10-11T06:18:41Z",
+    "updated_at": "2026-10-11T18:50:15Z",
+    "merged_at": "2026-10-11T18:46:07Z",
+    "merge_commit_sha": "7cb80e5237df6fd7fe531ae2066815b590547901",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/3",
+    "base": {
+      "ref": "main",
+      "sha": "6764c918da84da04bb6dcbdeed2ab314418561a8",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "cursor/notion-mrl-blackhole-model-9f1b",
+      "sha": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 2,
+    "title": "Distinguish expected structure authorization DENY from execution failures",
+    "state": "open",
+    "created_at": "2026-10-11T06:17:58Z",
+    "updated_at": "2026-10-11T06:23:44Z",
+    "merged_at": null,
+    "merge_commit_sha": null,
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/2",
+    "base": {
+      "ref": "main",
+      "sha": "6764c918da84da04bb6dcbdeed2ab314418561a8",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "Mrliou/structure-denial-reporting-20261011",
+      "sha": "cd8937bc843af161b62c01dc6f8c12ed12801d86",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  },
+  {
+    "number": 1,
+    "title": "fix: enforce MrLiouWord authorization for structure indexing (R07)",
+    "state": "closed",
+    "created_at": "2026-09-19T08:27:55Z",
+    "updated_at": "2026-10-10T12:34:02Z",
+    "merged_at": "2026-10-10T12:33:12Z",
+    "merge_commit_sha": "374e1d46cb2760fb17727766bec92f655c431a74",
+    "user": {
+      "login": "dofaromg"
+    },
+    "html_url": "https://github.com/dofaromg/MRL_ASI_system/pull/1",
+    "base": {
+      "ref": "main",
+      "sha": "651ab1b7a03d059abb689337bb7c06f924f519f0",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    },
+    "head": {
+      "ref": "Mrliou/mrl-authorization-repair-r07",
+      "sha": "19dafe0625938ed5586d93eaa5cf45ace459c463",
+      "repo": {
+        "full_name": "dofaromg/MRL_ASI_system"
+      }
+    }
+  }
+]
