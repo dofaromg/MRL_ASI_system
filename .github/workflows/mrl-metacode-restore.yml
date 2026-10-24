@@ -1,0 +1,25 @@
+name: MRL MetaCode Restore
+on:
+  pull_request:
+    paths:
+      - 'metacode_core.js'
+      - 'tests/MRL_MetaCode_restore.test.cjs'
+      - '.github/workflows/mrl-metacode-restore.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'metacode_core.js'
+      - 'tests/MRL_MetaCode_restore.test.cjs'
+      - '.github/workflows/mrl-metacode-restore.yml'
+permissions:
+  contents: read
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/MRL_MetaCode_restore.test.cjs
