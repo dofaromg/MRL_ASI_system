@@ -457,31 +457,68 @@ class MetaCode {
 
   // ===== 從 JSON 導入 =====
   import(data) {
-    // 清空當前狀態
-    this.particles.clear();
-    this.links.clear();
-    this.cycles = [];
-    this.journal = [];
-
-    // 導入粒子
-    for (const particle of data.particles) {
-      this.particles.set(particle.id, particle);
+    // Validate a detached candidate before changing any current state.
+    const invalid = () => { throw new Error('MRL_METACODE_IMPORT_INVALID'); };
+    if (!data || !Array.isArray(data.particles) || !Array.isArray(data.links)) invalid();
+    const candidate = structuredClone(data);
+    const cycles = candidate.cycles ?? [];
+    const journal = candidate.journal ?? [];
+    if (!Array.isArray(cycles) || !Array.isArray(journal)) invalid();
+    const particles = new Map();
+    const links = new Map();
+    const nonempty = value => typeof value === 'string' && value.length > 0;
+    for (const particle of candidate.particles) {
+      if (!particle || !nonempty(particle.id) || particles.has(particle.id) ||
+          !particle.cap || !Number.isFinite(particle.cap.mag) ||
+          !particle.amplify || !Array.isArray(particle.links) ||
+          !this.checkInvariants(particle)) invalid();
+      for (const value of ['N', 'eta', 'present', 'ratio'].map(k => particle.amplify[k])) {
+        if (value !== null && !Number.isFinite(value)) invalid();
+      }
+      particles.set(particle.id, particle);
     }
-
-    // 導入關聯
-    for (const link of data.links) {
+    for (const particle of particles.values()) {
+      for (const link of particle.links) {
+        if (!link || !nonempty(link.rel) || !particles.has(link.to)) invalid();
+      }
+    }
+    for (const link of candidate.links) {
+      if (!link || !nonempty(link.rel) || !particles.has(link.from) || !particles.has(link.to)) invalid();
       const linkId = `link:${link.from}:${link.to}:${link.rel}`;
-      this.links.set(linkId, link);
+      if (links.has(linkId)) invalid();
+      links.set(linkId, link);
     }
-
-    // 導入週期與日誌
-    this.cycles = data.cycles || [];
-    this.journal = data.journal || [];
-
-    this.logEvent('system.import', {
-      particles: data.particles.length,
-      links: data.links.length
-    });
+    let id = this.id;
+    let version = this.version;
+    let createdAt = this.created_at;
+    let self = structuredClone(this.self);
+    if (candidate.meta !== undefined) {
+      const meta = candidate.meta;
+      if (!meta || !nonempty(meta.id) || !nonempty(meta.version) ||
+          !nonempty(meta.created_at) || !Number.isFinite(Date.parse(meta.created_at))) invalid();
+      id = meta.id;
+      version = meta.version;
+      createdAt = meta.created_at;
+      if (!candidate.self || candidate.self.id !== id || candidate.self.type !== 'MetaCode') invalid();
+      self = candidate.self;
+    } else if (candidate.self !== undefined) {
+      // Legacy packets may omit both meta and self; never silently re-root them.
+      if (!candidate.self || candidate.self.id !== id || candidate.self.type !== 'MetaCode') invalid();
+      self = candidate.self;
+    }
+    const event = {
+      t: new Date().toISOString(), evt: 'system.import',
+      data: { particles: particles.size, links: links.size }
+    };
+    // Synchronous commit; no user callbacks or validation occur after it begins.
+    this.id = id;
+    this.version = version;
+    this.created_at = createdAt;
+    this.self = self;
+    this.particles = particles;
+    this.links = links;
+    this.cycles = cycles;
+    this.journal = [...journal, event];
   }
 
   // ===== 自我執行（演示） =====
