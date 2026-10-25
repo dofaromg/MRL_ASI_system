@@ -1,0 +1,197 @@
+{
+  "origin_signature": "MrLiouWord",
+  "observed_at": "2026-10-17T18:15:11.333Z",
+  "main_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+  "branches": [
+    {
+      "name": "Mrliou/MRL-CommercialService-v01-20261017",
+      "commit": {
+        "sha": "18b54e02a90429310689feb6cfb54bced8dd8160",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/18b54e02a90429310689feb6cfb54bced8dd8160"
+      },
+      "protected": false
+    },
+    {
+      "name": "Mrliou/MRL-MetaCode-atomic-restore-20261017",
+      "commit": {
+        "sha": "0bf3a9f9eff42c49b87985997bde7195795a242b",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/0bf3a9f9eff42c49b87985997bde7195795a242b"
+      },
+      "protected": false
+    },
+    {
+      "name": "Mrliou/blackhole-runtime-continuation-20261013",
+      "commit": {
+        "sha": "b573a15929d6f78a6ca36be13b2db118324789fe",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/b573a15929d6f78a6ca36be13b2db118324789fe"
+      },
+      "protected": false
+    },
+    {
+      "name": "Mrliou/flowos-commercial-labels-regression-20261017",
+      "commit": {
+        "sha": "2197fc1004a9d7597df9d3d001a96bce666f540e",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/2197fc1004a9d7597df9d3d001a96bce666f540e"
+      },
+      "protected": false
+    },
+    {
+      "name": "Mrliou/mrl-authorization-repair-r07",
+      "commit": {
+        "sha": "19dafe0625938ed5586d93eaa5cf45ace459c463",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/19dafe0625938ed5586d93eaa5cf45ace459c463"
+      },
+      "protected": false
+    },
+    {
+      "name": "Mrliou/structure-denial-reporting-20261011",
+      "commit": {
+        "sha": "cd8937bc843af161b62c01dc6f8c12ed12801d86",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/cd8937bc843af161b62c01dc6f8c12ed12801d86"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/add-module-features-and-stability",
+      "commit": {
+        "sha": "a9a974260cde0c45e2be0c993e5031730baf4ab1",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/a9a974260cde0c45e2be0c993e5031730baf4ab1"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/add-system-function-modules",
+      "commit": {
+        "sha": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/build-world-model-for-mrliouword",
+      "commit": {
+        "sha": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/complete-black-hole-model",
+      "commit": {
+        "sha": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/construct-deployment",
+      "commit": {
+        "sha": "a2e21beb59a256af4fbba7a96bf0b8aee0f14b79",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/a2e21beb59a256af4fbba7a96bf0b8aee0f14b79"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/mrliouagi",
+      "commit": {
+        "sha": "348f2480165c783a14eddb00a6780be4ee9811e6",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/348f2480165c783a14eddb00a6780be4ee9811e6"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/task-217537952-1287894039-5c792a5a-45b5-4030-af5a-7f91e6d1a150",
+      "commit": {
+        "sha": "c70b48c6737d75f16f3fe1956b9ff5f31ab086a8",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/c70b48c6737d75f16f3fe1956b9ff5f31ab086a8"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/task-217537952-1287894039-6fbdb916-c8ca-4968-a8ac-bb746afff72a",
+      "commit": {
+        "sha": "5b905e011d798a6e48a503346bd63957f0bcb31d",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/5b905e011d798a6e48a503346bd63957f0bcb31d"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/task-217537952-1287894039-41476e6b-9b27-4264-8440-0b86de791976",
+      "commit": {
+        "sha": "cb0b0d6b76cc959331f1b99b771d94f52a989294",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/cb0b0d6b76cc959331f1b99b771d94f52a989294"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/update-mrl-world-model-persistent-memory",
+      "commit": {
+        "sha": "0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/0f8afd631b11ae45c27bd4edc0dfa07d30fc1a64"
+      },
+      "protected": false
+    },
+    {
+      "name": "copilot/wake-up-mrl-world-model-system",
+      "commit": {
+        "sha": "a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/a2f6fffd5e8e4e702a9eba2fc2c2d4cae4c65f57"
+      },
+      "protected": false
+    },
+    {
+      "name": "cursor/notion-mrl-blackhole-model-9f1b",
+      "commit": {
+        "sha": "b780d0eda34a99ec682951c316d2fd52668175d7",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/b780d0eda34a99ec682951c316d2fd52668175d7"
+      },
+      "protected": false
+    },
+    {
+      "name": "main",
+      "commit": {
+        "sha": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+        "url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/commits/284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+      },
+      "protected": false
+    }
+  ],
+  "merge_commit_ancestry": [
+    {
+      "pr_number": 9,
+      "merge_commit": "f022d69e41e8c415cc955a226ff84b64313060e2",
+      "main_contains": false,
+      "source_url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/compare/f022d69e41e8c415cc955a226ff84b64313060e2...284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+    },
+    {
+      "pr_number": 7,
+      "merge_commit": "284e1a971cd8c9f6f0a22e21e403e08a3707e7ff",
+      "main_contains": true,
+      "source_url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/compare/284e1a971cd8c9f6f0a22e21e403e08a3707e7ff...284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+    },
+    {
+      "pr_number": 5,
+      "merge_commit": "ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8",
+      "main_contains": true,
+      "source_url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/compare/ec34b8d8d5ecb13fa0b0b0a18f83736bda0824f8...284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+    },
+    {
+      "pr_number": 4,
+      "merge_commit": "fba499bd0b5eb8129c9b91fcef8512b964d75b3f",
+      "main_contains": false,
+      "source_url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/compare/fba499bd0b5eb8129c9b91fcef8512b964d75b3f...284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+    },
+    {
+      "pr_number": 3,
+      "merge_commit": "7cb80e5237df6fd7fe531ae2066815b590547901",
+      "main_contains": true,
+      "source_url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/compare/7cb80e5237df6fd7fe531ae2066815b590547901...284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+    },
+    {
+      "pr_number": 1,
+      "merge_commit": "374e1d46cb2760fb17727766bec92f655c431a74",
+      "main_contains": true,
+      "source_url": "https://api.github.com/repos/dofaromg/MRL_ASI_system/compare/374e1d46cb2760fb17727766bec92f655c431a74...284e1a971cd8c9f6f0a22e21e403e08a3707e7ff"
+    }
+  ]
+}

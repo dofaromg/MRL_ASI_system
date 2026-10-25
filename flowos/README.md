@@ -101,6 +101,17 @@ flow.artifacts.addVersion(artifactId, version, metadata);
 flow.artifacts.listArtifacts();
 ```
 
+### Commercial Labels
+Registers unique, machine-readable commercial metadata labels. Label keys use
+lowercase dot/hyphen-separated names (for example, `product.tier`) and values
+must not be empty. FlowLaw checks these invariants whenever `flow.enforce()` is
+called.
+
+```typescript
+flow.commercialLabels.registerLabel('product.tier', 'professional');
+flow.commercialLabels.listLabels();
+```
+
 ### Memory System
 Stores and retrieves memories across different scopes (conversation, project, global).
 

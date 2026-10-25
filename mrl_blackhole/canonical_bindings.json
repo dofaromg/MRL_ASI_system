@@ -1,0 +1,55 @@
+{
+  "canonical_authority": "Mr.liou",
+  "origin_signature": "MrLiouWord",
+  "canonical_navigation_id": "3ede7f4e6c558064a840e3a531cb2aef",
+  "mother_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+  "source_head": "5d8ddd670fe095768a2d988110583fbe2167aa3b",
+  "record_mode": "APPEND_ONLY",
+  "layers": {
+    "event_horizon": {
+      "database_id": "08931d39bee446c2ab946edce202d847",
+      "data_source_id": "5b91dbed-6d49-448c-8977-59ce1edfedaa",
+      "parent_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+      "original_name": "MRL 檔案整合資料庫｜來源與承接",
+      "property_map": {
+        "物件 Object": "原始名稱",
+        "原始連結 Source URL": "source_location"
+      }
+    },
+    "accretion_disk": {
+      "database_id": "308e7f4e6c5581f8b609e88794f83af0",
+      "data_source_id": "308e7f4e-6c55-8126-88d3-000bfa6a3ee7",
+      "parent_page_id": "308e7f4e6c5581bd8c72c3a72c3e46b5",
+      "original_name": "🗂️ Claude.ai 專案總覽資料庫",
+      "property_map": {
+        "粒子 Particle": "專案名稱"
+      }
+    },
+    "singularity": {
+      "database_id": "308e7f4e6c558136b8acc4991f6530b9",
+      "data_source_id": "308e7f4e-6c55-81c4-8328-000bf2e0215e",
+      "parent_page_id": "308e7f4e6c5581bd8c72c3a72c3e46b5",
+      "original_name": "📦 文物分類資料庫",
+      "property_map": {
+        "核心 Core": "文物名稱",
+        "版本 Version": "version_revision",
+        "內容雜湊 Content Hash": "content_sha256"
+      }
+    },
+    "hawking_radiation": {
+      "database_id": "d3c4153040744e4182a1ffdb8c24c0f0",
+      "data_source_id": "a51f678c-6265-4293-bcae-8e8a40efff3b",
+      "parent_page_id": "3e9e7f4e6c5580e49f3dc8292dda835a",
+      "original_name": "L4 霍金輻射 Hawking Radiation",
+      "property_map": {}
+    },
+    "return_ledger": {
+      "database_id": "308e7f4e6c5581c2ab4fd71a87ff9df3",
+      "data_source_id": "308e7f4e-6c55-8183-9ac4-000b0cb985e9",
+      "parent_page_id": "308e7f4e6c5581bd8c72c3a72c3e46b5",
+      "original_name": "🔗 關聯索引資料庫",
+      "title_property": "關聯名稱",
+      "property_map": {}
+    }
+  }
+}

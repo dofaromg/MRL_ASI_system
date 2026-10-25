@@ -534,6 +534,32 @@ x.generate_json()
         self.assertEqual(json.loads(result.stdout)['execution_status'], 'AUTHORIZATION_FAILURE')
 
 
+    def test_reporting_expired_or_revoked_grant_remains_failure(self):
+        for mode in ('expired', 'revoked'):
+            with self.subTest(mode=mode):
+                grant = self.grant(github=True)
+                if mode == 'expired':
+                    grant['issued_at'] = (datetime.now(timezone.utc) - timedelta(days=3)).isoformat()
+                    grant['expires_at'] = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
+                else:
+                    grant['status'] = 'revoked'
+                self.write_registry()
+                output = self.root / 'denial-output'
+                result = self.run_cli(GUARD, 'preflight', '--report-expected-denial',
+                                      env=self.github_env(GITHUB_OUTPUT=str(output)))
+                self.assert_denied(result)
+                self.assertEqual(json.loads(result.stdout)['execution_status'], 'AUTHORIZATION_FAILURE')
+                self.assertIn('allowed=false', output.read_text())
+                self.assertTrue(all(not (self.root / p).exists() for p in OUTPUTS))
+
+    def test_reporting_output_write_error_remains_execution_failure(self):
+        result = self.run_cli(GUARD, 'preflight', '--report-expected-denial',
+                              env=dict(self.env, GITHUB_OUTPUT=str(self.root)))
+        self.assert_denied(result)
+        self.assertNotIn('"execution_status": "EXPECTED_DENY"', result.stdout)
+        self.assertTrue(all(not (self.root / p).exists() for p in OUTPUTS))
+
+
 class DeliveryContractTests(unittest.TestCase):
     def test_delivery_payload_and_dependency_integrity(self):
         manifest_path = 'config/Mrliou_Structure_Authorization_Delivery_v1.json'
