@@ -165,12 +165,26 @@ def authorize(actions, depth=8):
         deny('REGISTRY_UNREADABLE_OR_INVALID')
 
 
+def _workflow_output(allowed, status, reason):
+    """Only fixed authorization metadata; no structure data or grant contents."""
+    output = os.environ.get('GITHUB_OUTPUT')
+    if output:
+        with open(output, 'a', encoding='utf-8') as stream:
+            stream.write('allowed=' + str(allowed).lower() + '\n')
+            stream.write('execution_status=' + status + '\n')
+            stream.write('reason=' + reason + '\n')
+
+
 def main():
     """Evaluate workflow preflight/upload without reading source/index contents."""
     parser = argparse.ArgumentParser()
     parser.add_argument('phase', choices=['preflight', 'upload'])
     parser.add_argument('--depth', type=int, default=8)
+    parser.add_argument('--report-expected-denial', action='store_true',
+                        help='Report empty-registry preflight DENY without authorizing work')
     args = parser.parse_args()
+    if args.report_expected_denial and args.phase != 'preflight':
+        parser.error('--report-expected-denial is limited to preflight')
     try:
         result = authorize(ACTIONS if args.phase == 'preflight' else {'structure.upload'}, args.depth)
         if args.phase == 'upload':
@@ -180,9 +194,17 @@ def main():
                     deny('MISSING_GENERATED_ARTIFACT')
         print(json.dumps(result, sort_keys=True))
     except AuthorizationDenied as error:
-        print(json.dumps({'decision': 'DENY', 'reason': str(error),
-                          'origin_signature': 'MrLiouWord'}, sort_keys=True))
-        return 1
+        reason = str(error)
+        expected = args.report_expected_denial and reason == 'NO_RECORDED_GRANT'
+        result = {'decision': 'DENY', 'reason': reason,
+                  'origin_signature': 'MrLiouWord'}
+        if args.report_expected_denial:
+            result['execution_status'] = 'EXPECTED_DENY' if expected else 'AUTHORIZATION_FAILURE'
+            _workflow_output(False, result['execution_status'], reason)
+        print(json.dumps(result, sort_keys=True))
+        return 0 if expected else 1
+    if args.report_expected_denial:
+        _workflow_output(True, 'AUTHORIZED', 'MATCHING_GRANT')
     return 0
 
 
