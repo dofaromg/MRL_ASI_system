@@ -1,0 +1,30 @@
+name: MRL pending structure grant regression
+on:
+  pull_request:
+    paths:
+      - 'config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json'
+      - 'tests/test_MRL_pending_structure_grant.py'
+      - '.github/workflows/mrl-pending-structure-grant.yml'
+      - 'docs/mrl-structure-grant-request-20261101.md'
+      - '.copilot/Mrliou_structure_authorization.py'
+  push:
+    branches: ['MRL_structure_grant_request_20261101']
+permissions:
+  contents: read
+jobs:
+  pending-grant-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Record tested revision
+        run: git rev-parse HEAD
+      - name: Validate pending request without scanning MRL sources
+        run: python -m unittest discover -s tests -p test_MRL_pending_structure_grant.py -v
+      - name: Existing synthetic authorization regression
+        run: python -m unittest discover -s tests -p test_Mrliou_structure_authorization.py -v
