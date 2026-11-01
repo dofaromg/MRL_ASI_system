@@ -28,8 +28,8 @@
       "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json"
     ]
   },
-  "package_map": "Five Git blobs in repair branch; no ZIP requested",
-  "hash_policy": "Receipt excludes itself to avoid circular hash; Git tree records all five blobs",
+  "package_map": "Eight Git blobs in repair branch; no ZIP requested",
+  "hash_policy": "Receipt excludes itself to avoid circular hash; Git tree records all eight blobs",
   "payload": [
     {
       "path": "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json",
