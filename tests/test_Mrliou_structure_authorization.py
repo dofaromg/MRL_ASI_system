@@ -59,8 +59,8 @@ class AuthorizationTests(unittest.TestCase):
         grant = {
             'record_id': 'SYNTHETIC-TEST-ONLY', 'grantee': {
                 'actor': actor, 'triggering_actor': actor},
-            'scope': {'repository': 'dofaromg/-Mr.liouagi', 'assets': ['.'], 'max_depth': 8,
-                      'destination': ('github-actions-artifact:dofaromg/-Mr.liouagi'
+            'scope': {'repository': 'dofaromg/MRL_ASI_system', 'assets': ['.'], 'max_depth': 8,
+                      'destination': ('github-actions-artifact:dofaromg/MRL_ASI_system'
                                       if github else 'local-checkout'),
                       'events': ['workflow_dispatch'] if github else ['local'],
                       'ref': 'refs/heads/main' if github else 'local'},
@@ -76,10 +76,10 @@ class AuthorizationTests(unittest.TestCase):
         return grant
 
     def github_env(self, **changes):
-        env = dict(self.env, GITHUB_ACTIONS='true', GITHUB_REPOSITORY='dofaromg/-Mr.liouagi',
+        env = dict(self.env, GITHUB_ACTIONS='true', GITHUB_REPOSITORY='dofaromg/MRL_ASI_system',
                    GITHUB_REF='refs/heads/main', GITHUB_ACTOR='fixture-actor',
                    GITHUB_TRIGGERING_ACTOR='fixture-actor', GITHUB_EVENT_NAME='workflow_dispatch',
-                   GITHUB_WORKFLOW_REF='dofaromg/-Mr.liouagi/.github/workflows/structure-indexer.yml@refs/heads/main')
+                   GITHUB_WORKFLOW_REF='dofaromg/MRL_ASI_system/.github/workflows/structure-indexer.yml@refs/heads/main')
         env.update(changes)
         return env
 

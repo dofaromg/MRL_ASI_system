@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / 'config/MRL_AUTHORIZATION_REGISTRY_v1.json'
-REPOSITORY = 'dofaromg/-Mr.liouagi'
+REPOSITORY = 'dofaromg/MRL_ASI_system'
 WORKFLOW = REPOSITORY + '/.github/workflows/structure-indexer.yml@refs/heads/main'
 ARTIFACTS = ('.copilot/structure-scan.json', '.copilot/structure-index.json',
              '.copilot/structure.fltnz', 'STRUCTURE.md')

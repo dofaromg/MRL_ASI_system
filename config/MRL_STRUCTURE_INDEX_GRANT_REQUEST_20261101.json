@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101_MRL_ASI_system",
+  "state": "PENDING_ROOT_APPROVAL",
+  "origin_signature": "MrLiouWord",
+  "canonical_authority": "Mr.liou",
+  "source": {
+    "repository": "dofaromg/MRL_ASI_system",
+    "commit": "632683e7e880e9e938cd9e71d4d3fbc5a4db1e7d",
+    "run_url": "https://github.com/dofaromg/MRL_ASI_system/actions/runs/41263488729",
+    "registry": "config/MRL_AUTHORIZATION_REGISTRY_v1.json",
+    "request_date": "2026-11-01",
+    "authority_sources": [
+      "https://app.notion.com/p/3e9e7f4e6c5580e49f3dc8292dda835a",
+      "https://app.notion.com/p/a45ff7597bfc44189b4cf6aaacf071cf",
+      "https://app.notion.com/p/3ebe7f4e6c5581f29119d730e3b46dd6"
+    ]
+  },
+  "approval": {
+    "approved_by": null,
+    "approved_at": null,
+    "evidence_reference": null
+  },
+  "proposed_grant": {
+    "record_id": "MRL_STRUCTURE_INDEX_OPERATION_20261101_MRL_ASI_system",
+    "status": "pending",
+    "grantee": {
+      "actor": "dofaromg",
+      "triggering_actor": "dofaromg"
+    },
+    "environment": "github-actions",
+    "purpose": "structure-index",
+    "scope": {
+      "repository": "dofaromg/MRL_ASI_system",
+      "assets": [
+        "."
+      ],
+      "max_depth": 8,
+      "destination": "github-actions-artifact:dofaromg/MRL_ASI_system",
+      "events": [
+        "workflow_dispatch"
+      ],
+      "ref": "refs/heads/main"
+    },
+    "actions": [
+      "structure.scan",
+      "structure.generate",
+      "structure.upload"
+    ],
+    "prohibited_actions": [],
+    "issued_by": null,
+    "issued_at": null,
+    "expires_at": null,
+    "evidence_reference": null,
+    "rollback": "Revoke this record in config/MRL_AUTHORIZATION_REGISTRY_v1.json through a reviewed commit; preserve prior registry and run receipts in Git history. No direct main mutation by the indexer."
+  },
+  "approval_terms": {
+    "validity": "24 hours from explicit Root approval; exact UTC timestamps must be recorded before activation",
+    "trigger": "One owner-initiated workflow_dispatch validation; recurring schedule/push/comment remain unauthorized",
+    "artifact_retention_days": 30,
+    "output_paths": [
+      ".copilot/structure-scan.json",
+      ".copilot/structure-index.json",
+      ".copilot/structure.fltnz",
+      "STRUCTURE.md"
+    ],
+    "excluded": [
+      "schedule",
+      "push",
+      "issue_comment",
+      "local execution",
+      "cross-repository access",
+      "main direct write",
+      "rights or authorship transfer"
+    ],
+    "activation": "Root Owner must approve this exact request and scope with traceable evidence; then map a separate active record into the canonical registry. This request is never automatically loaded by the guard."
+  },
+  "identity_alignment": {
+    "current_pinned_repository": "dofaromg/-Mr.liouagi",
+    "requested_repository": "dofaromg/MRL_ASI_system",
+    "state": "PREPARED_IN_THIS_PR_NOT_MERGED",
+    "historical_identity_policy": "Keep original identity in Git/source receipts; accept only the current exact repository and workflow after reviewed alignment, never an environment-selected repository."
+  },
+  "acceptance": [
+    "Exact-head synthetic authorization regression passes",
+    "Pending request does not authorize any source scan or artifact upload",
+    "Approved active grant matches issuer, actor, repository, workflow, event, destination and time",
+    "Actual authorized workflow scans and generates all four nonempty outputs",
+    "Upload completes; downloaded artifact has exactly the four declared paths and verified SHA-256/size receipt"
+  ]
+}

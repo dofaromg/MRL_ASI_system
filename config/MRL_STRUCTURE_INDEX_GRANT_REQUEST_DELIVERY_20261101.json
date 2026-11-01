@@ -1,0 +1,79 @@
+{
+  "origin_signature": "MrLiouWord",
+  "canonical_authority": "Mr.liou",
+  "repository": "dofaromg/MRL_ASI_system",
+  "parent_sha": "632683e7e880e9e938cd9e71d4d3fbc5a4db1e7d",
+  "expected_files": [
+    "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json",
+    "docs/mrl-structure-grant-request-20261101.md",
+    "tests/test_MRL_pending_structure_grant.py",
+    ".github/workflows/mrl-pending-structure-grant.yml",
+    ".copilot/Mrliou_structure_authorization.py",
+    "tests/test_Mrliou_structure_authorization.py",
+    "config/Mrliou_Structure_Authorization_Delivery_v1.json",
+    "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_DELIVERY_20261101.json"
+  ],
+  "expected_file_count": 8,
+  "dependencies": {
+    "tests/test_MRL_pending_structure_grant.py": [
+      "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json",
+      ".copilot/Mrliou_structure_authorization.py",
+      "config/MRL_AUTHORIZATION_REGISTRY_v1.json"
+    ],
+    ".github/workflows/mrl-pending-structure-grant.yml": [
+      "tests/test_MRL_pending_structure_grant.py",
+      "tests/test_Mrliou_structure_authorization.py"
+    ],
+    "docs/mrl-structure-grant-request-20261101.md": [
+      "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json"
+    ]
+  },
+  "package_map": "Eight Git blobs in repair branch; no ZIP requested",
+  "hash_policy": "Receipt excludes itself to avoid circular hash; Git tree records all eight blobs",
+  "payload": [
+    {
+      "path": "config/MRL_STRUCTURE_INDEX_GRANT_REQUEST_20261101.json",
+      "size_bytes": 3595,
+      "sha256": "a9dca40b2598e54fdfa9527512beac6125e791bce1f0890a4be78bce6408a7ad"
+    },
+    {
+      "path": "docs/mrl-structure-grant-request-20261101.md",
+      "size_bytes": 2761,
+      "sha256": "aaabc62ce7b116e4f8a20d78945a669316949a71987b6baf94453d7483d68965"
+    },
+    {
+      "path": "tests/test_MRL_pending_structure_grant.py",
+      "size_bytes": 3069,
+      "sha256": "f6243184d7f378115353e122826de5a3a3e2c2ecf57f8c0bb3fcd3deda201f39"
+    },
+    {
+      "path": ".github/workflows/mrl-pending-structure-grant.yml",
+      "size_bytes": 1149,
+      "sha256": "28bf5bc424c0574d5a38d2f417b844ae5ffd9ea2390abe8c60f26d56ee11a758"
+    },
+    {
+      "path": ".copilot/Mrliou_structure_authorization.py",
+      "size_bytes": 8786,
+      "sha256": "414d5d23103ee340646a6d9d0c55614dc4c81e0ab0ece1040cb05648b4311a0d"
+    },
+    {
+      "path": "tests/test_Mrliou_structure_authorization.py",
+      "size_bytes": 29266,
+      "sha256": "90493b2e08b9f8d1f316417f6f5bf24f7ba5f414edc80d4fe4f6e277f2744383"
+    },
+    {
+      "path": "config/Mrliou_Structure_Authorization_Delivery_v1.json",
+      "size_bytes": 9072,
+      "sha256": "91bf4e63b219d4ef6b56caf28896d2ebe2d3997fb2a6289deff0cb8918dc3ac2"
+    }
+  ],
+  "verification": {
+    "local_existing_authorization_tests": 47,
+    "local_pending_tests": 2,
+    "missing": 0,
+    "extra": 0,
+    "mismatch": 0,
+    "proposal_coverage": "100%",
+    "operational_delivery": "BLOCKED_PENDING_ROOT_APPROVAL"
+  }
+}

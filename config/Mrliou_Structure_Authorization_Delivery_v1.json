@@ -89,8 +89,8 @@
   "payload": [
     {
       "path": ".copilot/Mrliou_structure_authorization.py",
-      "size_bytes": 8783,
-      "sha256": "e173ad61acf34d52a2c136a3cd051ebe9b777ae0fcc86a165a10e4362f4e9fff"
+      "size_bytes": 8786,
+      "sha256": "414d5d23103ee340646a6d9d0c55614dc4c81e0ab0ece1040cb05648b4311a0d"
     },
     {
       "path": ".copilot/generator/emoji_indexer.py",
@@ -154,8 +154,8 @@
     },
     {
       "path": "tests/test_Mrliou_structure_authorization.py",
-      "size_bytes": 29254,
-      "sha256": "3886926f2786cbfe6b584f16a5db0e43b5fdd31fb42062466f6a489bb018243b"
+      "size_bytes": 29266,
+      "sha256": "90493b2e08b9f8d1f316417f6f5bf24f7ba5f414edc80d4fe4f6e277f2744383"
     },
     {
       "path": ".github/workflows/blank.yml",
@@ -211,5 +211,11 @@
     ],
     "evidence": "docs/mrl-structure-delivery-integrity-20261021.md",
     "scope": "Refresh one stale payload receipt after owner-merged lineage repairs; inherited repository/base/revision fields above retain the original delivery provenance. No runtime grants are issued."
+  },
+  "identity_alignment_revision": {
+    "repository": "dofaromg/MRL_ASI_system",
+    "source_commit": "632683e7e880e9e938cd9e71d4d3fbc5a4db1e7d",
+    "historical_repository": "dofaromg/-Mr.liouagi",
+    "reason": "Exact current repository identity; empty runtime registry retained"
   }
 }
